@@ -1,12 +1,11 @@
 <?php
 
-class DashboardControllerTest extends ControllerTestCase
+class IndexControllerTest extends ControllerTestCase
 {
-    public function testIndexAction()
+    public function testIndexRedirectsToDashboardController()
     {
         $this->dispatch('/');
         $this->assertAction('index');
         $this->assertController('dashboard');
     }
 }
-
