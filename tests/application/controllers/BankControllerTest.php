@@ -1,20 +1,41 @@
 <?php
 
-require_once 'PHPUnit/Framework/TestCase.php';
-
-class BankControllerTest extends PHPUnit_Framework_TestCase
+class BankControllerTest extends ControllerTestCase
 {
 
-    public function setUp()
+    public function testIndexAction()
     {
-        /* Setup Routine */
+        $this->dispatch('/bank');
+        $this->assertController('bank');
+        $this->assertAction('list');
     }
 
-    public function tearDown()
+    public function testListAction()
     {
-        /* Tear Down Routine */
+        $this->dispatch('/bank/list');
+        $this->assertController('bank');
+        $this->assertAction('list');
     }
 
+    public function testCreateAction()
+    {
+        $this->dispatch('/bank/create');
+        $this->assertController('bank');
+        $this->assertAction('create');
+    }
 
+    public function testEditAction()
+    {
+        $this->dispatch('/bank/edit');
+        $this->assertController('bank');
+        $this->assertAction('edit');
+    }
+
+    public function testDeleteAction()
+    {
+        $this->dispatch('/bank/delete');
+        $this->assertController('bank');
+        $this->assertAction('delete');
+    }
 }
 
