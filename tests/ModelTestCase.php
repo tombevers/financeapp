@@ -7,12 +7,17 @@ class ModelTestCase extends PHPUnit_Framework_TestCase
      */
     protected $_doctrineContainer;
 
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    protected $_em;
+
     protected function setUp()
     {
         global $application;
         $application->bootstrap();
         $this->_doctrineContainer = Zend_Registry::get('doctrine');
-
+        $this->_em = $this->_doctrineContainer->getEntityManager();
         self::_dropSchema($this->_doctrineContainer->getConnection()->getParams());
 
         $tool = new \Doctrine\ORM\Tools\SchemaTool($this->_doctrineContainer->getEntityManager());
