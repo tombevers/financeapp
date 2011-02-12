@@ -1,0 +1,17 @@
+<?php echo $this->doctype() . PHP_EOL; ?>
+<html>
+    <head>
+        <?php echo $this->headMeta() . PHP_EOL; ?>
+        <?php $this->headTitle()->setSeparator(' - '); ?>
+        <?php echo $this->headTitle() . PHP_EOL; ?>
+        <?php echo $this->headLink() . PHP_EOL; ?>
+        <?php echo $this->headStyle() . PHP_EOL; ?>
+    </head>
+    <body>
+        <div id="wrapper">
+            <?php echo $this->layout()->content; ?>
+        </div>
+    </body>
+    <?php echo $this->headScript() . PHP_EOL; ?>
+    <?php echo $this->inlineScript() . PHP_EOL; ?>
+</html>
