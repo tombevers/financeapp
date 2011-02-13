@@ -24,6 +24,10 @@
         </controllerFile>
         <controllerFile controllerName="Account">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="list"/>
+          <actionMethod actionName="add"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="delete"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -60,6 +64,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Account">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Account">
+            <viewScriptFile forActionName="list"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Account">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Account">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Account">
+            <viewScriptFile forActionName="delete"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
