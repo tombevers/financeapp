@@ -18,4 +18,10 @@ class ControllerTestCase extends Zend_Test_PHPUnit_ControllerTestCase
             $front->setParam('bootstrap', $application->getBootstrap());
         }
     }
+
+    protected function tearDown()
+    {
+        // Reset the request and response
+        $this->resetRequest()->resetResponse();
+    }
 }

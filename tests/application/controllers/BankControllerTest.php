@@ -2,7 +2,6 @@
 
 class BankControllerTest extends ControllerTestCase
 {
-
     public function testRedirectIndexToListAction()
     {
         $this->dispatch('/bank');
@@ -26,41 +25,33 @@ class BankControllerTest extends ControllerTestCase
         $this->assertResponseCode(200);
     }
 
-    public function testAccessCreateAction()
+    public function testAccessAddAction()
     {
-        $this->dispatch('/bank/create');
+        $this->dispatch('/bank/add');
 
         $this->assertNotController('error');
         $this->assertNotAction('error');
         
         $this->assertController('bank');
-        $this->assertAction('create');
+        $this->assertAction('add');
         $this->assertResponseCode(200);
     }
     
     public function testCanWeDisplayOurForm()
     {
-        $this->dispatch('/bank/create');
+        $this->dispatch('/bank/add');
         
         $this->assertNotController('error');
         $this->assertNotAction('error');
         
         $this->assertController('bank');
-        $this->assertAction('create');
+        $this->assertAction('add');
         $this->assertResponseCode(200);
         
         $this->assertQueryCount('form', 1);
         $this->assertQueryCount('input[type="text"]', 3);
         $this->assertQueryCount('textarea', 1);
         $this->assertQueryCount('input[type="submit"]', 1);
-    }
-    
-    public function testSubmitFailsWhenNotPost()
-    {
-        $this->request->setMethod('get');
-        $this->dispatch('/bank/save-bank');
-        $this->assertResponseCode(302);
-        $this->assertRedirectTo('/bank');
     }
     
     public function testCanWeSubmitABank()
@@ -70,16 +61,15 @@ class BankControllerTest extends ControllerTestCase
                       	'name'       => 'Unit test bank',
                       	'address'    => 'street 1',
                       	'website'    => 'http://www.google.com',
-						'comment'    => 'A comment',
+                        'comment'    => 'A comment',
                       ));
-        $this->dispatch('/bank/save-bank');
+        $this->dispatch('/bank/add');
         
-        $this->assertQueryCount('dt', 3);
-        $this->assertQueryCount('dd', 1);
-        $this->assertQueryContentContains('dt#name', 'Unit test bank');
-        $this->assertQueryContentContains('dt#address', 'street 1');
-        $this->assertQueryContentContains('dt#website', 'http://www.google.com');
-        $this->assertQueryContentContains('dd#comment', 'A comment');
+        $this->assertNotController('error');
+        $this->assertNotAction('error');
+
+        $this->assertRedirectTo('/bank/list');
+        $this->assertResponseCode(302);
     }
 
     /**
@@ -93,12 +83,16 @@ class BankControllerTest extends ControllerTestCase
                       	'name'       => $name,
                       	'address'    => $address,
                       	'website'    => $website,
-						'comment'    => $comment,
+                        'comment'    => $comment,
                       ));
-        $this->dispatch('/bank/save-bank');
+        $this->dispatch('/bank/add');
+
+        $this->assertNotController('error');
+        $this->assertNotAction('error');
         
-        $this->assertResponseCode(302);
-        $this->assertRedirectTo('/bank/create');
+        $this->assertController('bank');
+        $this->assertAction('add');
+        $this->assertResponseCode(200);
     }
     
     public static function wrongDataProvider()

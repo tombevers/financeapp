@@ -17,11 +17,10 @@
         </controllerFile>
         <controllerFile controllerName="Bank">
           <actionMethod actionName="index"/>
-          <actionMethod actionName="create"/>
+          <actionMethod actionName="add"/>
           <actionMethod actionName="delete"/>
           <actionMethod actionName="edit"/>
           <actionMethod actionName="list"/>
-          <actionMethod actionName="saveBank"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -45,7 +44,7 @@
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Bank">
-            <viewScriptFile forActionName="create"/>
+            <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Bank">
             <viewScriptFile forActionName="delete"/>
@@ -55,9 +54,6 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Bank">
             <viewScriptFile forActionName="list"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Bank">
-            <viewScriptFile forActionName="saveBank"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

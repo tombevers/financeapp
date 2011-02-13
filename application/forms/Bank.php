@@ -30,7 +30,7 @@ class Application_Form_Bank extends Zend_Form
         $name->setLabel('Name')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
-            ->addValidator(new Zend_Validate_StringLength(FALSE, array(2, 60)))
+            ->addValidator(new Zend_Validate_StringLength(array(2, 60)))
             ->setRequired();
         return $name;
     }
@@ -46,7 +46,7 @@ class Application_Form_Bank extends Zend_Form
         $address->setLabel('Address')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
-            ->addValidator(new Zend_Validate_StringLength(FALSE, array(2, 150)));
+            ->addValidator(new Zend_Validate_StringLength(array(2, 150)));
         return $address;
     }
     

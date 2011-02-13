@@ -9,7 +9,6 @@ class IndexControllerTest extends ControllerTestCase
         $this->assertNotController('error');
         $this->assertNotAction('error');
 
-        $this->assertModule('default');
         $this->assertController('dashboard');
         $this->assertAction('index');
         $this->assertResponseCode(200);
