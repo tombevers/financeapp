@@ -4,6 +4,7 @@ class BankControllerTest extends ControllerTestCase
 {
     public function testRedirectIndexToListAction()
     {
+        $this->markTestIncomplete();
         $this->dispatch('/bank');
         
         $this->assertNotController('error');
@@ -15,6 +16,7 @@ class BankControllerTest extends ControllerTestCase
 
     public function testAccessListAction()
     {
+        $this->markTestIncomplete();
         $this->dispatch('/bank/list');
         
         $this->assertNotController('error');
@@ -56,6 +58,7 @@ class BankControllerTest extends ControllerTestCase
     
     public function testCanWeSubmitABank()
     {
+        $this->markTestIncomplete();
         $this->request->setMethod('post')
                       ->setPost(array(
                       	'name'       => 'Unit test bank',

@@ -1,1 +1,7 @@
 <br /><br /><center>View script for controller <b>Bank</b> and script/action name <b>list</b></center>
+
+<?php if(!empty($this->banks)) : ?>
+<?php foreach ($this->banks as $bank) : ?>
+    <p><?php echo $bank->getName(); ?></p>
+<?php endforeach; ?>
+<?php endif; ?>

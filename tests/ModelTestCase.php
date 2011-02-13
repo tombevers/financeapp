@@ -40,7 +40,8 @@ class ModelTestCase extends PHPUnit_Framework_TestCase
     private function _getClassMetas($path, $namespace)
     {
         $metas = array();
-        if ($handle = opendir($path)) {
+        $handle = opendir($path);
+        if ($handle) {
             while(false !== ($file = readdir($handle))) {
                 if(strstr($file,'.php')) {
                     list($class) = explode('.',$file);
