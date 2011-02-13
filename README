@@ -1,0 +1,46 @@
+README
+======
+
+This directory should be used to place project specfic documentation including
+but not limited to project notes, generated API/phpdoc documentation, or 
+manual files generated or hand written.  Ideally, this directory would remain
+in your development environment only and should not be deployed with your
+application to it's final production location.
+
+CONFIGURATION
+=============
+
+Setting Up Your VHOST
+=====================
+
+The following is a sample VHOST you might want to consider for your project.
+
+<VirtualHost *:80>
+   DocumentRoot "/var/www/financeapp/public"
+   ServerName financeapp.local
+
+   # This should be omitted in the production environment
+   SetEnv APPLICATION_ENV development
+    
+   <Directory "/var/www/financeapp/public">
+       Options Indexes MultiViews FollowSymLinks
+       AllowOverride All
+       Order allow,deny
+       Allow from all
+   </Directory>
+    
+</VirtualHost>
+
+Database
+========
+
+Create the databse
+------------------
+
+CREATE DATABASE `financeapp` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+Create a user and set permissions
+----------------------------------
+
+CREATE USER 'financeapp'@'localhost' IDENTIFIED BY 'financeapp';
+GRANT ALL ON financeapp.* TO 'financeapp'@'%';
