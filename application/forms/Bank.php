@@ -4,6 +4,7 @@ class Application_Form_Bank extends Zend_Form
 {
     public function init()
     {
+        $id = $this->_createHiddenIdField();
         $name = $this->_createNameField();
         $address = $this->_createAddressField();
         $website = $this->_createWebsiteField();
@@ -11,6 +12,7 @@ class Application_Form_Bank extends Zend_Form
         $submit = $this->_createSubmitButton();
 
         $this->addElements(array(
+                $id,
                 $name,
                 $address,
                 $website,
@@ -18,7 +20,35 @@ class Application_Form_Bank extends Zend_Form
                 $submit
         ));
     }
-    
+
+    public function setDefaultsFromEntity(\App\Entity\Bank $bank)
+    {
+        $values = array(
+            'id'        => $bank->getId(),
+            'name'      => $bank->getName(),
+            'address'   => $bank->getAddress(),
+            'website'   => $bank->getWebsite(),
+            'comment'   => $bank->getComment(),
+            );
+        
+        $this->setDefaults($values);
+    }
+
+    /**
+     * Creates the hidden id field
+     *
+     * @return Zend_Form_Element_Hidden
+     */
+    private function _createHiddenIdField()
+    {
+        $id = new Zend_Form_Element_Hidden('id');
+        $id->removeDecorator('DtDdWrapper')
+           ->removeDecorator('HtmlTag')
+           ->removeDecorator('Label');
+
+        return $id;
+    }
+
     /**
      * Creates the name field
      * 

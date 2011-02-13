@@ -16,4 +16,12 @@ class BankRepository extends EntityRepository
 
         $this->getEntityManager()->persist($bank);
     }
+
+    public function removeBank($id)
+    {
+        $em = $this->getEntityManager();
+        $proxy = $em->getReference('\App\Entity\Bank', $id);
+
+        $em->remove($proxy);
+    }
 }

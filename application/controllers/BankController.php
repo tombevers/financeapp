@@ -57,11 +57,46 @@ class BankController extends Zend_Controller_Action
 
     public function editAction()
     {
-        // action body
+        $request = $this->getRequest();
+        $id = $request->getParam('id');
+        $form = new Application_Form_Bank();
+        
+        
+        if ($id === NULL) {
+            throw new Exception('Id must be provided for the edit action');
+        }
+
+        $bank = $this->_bankRepository->find($id);
+
+        if ($request->isPost()) {
+            $formData = $request->getPost();
+            if ($form->isValid($formData)) {
+                $this->_bankRepository->saveBank($bank, $form->getValues());
+                $this->_entityManager->flush();
+
+                $this->_helper->_redirector('list');
+            } else {
+                $form->populate($formData);
+            }
+        } else {
+            $form->setDefaultsFromEntity($bank);
+        }
+
+        $this->view->form = $form;
     }
 
     public function deleteAction()
     {
-        // action body
+        $request = $this->getRequest();
+        $id = $request->getParam('id');
+
+        if ($id === NULL) {
+            throw new Exception('Id must be provided for the delete action');
+        }
+
+        $this->_bankRepository->removeBank($id);
+        $this->_entityManager->flush();
+
+        $this->_helper->_redirector('list');
     }
 }

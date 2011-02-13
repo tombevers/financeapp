@@ -2,31 +2,6 @@
 
 class BankControllerTest extends ControllerTestCase
 {
-    public function testRedirectIndexToListAction()
-    {
-        $this->markTestIncomplete();
-        $this->dispatch('/bank');
-        
-        $this->assertNotController('error');
-        $this->assertNotAction('error');
-        
-        $this->assertController('bank');
-        $this->assertAction('list');
-    }
-
-    public function testAccessListAction()
-    {
-        $this->markTestIncomplete();
-        $this->dispatch('/bank/list');
-        
-        $this->assertNotController('error');
-        $this->assertNotAction('error');
-        
-        $this->assertController('bank');
-        $this->assertAction('list');
-        $this->assertResponseCode(200);
-    }
-
     public function testAccessAddAction()
     {
         $this->dispatch('/bank/add');
@@ -54,25 +29,6 @@ class BankControllerTest extends ControllerTestCase
         $this->assertQueryCount('input[type="text"]', 3);
         $this->assertQueryCount('textarea', 1);
         $this->assertQueryCount('input[type="submit"]', 1);
-    }
-    
-    public function testCanWeSubmitABank()
-    {
-        $this->markTestIncomplete();
-        $this->request->setMethod('post')
-                      ->setPost(array(
-                      	'name'       => 'Unit test bank',
-                      	'address'    => 'street 1',
-                      	'website'    => 'http://www.google.com',
-                        'comment'    => 'A comment',
-                      ));
-        $this->dispatch('/bank/add');
-        
-        $this->assertNotController('error');
-        $this->assertNotAction('error');
-
-        $this->assertRedirectTo('/bank/list');
-        $this->assertResponseCode(302);
     }
 
     /**
@@ -105,30 +61,6 @@ class BankControllerTest extends ControllerTestCase
             array('', 'bla', '', ''),
             array('blabla', '', 'www.google.com', ''),
         );
-    }
-    
-    public function testAccessEditAction()
-    {
-        $this->dispatch('/bank/edit');
-        
-        $this->assertNotController('error');
-        $this->assertNotAction('error');
-        
-        $this->assertController('bank');
-        $this->assertAction('edit');
-        $this->assertResponseCode(200);
-    }
-
-    public function testAccessDeleteAction()
-    {
-        $this->dispatch('/bank/delete');
-        
-        $this->assertNotController('error');
-        $this->assertNotAction('error');
-        
-        $this->assertController('bank');
-        $this->assertAction('delete');
-        $this->assertResponseCode(200);
     }
 }
 
