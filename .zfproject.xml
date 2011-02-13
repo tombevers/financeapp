@@ -22,6 +22,9 @@
           <actionMethod actionName="edit"/>
           <actionMethod actionName="list"/>
         </controllerFile>
+        <controllerFile controllerName="Account">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Bank"/>
@@ -54,6 +57,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Bank">
             <viewScriptFile forActionName="list"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Account">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -91,6 +97,7 @@
         <testApplicationControllerDirectory>
           <testApplicationControllerFile filesystemName="DashboardControllerTest.php"/>
           <testApplicationControllerFile filesystemName="BankControllerTest.php"/>
+          <testApplicationControllerFile filesystemName="AccountControllerTest.php"/>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory>
