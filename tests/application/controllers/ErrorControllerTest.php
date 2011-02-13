@@ -2,7 +2,7 @@
 
 class ErrorControllerTest extends ControllerTestCase
 {
-    public function testCallingBogusTriggers404Error()
+    public function testNonExistingPageReturnsPageNotFoundError()
     {
         $this->dispatch('/bogus');
         $this->assertController('error');

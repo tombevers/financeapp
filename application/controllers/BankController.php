@@ -2,7 +2,6 @@
 
 class BankController extends Zend_Controller_Action
 {
-
     public function init()
     {
         /* Initialize action controller here */
@@ -20,7 +19,10 @@ class BankController extends Zend_Controller_Action
 
     public function createAction()
     {
-        // action body
+        $form = new Application_Form_Bank(array(
+            'action'	=>    $this->_helper->url('save-bank')
+        ));
+        $this->view->form = $form; 
     }
 
     public function editAction()
@@ -32,13 +34,19 @@ class BankController extends Zend_Controller_Action
     {
         // action body
     }
+
+    public function saveBankAction()
+    {
+       $request = $this->getRequest();
+       if (!$request->isPost()) {
+           return $this->_helper->redirector('index');
+       }
+       
+       $form = new Application_Form_Bank();
+       if (!$form->isValid($request->getPost())) {
+           return $this->_helper->redirector('create');
+       }
+       $values = $form->getValues();
+       $this->view->values = $values;
+    }
 }
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,12 @@
+<dl>
+    <dt id="name"><?php echo $this->escape($this->values['name']) ?></dt>
+<?php if (isset ($this->values['address'])): ?>
+    <dt id="address"><?php echo $this->escape($this->values['address']) ?></dt>
+<?php endif; ?>
+<?php if (isset ($this->values['website'])): ?>
+    <dt id="website"><?php echo $this->escape($this->values['website']) ?></dt>
+<?php endif; ?>
+<?php if (isset ($this->values['comment'])): ?>
+    <dd id="comment"><?php echo $this->escape($this->values['comment']) ?></dd>
+<?php endif; ?>
+</dl>
