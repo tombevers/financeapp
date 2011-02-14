@@ -4,17 +4,6 @@ namespace App\Entity;
 
 class BankTest extends \ModelTestCase
 {
-    /**
-     * @var \App\Entity\Repository\BankRepository
-     */
-    protected $_bankRepository;
-
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->_bankRepository = $this->_em->getRepository('\App\Entity\Bank');
-    }
-
     public function testCanCreateBank()
     {
         $this->assertInstanceOf('App\Entity\Bank', new Bank());
