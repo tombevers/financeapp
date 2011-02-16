@@ -4,7 +4,7 @@ namespace App\Entity;
 
 /**
  * @Table(name="accounts")
- * @Entity
+ * @Entity(repositoryClass="App\Entity\Repository\AccountRepository")
  */
 class Account
 {
