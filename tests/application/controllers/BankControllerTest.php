@@ -38,12 +38,15 @@ class BankControllerTest extends ControllerTestCase
     $comment)
     {
         $this->request->setMethod('post')
-                      ->setPost(array(
-                      	'name'       => $name,
-                      	'address'    => $address,
-                      	'website'    => $website,
-                        'comment'    => $comment,
-                      ));
+            ->setPost(
+                array(
+                    'name'       => $name,
+                    'address'    => $address,
+                    'website'    => $website,
+                    'comment'    => $comment,
+                )
+            );
+        
         $this->dispatch('/bank/add');
 
         $this->assertNotController('error');

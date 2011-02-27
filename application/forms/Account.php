@@ -1,13 +1,13 @@
 <?php
 
-class Application_Form_Bank extends Zend_Form
+class Application_Form_Account extends Zend_Form
 {
     public function init()
     {
         $id = $this->_createHiddenIdField();
         $name = $this->_createNameField();
-        $address = $this->_createAddressField();
-        $website = $this->_createWebsiteField();
+        $number = $this->_createNumberField();
+        $bank = $this->_createBankDropDown($this->_createBankOptions());
         $comment = $this->_createCommentField();
         $submit = $this->_createSubmitButton();
 
@@ -15,27 +15,44 @@ class Application_Form_Bank extends Zend_Form
             array(
                 $id,
                 $name,
-                $address,
-                $website,
+                $number,
+                $bank,
                 $comment,
                 $submit
             )
         );
     }
 
-    public function setDefaultsFromEntity(\App\Entity\Bank $bank)
+    public function setDefaultsFromEntity(\App\Entity\Account $account)
     {
         $values = array(
-            'id'        => $bank->getId(),
-            'name'      => $bank->getName(),
-            'address'   => $bank->getAddress(),
-            'website'   => $bank->getWebsite(),
-            'comment'   => $bank->getComment(),
+            'id'        => $account->getId(),
+            'name'      => $account->getName(),
+            'number'    => $account->getNumber(),
+            'bank'      => $account->getBank(),
+            'comment'   => $account->getComment(),
         );
         
         $this->setDefaults($values);
     }
-
+    
+    /**
+     * Creates the bank options needed for the dropdown
+     * 
+     * @return array
+     */
+    private function _createBankOptions()
+    {
+        $bankService = App\ServiceLocator::getBankService();
+        $banks = $bankService->fetchAll();
+        $bankOptions = array();
+        foreach ($banks as $bank) {
+            $bankOptions[$bank->getId()] = $bank->getName();
+        }
+        
+        return $bankOptions;
+    }
+    
     /**
      * Creates the hidden id field
      *
@@ -69,35 +86,39 @@ class Application_Form_Bank extends Zend_Form
     }
     
     /**
-     * Creates the address field
+     * Creates the number field
      * 
      * @return Zend_Form_Element_Text
      */
-    private function _createAddressField()
+    private function _createNumberField()
     {
-        $address = new Zend_Form_Element_Text('address');
-        $address->setLabel('Address')
+        $number = new Zend_Form_Element_Text('number');
+        $number->setLabel('Number')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
-            ->addValidator(new Zend_Validate_StringLength(array(2, 150)));
+            ->addValidator(new Zend_Validate_StringLength(array(2, 60)))
+            ->setRequired();
         
-        return $address;
+        return $number;
     }
     
     /**
-     * Creates the website field
+     * Creates the bank dropdown field
      * 
-     * @return Zend_Form_Element_Text
+     * @param array $bankOptions
+     * @return Zend_Form_Element_Select 
      */
-    private function _createWebsiteField()
+    private function _createBankDropDown(array $bankOptions)
     {
-        $website = new Zend_Form_Element_Text('website');
-        $website->setLabel('Website')
-            ->addValidator(new \App\Validate\Url());
-        
-        return $website;
+        $bank = new Zend_Form_Element_Select('bank');
+        $bank->setLabel('Bank')
+            ->setMultiOptions($bankOptions)
+            ->setRequired();
+       
+       return $bank;
     }
-    
+
+
     /**
      * Creates the comment field
      * 
@@ -127,3 +148,4 @@ class Application_Form_Bank extends Zend_Form
         return $submit;
     }
 }
+

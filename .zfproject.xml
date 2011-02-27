@@ -32,6 +32,7 @@
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Bank"/>
+        <formFile formName="Account"/>
       </formsDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory/>

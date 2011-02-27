@@ -1,1 +1,7 @@
 <br /><br /><center>View script for controller <b>Account</b> and script/action name <b>list</b></center>
+
+<?php if(!empty($this->accounts)) : ?>
+<?php foreach ($this->accounts as $account) : ?>
+    <p><?php echo $account->getName(); ?></p>
+<?php endforeach; ?>
+<?php endif; ?>

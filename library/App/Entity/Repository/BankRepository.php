@@ -7,6 +7,12 @@ use Doctrine\ORM\EntityRepository,
 
 class BankRepository extends EntityRepository
 {
+    /**
+     * Saves a bank
+     * 
+     * @param Bank $bank
+     * @param array $values 
+     */
     public function saveBank(Bank $bank, array $values)
     {
         $bank->setName($values['name']);
@@ -17,10 +23,15 @@ class BankRepository extends EntityRepository
         $this->getEntityManager()->persist($bank);
     }
 
-    public function removeBank($id)
+    /**
+     * Remove a bank
+     * 
+     * @param int $bankId 
+     */
+    public function removeBank($bankId)
     {
         $em = $this->getEntityManager();
-        $proxy = $em->getReference('\App\Entity\Bank', $id);
+        $proxy = $em->getReference('\App\Entity\Bank', $bankId);
 
         $em->remove($proxy);
     }

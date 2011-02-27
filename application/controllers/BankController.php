@@ -3,25 +3,13 @@
 class BankController extends Zend_Controller_Action
 {
 	/**
-	 * @var Bisna\Application\Container\DoctrineContainer
+	 * @var Application_Service_Bank
 	 */
-    protected $_doctrineContiainer;
-
-    /**
-	 * @var Doctrine\ORM\EntityManager
-	 */
-    protected $_entityManager;
-    
-    /**
-     * @var App\Entity\Repository\BankRepository
-     */
-    protected $_bankRepository;
+    private $_bankService;
     
     public function init()
     {
-        $this->_doctrineContainer = Zend_Registry::get('doctrine');
-        $this->_entityManager = $this->_doctrineContainer->getEntityManager();
-        $this->_bankRepository = $this->_entityManager->getRepository('\App\Entity\Bank');
+        $this->_bankService = \App\ServiceLocator::getBankService();
     }
 
     public function indexAction()
@@ -31,7 +19,7 @@ class BankController extends Zend_Controller_Action
 
     public function listAction()
     {
-        $banks = $this->_bankRepository->findAll();
+        $banks = $this->_bankService->fetchAll();
         $this->view->banks = $banks;
     }
 
@@ -44,9 +32,10 @@ class BankController extends Zend_Controller_Action
         if ($request->isPost()) {
             $formData = $request->getPost();
             if ($form->isValid($formData)) {
-                $bank = new App\Entity\Bank();
-                $this->_bankRepository->saveBank($bank, $form->getValues());
-                $this->_entityManager->flush();
+                $this->_bankService->saveBank(
+                    new App\Entity\Bank(),
+                    $form->getValues()
+                );
                 
                 $this->_helper->_redirector('list');
             } else {
@@ -58,22 +47,20 @@ class BankController extends Zend_Controller_Action
     public function editAction()
     {
         $request = $this->getRequest();
-        $id = $request->getParam('id');
+        $bankId = $request->getParam('id');
         $form = new Application_Form_Bank();
         
-        
-        if ($id === NULL) {
+        if ($bankId === NULL) {
             throw new Exception('Id must be provided for the edit action');
         }
 
-        $bank = $this->_bankRepository->find($id);
+        $bank = $this->_bankService->fetchById($bankId);
 
         if ($request->isPost()) {
             $formData = $request->getPost();
             if ($form->isValid($formData)) {
-                $this->_bankRepository->saveBank($bank, $form->getValues());
-                $this->_entityManager->flush();
-
+                $this->_bankService->saveBank($bank, $form->getValues());
+                
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -88,14 +75,13 @@ class BankController extends Zend_Controller_Action
     public function deleteAction()
     {
         $request = $this->getRequest();
-        $id = $request->getParam('id');
+        $bankId = $request->getParam('id');
 
-        if ($id === NULL) {
+        if ($bankId === NULL) {
             throw new Exception('Id must be provided for the delete action');
         }
 
-        $this->_bankRepository->removeBank($id);
-        $this->_entityManager->flush();
+        $this->_bankService->removeById($bankId);
 
         $this->_helper->_redirector('list');
     }
