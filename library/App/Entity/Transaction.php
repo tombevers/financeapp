@@ -23,7 +23,7 @@ class Transaction
     private $_account;
 
     /**
-     * @Column(name="amount", type="decimal", precision=2)
+     * @Column(name="amount", type="decimal", scale=2)
      * @var double
      */
     private $_amount;

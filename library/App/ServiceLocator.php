@@ -4,6 +4,7 @@ namespace App;
 
 class ServiceLocator
 {
+
 // -- [ Services ] -------------------------------------------------------------
 
     /**
@@ -28,5 +29,10 @@ class ServiceLocator
     public static function getPayeeService()
     {
         return new \Application_Service_Payee();
+    }
+    
+    public static function getTransactionService()
+    {
+        return new \Application_Service_Transaction();
     }
 }

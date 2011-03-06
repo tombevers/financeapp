@@ -29,7 +29,7 @@ class Application_Form_Account extends Zend_Form
             'id'        => $account->getId(),
             'name'      => $account->getName(),
             'number'    => $account->getNumber(),
-            'bank'      => $account->getBank(),
+            'bank'      => $account->getBank()->getId(),
             'comment'   => $account->getComment(),
         );
         
@@ -148,4 +148,3 @@ class Application_Form_Account extends Zend_Form
         return $submit;
     }
 }
-

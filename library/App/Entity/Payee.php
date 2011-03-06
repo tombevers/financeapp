@@ -17,7 +17,7 @@ class Payee
     private $_id;
     
     /**
-     * @Column(length=60)
+     * @Column(name="name", length=60)
      * @var string
      */
     private $_name;
