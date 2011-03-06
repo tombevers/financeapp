@@ -33,6 +33,7 @@
       <formsDirectory>
         <formFile formName="Bank"/>
         <formFile formName="Account"/>
+        <formFile formName="Payee"/>
       </formsDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory/>
@@ -112,9 +113,9 @@
       <testApplicationDirectory>
         <testApplicationBootstrapFile filesystemName="bootstrap.php"/>
         <testApplicationControllerDirectory>
-          <testApplicationControllerFile filesystemName="DashboardControllerTest.php"/>
-          <testApplicationControllerFile filesystemName="BankControllerTest.php"/>
-          <testApplicationControllerFile filesystemName="AccountControllerTest.php"/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
       <testLibraryDirectory>
