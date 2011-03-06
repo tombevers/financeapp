@@ -1,0 +1,6 @@
+
+<?php if(!empty($this->payees)) : ?>
+<?php foreach ($this->payees as $payee) : ?>
+    <p><?php echo $payee->getName(); ?></p>
+<?php endforeach; ?>
+<?php endif; ?>

@@ -15,12 +15,12 @@ class PayeeRepository extends EntityRepository
      */
     public function savePayee(Payee $payee, array $values)
     {
-        $bank->setName($values['name']);
-        $bank->setAddress($values['address']);
-        $bank->setPhone($values['phone']);
-        $bank->setEmail($values['email']);
+        $payee->setName($values['name']);
+        $payee->setAddress($values['address']);
+        $payee->setPhone($values['phone']);
+        $payee->setEmail($values['email']);
 
-        $this->getEntityManager()->persist($bank);
+        $this->getEntityManager()->persist($payee);
     }
     
     /**
