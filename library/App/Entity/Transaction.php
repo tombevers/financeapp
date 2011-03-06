@@ -10,7 +10,7 @@ class Transaction
 {
     /**
      * @Id
-     * @Column(type="integer", nullable=false)
+     * @Column(name="id", type="integer", nullable=false)
      * @GeneratedValue
      * @var int
      */
@@ -23,18 +23,19 @@ class Transaction
     private $_account;
 
     /**
-     * @Column(type="decimal", precision=2)
+     * @Column(name="amount", type="decimal", precision=2)
      * @var double
      */
     private $_amount;
     
     /**
-     * @column(type="date")
+     * @column(name="date", type="date")
      * @var \DateTime
      */
     private $_date;
     
     /**
+     * @column(name="note")
      * @var string
      */
     private $_note;

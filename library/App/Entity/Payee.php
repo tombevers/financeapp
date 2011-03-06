@@ -10,7 +10,7 @@ class Payee
 {
     /**
      * @Id
-     * @Column(type="integer", nullable=false)
+     * @Column(name="id", type="integer", nullable=false)
      * @GeneratedValue
      * @var int
      */
@@ -23,19 +23,19 @@ class Payee
     private $_name;
     
     /**
-     * @Column(length=150, nullable=true)
+     * @Column(name="address", length=150, nullable=true)
      * @var string
      */
     private $_address;
     
     /**
-     * @Column(length=150, nullable=true)
+     * @Column(name="phone", length=150, nullable=true)
      * @var string
      */
     private $_phone;
     
     /**
-     * @Column(length=150, nullable=true)
+     * @Column(name="email", length=150, nullable=true)
      * @var string
      */
     private $_email;

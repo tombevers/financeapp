@@ -10,89 +10,113 @@ class Bank
 {
     /**
      * @Id
-     * @Column(type="integer", nullable=false)
+     * @Column(name="id", type="integer", nullable=false)
      * @GeneratedValue
      * @var int
      */
-    private $id;
+    private $_id;
 	
     /**
-     * @Column(length=60)
+     * @Column(name="name", length=60)
      * @var string
      */
-    private $name;
+    private $_name;
 
     /**
-     * @Column(length=150, nullable=true)
+     * @Column(name="address",length=150, nullable=true)
      * @var string
      */
-    private $address;
+    private $_address;
 
     /**
-     * @Column(length=150, nullable=true)
+     * @Column(name="website", length=150, nullable=true)
      * @var string
      */
-    private $website;
+    private $_website;
 
     /**
-     * @Column(nullable=true))
+     * @Column(name="comment", nullable=true)
      * @var string
      */
-    private $comment;
+    private $_comment;
 
     /**
      * @return int
      */
     public function getId()
     {
-        return $this->id;
+        return $this->_id;
     }
 
     /**
-     * @param int $id
+     * @param int $_id
      */
-    public function setId($id)
+    public function setId($_id)
     {
-        $this->id = $id;
+        $this->_id = $_id;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
-        return $this->name;
+        return $this->_name;
     }
 
-    public function setName($name)
+    /**
+     * @param string $_name 
+     */
+    public function setName($_name)
     {
-        $this->name = $name;
+        $this->_name = $_name;
     }
 
+    /**
+     * @return string
+     */
     public function getAddress()
     {
-        return $this->address;
+        return $this->_address;
     }
 
-    public function setAddress($address)
+    /**
+     * @param string $_address 
+     */
+    public function setAddress($_address)
     {
-        $this->address = $address;
+        $this->_address = $_address;
     }
 
+    /**
+     * @return string
+     */
     public function getWebsite()
     {
-        return $this->website;
+        return $this->_website;
     }
 
-    public function setWebsite($website)
+    /**
+     * @param string $_website 
+     */
+    public function setWebsite($_website)
     {
-        $this->website = $website;
+        $this->_website = $_website;
     }
 
+    /**
+     * @return string
+     */
     public function getComment()
     {
-        return $this->comment;
+        return $this->_comment;
     }
 
-    public function setComment($comment)
+    /**
+     * @param string $_comment 
+     */
+    public function setComment($_comment)
     {
-        $this->comment = $comment;
+        $this->_comment = $_comment;
     }
 }

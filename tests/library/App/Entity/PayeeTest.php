@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Entity;
-
-class PayeeTest extends \ModelTestCase
+class PayeeTest extends ModelTestCase
 {
     public function testCanCreatePayee()
     {
-        $this->assertInstanceOf('\App\Entity\Payee', new Payee());
+        $this->assertInstanceOf('\App\Entity\Payee', new App\Entity\Payee());
     }
     
     public function testCanSavePayee()
@@ -16,7 +14,7 @@ class PayeeTest extends \ModelTestCase
         $phoneStub = '454878788787';
         $emailStub = 'foo@bar.com';
         
-        $payee = new Payee();
+        $payee = new App\Entity\Payee();
         $payee->setId(30);
         $payee->setName($nameStub);
         $payee->setAddress($addressStub);

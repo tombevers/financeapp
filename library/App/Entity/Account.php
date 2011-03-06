@@ -10,89 +10,114 @@ class Account
 {
     /**
      * @Id
-     * @Column(type="integer", nullable=false)
+     * @Column(name="id", type="integer", nullable=false)
      * @GeneratedValue
      * @var int
      */
-    private $id;
+    private $_id;
 
     /**
-     * @Column(length=60)
+     * @Column(name="name", length=60)
      * @var string
      */
-    private $name;
+    private $_name;
 
     /**
-     * @Column(length=60, nullable=true)
+     * @Column(name="number", length=60, nullable=true)
      * @var string
      */
-    private $number;
+    private $_number;
 
     /**
      * @ManyToOne(targetEntity="Bank")
      * @JoinColumn(name="bankId", referencedColumnName="id")
      */
-    private $bank;
+    private $_bank;
 
     /**
-     * @Column(nullable=true)
+     * @Column(name="comment", nullable=true)
      * @var string
      */
-    private $comment;
+    private $_comment;
 
     /**
      * @return int
      */
     public function getId()
     {
-        return $this->id;
+        return $this->_id;
     }
 
     /**
-     * @param int $id
+     * @param int $_id
      */
-    public function setId($id)
+    public function setId($_id)
     {
-        $this->id = $id;
+        $this->_id = $_id;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
-        return $this->name;
+        return $this->_name;
     }
 
-    public function setName($name)
+    /**
+     * @param string $_name 
+     */
+    public function setName($_name)
     {
-        $this->name = $name;
+        $this->_name = $_name;
     }
 
+    /**
+     * @return string
+     */
     public function getNumber()
     {
-        return $this->number;
+        return $this->_number;
     }
 
-    public function setNumber($number)
+    /**
+     * @param string $_number 
+     */
+    public function setNumber($_number)
     {
-        $this->number = $number;
+        $this->_number = $_number;
     }
 
+    /**
+     * @return \App\Entity\Bank
+     */
     public function getBank()
     {
-        return $this->bank;
+        return $this->_bank;
     }
 
-    public function setBank($bank)
+    /**
+     *
+     * @param \App\Entity\Bank $_bank 
+     */
+    public function setBank($_bank)
     {
-        $this->bank = $bank;
+        $this->_bank = $_bank;
     }
 
+    /**
+     * @return string
+     */
     public function getComment()
     {
-        return $this->comment;
+        return $this->_comment;
     }
 
-    public function setComment($comment)
+    /**
+     * @param string $_comment 
+     */
+    public function setComment($_comment)
     {
-        $this->comment = $comment;
+        $this->_comment = $_comment;
     }
 }

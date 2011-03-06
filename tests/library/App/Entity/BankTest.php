@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Entity;
-
-class BankTest extends \ModelTestCase
+class BankTest extends ModelTestCase
 {
     public function testCanCreateBank()
     {
-        $this->assertInstanceOf('App\Entity\Bank', new Bank());
+        $this->assertInstanceOf('App\Entity\Bank', new App\Entity\Bank());
     }
 
     public function testCanSaveBank()
@@ -16,7 +14,7 @@ class BankTest extends \ModelTestCase
         $websiteStub = 'http://foo.com';
         $commentStub = 'foo bar';
         
-        $bank = new Bank();
+        $bank = new App\Entity\Bank();
         $bank->setId(30);
         $bank->setName($nameStub);
         $bank->setAddress($addressStub);

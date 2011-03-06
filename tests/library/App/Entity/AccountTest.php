@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Entity;
-
-class AccountTest extends \ModelTestCase
+class AccountTest extends ModelTestCase
 {
     public function testCanCreateAccount()
     {
-        $this->assertInstanceOf('App\Entity\Account', new Account());
+        $this->assertInstanceOf('App\Entity\Account', new App\Entity\Account());
     }
 
     public function testCanSaveAccount()
     {
-        $bankStub = new Bank();
+        $bankStub = new App\Entity\Bank();
         $bankStub->setName('foo Bank');
         $this->_em->persist($bankStub);
 
@@ -19,7 +17,7 @@ class AccountTest extends \ModelTestCase
         $numberStub = '546688897';
         $commentStub = 'comment';
 
-        $account = new Account();
+        $account = new App\Entity\Account();
         $account->setId(30);
         $account->setName($nameStub);
         $account->setBank($bankStub);
