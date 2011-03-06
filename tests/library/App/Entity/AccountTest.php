@@ -31,7 +31,8 @@ class AccountTest extends \ModelTestCase
         $this->_em->persist($account);
         $this->_em->flush();
 
-        $result = $this->_em->createQuery('SELECT a FROM \App\Entity\Account a')->getSingleResult();
+        $result = $this->_em->createQuery('SELECT a FROM \App\Entity\Account a')
+            ->getSingleResult();
 
         $this->assertEquals(1, $result->getId());
         $this->assertEquals($nameStub, $result->getName());

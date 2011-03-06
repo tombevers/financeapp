@@ -11,7 +11,6 @@ class BankTest extends \ModelTestCase
 
     public function testCanSaveBank()
     {
-        // Save bank
         $nameStub = 'foo';
         $addressStub = 'foo street 1';
         $websiteStub = 'http://foo.com';
@@ -27,7 +26,8 @@ class BankTest extends \ModelTestCase
         $this->_em->persist($bank);
         $this->_em->flush();
 
-        $result = $this->_em->createQuery('SELECT b FROM \App\Entity\Bank b')->getSingleResult();
+        $result = $this->_em->createQuery('SELECT b FROM \App\Entity\Bank b')
+            ->getSingleResult();
         
         $this->assertEquals(1, $result->getId());
         $this->assertEquals($nameStub, $result->getName());
