@@ -19,8 +19,7 @@ class AccountRepository extends EntityRepository
         $account->setNumber($values['number']);
         $account->setBank($values['bank']);
         $account->setComment($values['comment']);
-        
-//        $this->getEntityManager()->persist($account->getBank());
+
         $this->getEntityManager()->persist($account);
     }
     

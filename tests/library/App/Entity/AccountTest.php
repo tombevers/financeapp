@@ -13,9 +13,7 @@ class AccountTest extends \ModelTestCase
     {
         $bankStub = new Bank();
         $bankStub->setName('foo Bank');
-        $bankStub->setComment('');
         $this->_em->persist($bankStub);
-        $this->_em->flush();
 
         $nameStub = 'foo';
         $numberStub = '546688897';
@@ -36,7 +34,10 @@ class AccountTest extends \ModelTestCase
 
         $this->assertEquals(1, $result->getId());
         $this->assertEquals($nameStub, $result->getName());
-        $this->assertEquals($bankStub, $result->getBank());
+        $this->assertEquals(
+            $bankStub->getName(),
+            $result->getBank()->getName()
+        );
         $this->assertEquals($numberStub, $result->getNumber());
         $this->assertEquals($commentStub, $result->getComment());
     }

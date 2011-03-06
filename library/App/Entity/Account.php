@@ -23,7 +23,7 @@ class Account
     private $name;
 
     /**
-     * @Column(length=60)
+     * @Column(length=60, nullable=true)
      * @var string
      */
     private $number;
@@ -35,7 +35,7 @@ class Account
     private $bank;
 
     /**
-     * @Column(type="text")
+     * @Column(nullable=true)
      * @var string
      */
     private $comment;

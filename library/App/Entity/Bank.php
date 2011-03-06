@@ -35,7 +35,7 @@ class Bank
     private $website;
 
     /**
-     * @Column(type="text")
+     * @Column(nullable=true))
      * @var string
      */
     private $comment;
