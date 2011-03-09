@@ -4,7 +4,7 @@ class Application_Form_Transaction extends Zend_Form
 {
     public function init()
     {
-        $id = $this->_createHiddenIdField();
+        $idField = $this->_createHiddenIdField();
         $account = $this->_createAccountDropDown(
             $this->_createAccountOptions()
         );
@@ -15,7 +15,7 @@ class Application_Form_Transaction extends Zend_Form
 
         $this->addElements(
             array(
-                $id,
+                $idField,
                 $account,
                 $amount,
                 $date,
@@ -62,12 +62,12 @@ class Application_Form_Transaction extends Zend_Form
      */
     private function _createHiddenIdField()
     {
-        $id = new Zend_Form_Element_Hidden('id');
-        $id->removeDecorator('DtDdWrapper')
+        $idField = new Zend_Form_Element_Hidden('id');
+        $idField->removeDecorator('DtDdWrapper')
            ->removeDecorator('HtmlTag')
            ->removeDecorator('Label');
 
-        return $id;
+        return $idField;
     }
 
     /**

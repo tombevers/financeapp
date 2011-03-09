@@ -4,7 +4,7 @@ class Application_Form_Payee extends Zend_Form
 {
     public function init()
     {
-        $id = $this->_createHiddenIdField();
+        $idField = $this->_createHiddenIdField();
         $name = $this->_createNameField();
         $address = $this->_createAddressField();
         $phone = $this->_createPhoneField();
@@ -13,7 +13,7 @@ class Application_Form_Payee extends Zend_Form
 
         $this->addElements(
             array(
-                $id,
+                $idField,
                 $name,
                 $address,
                 $phone,
@@ -43,12 +43,12 @@ class Application_Form_Payee extends Zend_Form
      */
     private function _createHiddenIdField()
     {
-        $id = new Zend_Form_Element_Hidden('id');
-        $id->removeDecorator('DtDdWrapper')
+        $idField = new Zend_Form_Element_Hidden('id');
+        $idField->removeDecorator('DtDdWrapper')
            ->removeDecorator('HtmlTag')
            ->removeDecorator('Label');
 
-        return $id;
+        return $idField;
     }
 
     /**
