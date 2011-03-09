@@ -91,7 +91,7 @@
     </target>
 
     <target name="phpcb">
-        <exec command="phpcb --log ${builddir}/logs --output ${builddir}/code-browser --source ${source} --ignore ${tests},${source}/library/Zend,${source}/library/Doctrine,${source}/library/fpdi,${source}/library/PHPExcel,${source}/library/tcpdf,${source}/library/ZendX,${source}/bin,${source}/doctrine,${source}/database,${source}/docs,${source}/files,${source}/logs,${source}/tmp,${source}/uploads,${source}/application/models/mapping,${source}/application/models/proxy" passthru="true" />
+        <exec command="phpcb --log ${builddir}/logs --output ${builddir}/code-browser --source ${source} --ignore ${tests},${source}/library/Zend,${source}/library/Doctrine,${source}/library/Symfony,${source}/library/Bisna,${source}/bin,,${source}/application/models/proxy" passthru="true" />
     </target>
 
     <!-- Jenkins build target -->
