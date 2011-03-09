@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="printconcept" default="help" basedir=".">
+    <property name="basedir" value="${project.basedir}" />
+    <property name="builddir" value="${basedir}/build" />
+    <property name="source" value="${basedir}" />
+    <property name="tests" value="${basedir}/tests" />
+
+    <!-- Default included/excluded files and folders -->
+    <patternset id="defaultSet">
+        <include name="library/App/**/*.php" />
+        <include name="application/**/*.php" />
+        <exclude name="library/App/Entity/Proxy/**" />
+    </patternset>
+
+    <target name="help">
+        <echo message="General Targets"/>
+        <echo message="==============="/>
+        <echo message="phing phpunit Run unit tests."/>
+        <echo message="phing phpcs Run phpcs."/>
+        <echo message="phing phpmd Run phpmd."/>
+        <echo message="phing phpcpd Run phpcpd."/>
+        <echo message="phing pdepend Run pdepend."/>
+        <echo message="phing phpcb Run phpcb."/>
+        <echo message=""/>
+    </target>
+
+    <!-- Clean up -->
+    <target name="clean">
+        <echo msg="Cleaning build directory" />
+        <delete dir="${builddir}" />
+        
+        <mkdir dir="${builddir}/api" />
+        <mkdir dir="${builddir}/code-browser" />        
+        <mkdir dir="${builddir}/coverage" />
+        <mkdir dir="${builddir}/logs" />
+        <mkdir dir="${builddir}/pdepends" />
+    </target>
+
+    <target name="phpunit">
+        <exec command="phpunit --bootstrap=${tests}/TestHelper.php --coverage-html=${builddir}/coverage --log-junit=${builddir}/logs/junit.xml --coverage-clover=${builddir}/logs/clover.xml ${tests}" passthru="true"/>
+    </target>
+
+    <!--target name="phpdepend">
+        <phpdepend>
+            <fileset dir="${source}">
+                <patternset refid="defaultSet" />
+            </fileset>
+            <logger type="jdepend-xml" outfile="${builddir}/logs/jdepend.xml" />
+            <logger type="jdepend-chart" outfile="${builddir}/pdepend/dependencies.svg" />
+            <logger type="overview-pyramid" outfile="${builddir}/pdepend/overview-pyramid.svg" /> 
+        </phpdepend>
+    </target-->
+    
+    <target name="phpmd">
+        <phpmd rulesets="codesize,design,naming,unusedcode">
+            <fileset dir="${source}">
+                <patternset refid="defaultSet" />
+            </fileset>
+            <formatter type="xml" outfile="${builddir}/logs/pmd.xml" />
+        </phpmd>
+    </target>
+
+    <target name="phpcpd">
+        <phpcpd>
+            <fileset dir="${source}">
+                <patternset refid="defaultSet" />
+            </fileset>
+            <formatter type="pmd" outfile="${builddir}/logs/pmd-cpd.xml" />
+        </phpcpd>
+    </target>
+
+    <target name="phploc">
+        <exec command="phploc --log-csv ${builddir}/logs/phploc.csv ${source}" />
+    </target>
+
+    <target name="phpcs">
+        <phpcodesniffer standard="Zend" showSniffs="true" showWarnings="false">
+            <fileset dir="${source}">
+                <patternset refid="defaultSet" />
+            </fileset>
+            <formatter type="checkstyle" outfile="${builddir}/logs/checkstyle.xml" />
+        </phpcodesniffer>
+    </target>
+
+    <target name="phpdoc">
+        <phpdoc title="API Documentation" destdir="${builddir}/api" sourcecode="no" output="HTML:Smarty:PHP">
+            <fileset dir="${source}">
+                <patternset refid="defaultSet" />
+            </fileset>
+        </phpdoc>
+    </target>
+
+    <target name="phpcb">
+        <exec command="phpcb --log ${builddir}/logs --output ${builddir}/code-browser --source ${source} --ignore ${tests},${source}/library/Zend,${source}/library/Doctrine,${source}/library/fpdi,${source}/library/PHPExcel,${source}/library/tcpdf,${source}/library/ZendX,${source}/bin,${source}/doctrine,${source}/database,${source}/docs,${source}/files,${source}/logs,${source}/tmp,${source}/uploads,${source}/application/models/mapping,${source}/application/models/proxy" passthru="true" />
+    </target>
+
+    <!-- Jenkins build target -->
+    <target name="build" depends="clean">
+        <phingcall target="phpunit" />
+        <phingcall target="phpmd" />
+        <phingcall target="phpcpd" />
+        <phingcall target="phploc" />
+        <phingcall target="phpcs" />
+        <phingcall target="phpcb" />
+    </target>
+</project>
