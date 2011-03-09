@@ -2,7 +2,7 @@
 
 class PayeeController extends Zend_Controller_Action
 {
-	/**
+    /**
 	 * @var Application_Service_Payee
 	 */
     private $_payeeService;

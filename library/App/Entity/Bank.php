@@ -15,7 +15,7 @@ class Bank
      * @var int
      */
     private $_id;
-	
+    
     /**
      * @Column(name="name", length=60)
      * @var string

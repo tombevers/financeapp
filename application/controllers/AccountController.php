@@ -2,7 +2,7 @@
 
 class AccountController extends Zend_Controller_Action
 {
-	/**
+    /**
 	 * @var Application_Service_Account
 	 */
     private $_accountService;

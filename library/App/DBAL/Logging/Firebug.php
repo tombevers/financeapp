@@ -16,7 +16,7 @@ class Firebug implements \Doctrine\DBAL\Logging\SQLLogger
      * The label template for this profiler
      * @var string
      */
-    protected $_label_template = '%label% (%totalCount% @ %totalDuration% sec)';
+    protected $_labelTemplate = '%label% (%totalCount% @ %totalDuration% sec)';
     /**
      * The message envelope holding the profiling summary
      * @var Zend_Wildfire_Plugin_FirePhp_TableMessage
@@ -92,7 +92,7 @@ class Firebug implements \Doctrine\DBAL\Logging\SQLLogger
             $this->_queryCount,
             (string) round($this->_totalElapsedTime, 5)
         );
-        $label = str_replace($search, $replacements, $this->_label_template);
+        $label = str_replace($search, $replacements, $this->_labelTemplate);
         $this->_message->setLabel($label);
     }
 

@@ -2,7 +2,7 @@
 
 class BankController extends Zend_Controller_Action
 {
-	/**
+    /**
 	 * @var Application_Service_Bank
 	 */
     private $_bankService;
