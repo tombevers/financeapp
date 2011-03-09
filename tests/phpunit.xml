@@ -10,6 +10,7 @@
             <exclude>
                 <directory suffix=".phtml">../application/</directory>
                 <directory suffix=".php">../library/App/Entity/Proxy</directory>
+                <directory suffix=".php">../library/App/Entity/Repository</directory>
                 <directory suffix=".php">../library/Doctrine</directory>
                 <directory suffix=".php">../library/Bisna</directory>
                 <directory suffix=".php">../library/Symfony</directory>

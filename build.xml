@@ -10,6 +10,7 @@
         <include name="library/App/**/*.php" />
         <include name="application/**/*.php" />
         <exclude name="library/App/Entity/Proxy/**" />
+        <exclude name="library/App/Entity/Repository/**" />
     </patternset>
 
     <target name="help">
@@ -19,7 +20,7 @@
         <echo message="phing phpcs Run phpcs."/>
         <echo message="phing phpmd Run phpmd."/>
         <echo message="phing phpcpd Run phpcpd."/>
-        <echo message="phing pdepend Run pdepend."/>
+        <echo message="phing phpdepend Run pdepend."/>
         <echo message="phing phpcb Run phpcb."/>
         <echo message=""/>
     </target>
@@ -33,14 +34,15 @@
         <mkdir dir="${builddir}/code-browser" />        
         <mkdir dir="${builddir}/coverage" />
         <mkdir dir="${builddir}/logs" />
-        <mkdir dir="${builddir}/pdepends" />
+        <mkdir dir="${builddir}/pdepend" />
     </target>
 
     <target name="phpunit">
-        <exec command="phpunit --bootstrap=${tests}/TestHelper.php --coverage-html=${builddir}/coverage --log-junit=${builddir}/logs/junit.xml --coverage-clover=${builddir}/logs/clover.xml ${tests}" passthru="true"/>
+        <exec command="phpunit --bootstrap=${tests}/TestHelper.php --configuration=${tests}/phpunit.xml --coverage-html=${builddir}/coverage 
+            --log-junit=${builddir}/logs/junit.xml --coverage-clover=${builddir}/logs/clover.xml ${tests}" passthru="true" />
     </target>
 
-    <!--target name="phpdepend">
+    <target name="phpdepend">
         <phpdepend>
             <fileset dir="${source}">
                 <patternset refid="defaultSet" />
@@ -49,7 +51,7 @@
             <logger type="jdepend-chart" outfile="${builddir}/pdepend/dependencies.svg" />
             <logger type="overview-pyramid" outfile="${builddir}/pdepend/overview-pyramid.svg" /> 
         </phpdepend>
-    </target-->
+    </target>
     
     <target name="phpmd">
         <phpmd rulesets="codesize,design,naming,unusedcode">
@@ -82,21 +84,15 @@
         </phpcodesniffer>
     </target>
 
-    <target name="phpdoc">
-        <phpdoc title="API Documentation" destdir="${builddir}/api" sourcecode="no" output="HTML:Smarty:PHP">
-            <fileset dir="${source}">
-                <patternset refid="defaultSet" />
-            </fileset>
-        </phpdoc>
-    </target>
-
     <target name="phpcb">
-        <exec command="phpcb --log ${builddir}/logs --output ${builddir}/code-browser --source ${source} --ignore ${tests},${source}/library/Zend,${source}/library/Doctrine,${source}/library/Symfony,${source}/library/Bisna,${source}/bin,,${source}/application/models/proxy" passthru="true" />
+        <exec command="phpcb --log ${builddir}/logs --output ${builddir}/code-browser --source ${source} 
+            --ignore ${tests},${source}/library/Zend,${source}/library/Doctrine,${source}/library/Symfony,${source}/library/Bisna,${source}/bin,${builddir},${source}/library/App/Entity/Proxy" passthru="true" />
     </target>
 
     <!-- Jenkins build target -->
     <target name="build" depends="clean">
         <phingcall target="phpunit" />
+        <phingcall target="phpdepend" />
         <phingcall target="phpmd" />
         <phingcall target="phpcpd" />
         <phingcall target="phploc" />
