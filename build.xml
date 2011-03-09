@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project name="printconcept" default="help" basedir=".">
+<project name="financeapp" default="help" basedir=".">
     <property name="basedir" value="${project.basedir}" />
     <property name="builddir" value="${basedir}/build" />
     <property name="source" value="${basedir}" />
