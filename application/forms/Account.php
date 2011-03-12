@@ -85,7 +85,7 @@ class Application_Form_Account extends Zend_Form
     private function _createTypesDropDown($typeOptions)
     {
         $types = new Zend_Form_Element_Select('type');
-        $types->setLabel('Type')
+        $types->setLabel('accountType')
             ->setMultiOptions($typeOptions)
             ->setRequired();
        
@@ -100,7 +100,7 @@ class Application_Form_Account extends Zend_Form
     private function _createNameField()
     {
         $name = new Zend_Form_Element_Text('name');
-        $name->setLabel('Name')
+        $name->setLabel('accountName')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 60)))
@@ -117,7 +117,7 @@ class Application_Form_Account extends Zend_Form
     private function _createNumberField()
     {
         $number = new Zend_Form_Element_Text('number');
-        $number->setLabel('Number')
+        $number->setLabel('accountNumber')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 60)))
@@ -135,7 +135,7 @@ class Application_Form_Account extends Zend_Form
     private function _createBankDropDown(array $bankOptions)
     {
         $bank = new Zend_Form_Element_Select('bank');
-        $bank->setLabel('Bank')
+        $bank->setLabel('accountBank')
             ->setMultiOptions($bankOptions)
             ->setRequired();
        
@@ -151,7 +151,7 @@ class Application_Form_Account extends Zend_Form
     private function _createCommentField()
     {
         $comment = new Zend_Form_Element_Textarea('comment');
-        $comment->setLabel('Comment')
+        $comment->setLabel('accountComment')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array('min' => 5)));
@@ -167,7 +167,7 @@ class Application_Form_Account extends Zend_Form
     private function _createSubmitButton()
     {
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Save');
+        $submit->setLabel('saveAction');
         
         return $submit;
     }

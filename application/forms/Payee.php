@@ -59,7 +59,7 @@ class Application_Form_Payee extends Zend_Form
     private function _createNameField()
     {
         $name = new Zend_Form_Element_Text('name');
-        $name->setLabel('Name')
+        $name->setLabel('payeeName')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 60)))
@@ -76,7 +76,7 @@ class Application_Form_Payee extends Zend_Form
     private function _createAddressField()
     {
         $address = new Zend_Form_Element_Text('address');
-        $address->setLabel('Address')
+        $address->setLabel('payeeAddress')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 150)));
@@ -92,7 +92,7 @@ class Application_Form_Payee extends Zend_Form
     private function _createPhoneField()
     {
         $phone = new Zend_Form_Element_Text('phone');
-        $phone->setLabel('Phone')
+        $phone->setLabel('payeePhone')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 150)));
@@ -108,7 +108,7 @@ class Application_Form_Payee extends Zend_Form
     private function _createEmailField()
     {
         $email = new Zend_Form_Element_Text('email');
-        $email->setLabel('Email')
+        $email->setLabel('payeeEmail')
             ->addValidator(new Zend_Validate_EmailAddress());
         
         return $email;
@@ -122,7 +122,7 @@ class Application_Form_Payee extends Zend_Form
     private function _createSubmitButton()
     {
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Save');
+        $submit->setLabel('saveAction');
         
         return $submit;
     }

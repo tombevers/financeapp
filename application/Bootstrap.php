@@ -27,5 +27,22 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view = $this->getResource('view');
         $view->doctype('HTML5');
     }
+    
+    /**
+     * Init Translations
+     */
+    public function _initTranslate()
+    {
+        $translate = new Zend_Translate(
+            array(
+                'adapter'   => Zend_Translate::AN_ARRAY,
+                'content'   => APPLICATION_PATH . '/../languages/en.php',
+                'locale'    => 'en',
+                'scan'      => Zend_Translate::LOCALE_DIRECTORY,
+            )
+        );
+        
+        Zend_Registry::set('Zend_Translate', $translate);
+    }
 }
 

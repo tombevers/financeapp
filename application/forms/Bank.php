@@ -59,7 +59,7 @@ class Application_Form_Bank extends Zend_Form
     private function _createNameField()
     {
         $name = new Zend_Form_Element_Text('name');
-        $name->setLabel('Name')
+        $name->setLabel('bankName')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 60)))
@@ -76,7 +76,7 @@ class Application_Form_Bank extends Zend_Form
     private function _createAddressField()
     {
         $address = new Zend_Form_Element_Text('address');
-        $address->setLabel('Address')
+        $address->setLabel('bankAddress')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 150)));
@@ -92,7 +92,7 @@ class Application_Form_Bank extends Zend_Form
     private function _createWebsiteField()
     {
         $website = new Zend_Form_Element_Text('website');
-        $website->setLabel('Website')
+        $website->setLabel('bankWebsite')
             ->addValidator(new \App\Validate\Url());
         
         return $website;
@@ -106,7 +106,7 @@ class Application_Form_Bank extends Zend_Form
     private function _createCommentField()
     {
         $comment = new Zend_Form_Element_Textarea('comment');
-        $comment->setLabel('Comment')
+        $comment->setLabel('bankComment')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array('min' => 5)));
@@ -122,7 +122,7 @@ class Application_Form_Bank extends Zend_Form
     private function _createSubmitButton()
     {
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Save');
+        $submit->setLabel('saveAction');
         
         return $submit;
     }

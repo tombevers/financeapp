@@ -78,7 +78,7 @@ class Application_Form_Transaction extends Zend_Form
     private function _createAmountField()
     {
         $ammount = new Zend_Form_Element_Text('amount');
-        $ammount->setLabel('Amount')
+        $ammount->setLabel('transactionAmount')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->setRequired();
@@ -94,7 +94,7 @@ class Application_Form_Transaction extends Zend_Form
     private function _createDateField()
     {
         $date = new Zend_Form_Element_Text('date');
-        $date->setLabel('Date')
+        $date->setLabel('transactionDate')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_Date())
@@ -112,7 +112,7 @@ class Application_Form_Transaction extends Zend_Form
     private function _createAccountDropDown(array $accountOptions)
     {
         $account = new Zend_Form_Element_Select('account');
-        $account->setLabel('Account')
+        $account->setLabel('transactionAccount')
             ->setMultiOptions($accountOptions)
             ->setRequired();
        
@@ -127,7 +127,7 @@ class Application_Form_Transaction extends Zend_Form
     private function _createNoteField()
     {
         $note = new Zend_Form_Element_Textarea('note');
-        $note->setLabel('Note')
+        $note->setLabel('transactionNote')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array('min' => 3)));
@@ -143,7 +143,7 @@ class Application_Form_Transaction extends Zend_Form
     private function _createSubmitButton()
     {
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Save');
+        $submit->setLabel('saveAction');
         
         return $submit;
     }
