@@ -6,6 +6,13 @@ return array(
     'editAction'   => 'Edit',
     'deleteAction' => 'Delete',
     
+    // Navigation
+    'dashboardLinkTitle'    => 'Dashboard',
+    'accountLinkTitle'      => 'Account',
+    'bankLinkTitle'         => 'Bank',
+    'transactionLinkTitle'  => 'Transaction',
+    'payeeLinkTitle'        => 'Payee',
+    
     // Account form
     'accountType'       => 'Type',
     'accountName'       => 'Name',

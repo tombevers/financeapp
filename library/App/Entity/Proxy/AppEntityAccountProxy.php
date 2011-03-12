@@ -39,6 +39,18 @@ class AppEntityAccountProxy extends \App\Entity\Account implements \Doctrine\ORM
         return parent::setId($_id);
     }
 
+    public function getType()
+    {
+        $this->_load();
+        return parent::getType();
+    }
+
+    public function setType($_type)
+    {
+        $this->_load();
+        return parent::setType($_type);
+    }
+
     public function getName()
     {
         $this->_load();
@@ -90,6 +102,23 @@ class AppEntityAccountProxy extends \App\Entity\Account implements \Doctrine\ORM
 
     public function __sleep()
     {
-        return array('__isInitialized__', '_id', '_name', '_number', '_bank', '_comment');
+        return array('__isInitialized__', '_id', '_type', '_name', '_number', '_bank', '_comment');
+    }
+
+    public function __clone()
+    {
+        if (!$this->__isInitialized__ && $this->_entityPersister) {
+            $this->__isInitialized__ = true;
+            $class = $this->_entityPersister->getClassMetadata();
+            $original = $this->_entityPersister->load($this->_identifier);
+            if ($original === null) {
+                throw new \Doctrine\ORM\EntityNotFoundException();
+            }
+            foreach ($class->reflFields AS $field => $reflProperty) {
+                $reflProperty->setValue($this, $reflProperty->getValue($original));
+            }
+            unset($this->_entityPersister, $this->_identifier);
+        }
+        
     }
 }
