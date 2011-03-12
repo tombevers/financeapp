@@ -4,7 +4,12 @@ class Application_Form_Account extends Zend_Form
 {
     public function init()
     {
+        $accountTypeService = App\ServiceLocator::getAccountTypeService();
+        
         $idField = $this->_createHiddenIdField();
+        $typeField = $this->_createTypesDropDown(
+            $accountTypeService->fetchAll()
+        );
         $name = $this->_createNameField();
         $number = $this->_createNumberField();
         $bank = $this->_createBankDropDown($this->_createBankOptions());
@@ -14,6 +19,7 @@ class Application_Form_Account extends Zend_Form
         $this->addElements(
             array(
                 $idField,
+                $typeField,
                 $name,
                 $number,
                 $bank,
@@ -27,6 +33,7 @@ class Application_Form_Account extends Zend_Form
     {
         $values = array(
             'id'        => $account->getId(),
+            'type'      => $account->getType(),
             'name'      => $account->getName(),
             'number'    => $account->getNumber(),
             'bank'      => $account->getBank()->getId(),
@@ -40,6 +47,7 @@ class Application_Form_Account extends Zend_Form
      * Creates the bank options needed for the dropdown
      * 
      * @return array
+     * @todo move to the service
      */
     private function _createBankOptions()
     {
@@ -68,6 +76,22 @@ class Application_Form_Account extends Zend_Form
         return $idField;
     }
 
+    /**
+     * Creates the types dropdown field
+     * 
+     * @param array $typeOptions
+     * @return Zend_Form_Element_Select 
+     */
+    private function _createTypesDropDown($typeOptions)
+    {
+        $types = new Zend_Form_Element_Select('type');
+        $types->setLabel('Type')
+            ->setMultiOptions($typeOptions)
+            ->setRequired();
+       
+       return $types;
+    }
+    
     /**
      * Creates the name field
      * 

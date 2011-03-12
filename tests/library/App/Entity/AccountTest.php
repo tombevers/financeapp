@@ -16,9 +16,11 @@ class AccountTest extends ModelTestCase
         $nameStub = 'foo';
         $numberStub = '546688897';
         $commentStub = 'comment';
+        $typeStub = App\AccountType::BANK;
 
         $account = new App\Entity\Account();
         $account->setId(30);
+        $account->setType($typeStub);
         $account->setName($nameStub);
         $account->setBank($bankStub);
         $account->setNumber($numberStub);
@@ -32,6 +34,7 @@ class AccountTest extends ModelTestCase
 
         $this->assertEquals(1, $result->getId());
         $this->assertEquals($nameStub, $result->getName());
+        $this->assertEquals($typeStub, $result->getType());
         $this->assertEquals(
             $bankStub->getName(),
             $result->getBank()->getName()

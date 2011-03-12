@@ -8,6 +8,12 @@ final class AccountType
     const CASH = 2;
     const CREDITCARD = 3;
     
+    /**
+     * Gets the string of an account type
+     * 
+     * @param int $accountTypeId
+     * @return string
+     */
     public function getString($accountTypeId)
     {
         switch ($accountTypeId) {
@@ -24,5 +30,24 @@ final class AccountType
                 break;
         }
         return $result;
+    }
+    
+    /**
+     * Gets a list of all account types with their stringsµ
+     * 
+     * @return array
+     */
+    public function getList()
+    {
+        $reflectionClass = new \ReflectionClass('\App\AccountType');
+        $array = $reflectionClass->getConstants();
+        
+        // Create array with strings
+        $arrayWithStrings = array();
+        foreach ($array as $key => $value) {
+            $arrayWithStrings[$value] = $this->getString($value); 
+        }
+        
+        return $arrayWithStrings;
     }
 }

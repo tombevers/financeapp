@@ -15,6 +15,7 @@ class AccountRepository extends EntityRepository
      */
     public function saveAccount(Account $account, array $values)
     {
+        $account->setType($values['type']);
         $account->setName($values['name']);
         $account->setNumber($values['number']);
         $account->setBank($values['bank']);

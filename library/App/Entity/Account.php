@@ -17,6 +17,12 @@ class Account
     private $_id;
 
     /**
+     * @Column(name="typeId", type="smallint")
+     * @var int
+     */
+    private $_type;
+    
+    /**
      * @Column(name="name", length=60)
      * @var string
      */
@@ -47,7 +53,7 @@ class Account
     {
         return $this->_id;
     }
-
+    
     /**
      * @param int $_id
      */
@@ -56,6 +62,22 @@ class Account
         $this->_id = $_id;
     }
 
+    /**
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->_type;
+    }
+
+    /**
+     * @param int $_type 
+     */
+    public function setType($_type)
+    {
+        $this->_type = $_type;
+    }
+        
     /**
      * @return string
      */

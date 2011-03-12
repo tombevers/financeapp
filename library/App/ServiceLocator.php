@@ -22,6 +22,14 @@ class ServiceLocator
     {
         return new \Application_Service_Account();
     }
+ 
+    /**
+     * @return \Application_Service_AccountType
+     */
+    public static function getAccountTypeService()
+    {
+        return new \Application_Service_AccountType();
+    }
     
     /**
      * @return \Application_Service_Payee

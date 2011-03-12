@@ -37,4 +37,10 @@ class AccountTypeTest extends \PHPUnit_Framework_TestCase
             'creditCard'
         );
     }
+    
+    public function testGetList()
+    {
+        $accountType = new AccountType();
+        $this->assertEquals(count($accountType->getList()), 3);
+    }
 }

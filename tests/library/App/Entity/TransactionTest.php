@@ -13,6 +13,7 @@ class TransactionTest extends ModelTestCase
     public function testCanSaveTransaction()
     {
         $accountStub = new App\Entity\Account();
+        $accountStub->setType(\App\AccountType::BANK);
         $accountStub->setName('accountName');
         $this->_em->persist($accountStub);
         
