@@ -44,7 +44,7 @@ final class AccountType
         
         // Create array with strings
         $arrayWithStrings = array();
-        foreach ($array as $key => $value) {
+        foreach ($array as $value) {
             $arrayWithStrings[$value] = $this->getString($value); 
         }
         
