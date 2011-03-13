@@ -68,7 +68,7 @@ class TransactionController extends Zend_Controller_Action
         if ($request->isPost()) {
             $formData = $request->getPost();
             if ($form->isValid($formData)) {
-                $this->_transactionService->savePayee(
+                $this->_transactionService->saveTransaction(
                     $transaction,
                     $form->getValues()
                 );

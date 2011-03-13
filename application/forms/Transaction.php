@@ -31,7 +31,7 @@ class Application_Form_Transaction extends Zend_Form
             'id'        => $transaction->getId(),
             'account'   => $transaction->getAccount()->getId(),
             'amount'    => $transaction->getAmount(),
-            'date'      => $transaction->getDate(),
+            'date'      => $transaction->getDate()->format('Y-m-d'),
             'note'      => $transaction->getNote(),
         );
         
