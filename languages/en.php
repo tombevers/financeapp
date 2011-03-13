@@ -2,9 +2,10 @@
 
 return array(
     // Default actions
-    'saveAction'   => 'Save',
-    'editAction'   => 'Edit',
-    'deleteAction' => 'Delete',
+    'addAction'     => 'Add',
+    'saveAction'    => 'Save',
+    'editAction'    => 'Edit',
+    'deleteAction'  => 'Delete',
     
     // Navigation
     'dashboardLinkTitle'    => 'Dashboard',

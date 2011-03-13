@@ -1,5 +1,7 @@
 <h2><?php echo $this->title; ?></h2>
 
+<a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'add'));?>"><?php echo $this->translate('addAction'); ?></a><br />
+
 <?php if(!empty($this->transactions)) : ?>
 <table cellspacing="0">
 <?php foreach ($this->transactions as $transaction) : ?>
