@@ -1,6 +1,13 @@
+<h2><?php echo $this->title; ?></h2>
 
 <?php if(!empty($this->payees)) : ?>
+<table cellspacing="0">
 <?php foreach ($this->payees as $payee) : ?>
-    <p><?php echo $payee->getName(); ?></p>
+    <tr>
+        <td><?php echo $payee->getName(); ?></td>
+        <td><a href="<?php echo $this->url(array('controller' => 'payee', 'action' => 'edit', 'id' => $payee->getId()));?>"><?php echo $this->translate('editAction'); ?></a></td>
+        <td><a href="<?php echo $this->url(array('controller' => 'payee', 'action' => 'delete', 'id' => $payee->getId()));?>"><?php echo $this->translate('deleteAction'); ?></a></td>
+    </tr>
 <?php endforeach; ?>
+    </table>
 <?php endif; ?>

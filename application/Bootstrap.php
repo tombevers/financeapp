@@ -32,11 +32,35 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     /**
      * Init the doctype
      */
-    protected function _initDoctype()
+    protected function _initView()
     {
-        $this->bootstrap('view');
-        $view = $this->getResource('view');
-        $view->doctype('HTML5');
+        $resources = $this->getOption('resources');
+        $options = array();
+        if (isset($resources['view'])) {
+            $options = $resources['view'];
+        }
+        $view = new Zend_View($options);
+                
+        if (isset($options['doctype'])) {
+            $view->doctype()->setDoctype(strtoupper($options['doctype']));
+            if (isset($options['charset']) && $view->doctype()->isHtml5()) {
+                $view->headMeta()->setCharset($options['charset']);
+            }
+        }
+        if (isset($options['contentType'])) {
+            $view->headMeta()->appendHttpEquiv(
+                'Content-Type',
+                $options['contentType']
+            );
+        }
+        
+        $view->headTitle()->setSeparator(' - ');
+        $view->headTitle('financeapp');
+
+        $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
+        $viewRenderer->setView($view);
+        Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
+        return $view;
     }
 
     /**
@@ -45,12 +69,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     public function _initTranslate()
     {
         $translate = new Zend_Translate(
-                array(
-                    'adapter' => Zend_Translate::AN_ARRAY,
-                    'content' => APPLICATION_PATH . '/../languages/en.php',
-                    'locale' => 'en',
-                    'scan' => Zend_Translate::LOCALE_DIRECTORY,
-                )
+            array(
+                'adapter' => Zend_Translate::AN_ARRAY,
+                'content' => APPLICATION_PATH . '/../languages/en.php',
+                'locale' => 'en',
+                'scan' => Zend_Translate::LOCALE_DIRECTORY,
+            )
         );
 
         Zend_Registry::set('Zend_Translate', $translate);

@@ -8,17 +8,22 @@
         <?php echo $this->headStyle() . PHP_EOL; ?>
     </head>
     <body>
-        <nav>
-            <ul>
-                <li><a href="<?php echo $this->url(array('controller' => 'dashboard', 'action' => 'index'));?>"><?php echo $this->translate('dashboardLinkTitle'); ?></a></li>
-                <li><a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'list'));?>"><?php echo $this->translate('accountLinkTitle'); ?></a></li>
-                <li><a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'list'));?>"><?php echo $this->translate('bankLinkTitle'); ?></a></li>
-                <li><a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'list'));?>"><?php echo $this->translate('transactionLinkTitle'); ?></a></li>
-                <li><a href="<?php echo $this->url(array('controller' => 'payee', 'action' => 'list'));?>"><?php echo $this->translate('payeeLinkTitle'); ?></a></li>
-            </ul>
-        </nav>
         <div id="wrapper">
-            <?php echo $this->layout()->content; ?>
+            <header>
+                <h1>financeapp</h1>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="<?php echo $this->url(array('controller' => 'dashboard', 'action' => 'index'));?>"><?php echo $this->translate('dashboardLinkTitle'); ?></a></li>
+                    <li><a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'index'));?>"><?php echo $this->translate('accountLinkTitle'); ?></a></li>
+                    <li><a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'index'));?>"><?php echo $this->translate('bankLinkTitle'); ?></a></li>
+                    <li><a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'index'));?>"><?php echo $this->translate('transactionLinkTitle'); ?></a></li>
+                    <li><a href="<?php echo $this->url(array('controller' => 'payee', 'action' => 'index'));?>"><?php echo $this->translate('payeeLinkTitle'); ?></a></li>
+                </ul>
+            </nav>
+            <div id="content">
+                <?php echo $this->layout()->content; ?>
+            </div>
         </div>
     </body>
     <?php echo $this->headScript() . PHP_EOL; ?>

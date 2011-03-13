@@ -8,7 +8,7 @@ class TransactionController extends Zend_Controller_Action
     private $_transactionService;
     
     public function init()
-    {
+    {   
         $this->_transactionService = 
             \App\ServiceLocator::getTransactionService();
     }
@@ -20,11 +20,17 @@ class TransactionController extends Zend_Controller_Action
 
     public function listAction()
     {
+        $this->view->title = $this->view->translate('transactionTitle');
+        $this->view->headTitle($this->view->title, 'PREPEND');
+        
         $this->view->transactions = $this->_transactionService->fetchAll();
     }
 
     public function addAction()
     {
+        $this->view->title = $this->view->translate('transactionTitle');
+        $this->view->headTitle($this->view->title, 'PREPEND');
+        
         $form = new Application_Form_Transaction();
         $this->view->form = $form;
         
@@ -46,6 +52,9 @@ class TransactionController extends Zend_Controller_Action
 
     public function editAction()
     {
+        $this->view->title = $this->view->translate('transactionTitle');
+        $this->view->headTitle($this->view->title, 'PREPEND');
+        
         $request = $this->getRequest();
         $transactionId = $request->getParam('id');
         $form = new Application_Form_Transaction();

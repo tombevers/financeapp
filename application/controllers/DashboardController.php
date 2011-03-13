@@ -5,7 +5,8 @@ class DashboardController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $this->view->title = $this->view->translate('dashboardTitle');
+        $this->view->headTitle($this->view->title, 'PREPEND');
     }
 
     public function indexAction()

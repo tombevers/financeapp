@@ -8,7 +8,7 @@ class BankController extends Zend_Controller_Action
     private $_bankService;
     
     public function init()
-    {
+    {       
         $this->_bankService = \App\ServiceLocator::getBankService();
     }
 
@@ -19,12 +19,18 @@ class BankController extends Zend_Controller_Action
 
     public function listAction()
     {
+        $this->view->title = $this->view->translate('bankTitle');
+        $this->view->headTitle($this->view->title, 'PREPEND');
+        
         $banks = $this->_bankService->fetchAll();
         $this->view->banks = $banks;
     }
 
     public function addAction()
     {
+        $this->view->title = $this->view->translate('bankTitle');
+        $this->view->headTitle($this->view->title, 'PREPEND');
+        
         $form = new Application_Form_Bank();
         $this->view->form = $form;
         
@@ -46,6 +52,9 @@ class BankController extends Zend_Controller_Action
 
     public function editAction()
     {
+        $this->view->title = $this->view->translate('bankTitle');
+        $this->view->headTitle($this->view->title, 'PREPEND');
+        
         $request = $this->getRequest();
         $bankId = $request->getParam('id');
         $form = new Application_Form_Bank();

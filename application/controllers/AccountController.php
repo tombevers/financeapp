@@ -9,6 +9,7 @@ class AccountController extends Zend_Controller_Action
     
     public function init()
     {
+       
         $this->_accountService = \App\ServiceLocator::getAccountService();
     }
 
@@ -19,12 +20,18 @@ class AccountController extends Zend_Controller_Action
 
     public function listAction()
     {
+        $this->view->title = $this->view->translate('accountTitle');
+        $this->view->headTitle($this->view->title, 'PREPEND');
+        
         $accounts = $this->_accountService->fetchAll();
         $this->view->accounts = $accounts;
     }
 
     public function addAction()
     {
+        $this->view->title = $this->view->translate('accountTitle');
+        $this->view->headTitle($this->view->title, 'PREPEND');
+        
         $form = new Application_Form_Account();
         $this->view->form = $form;
         
@@ -46,6 +53,9 @@ class AccountController extends Zend_Controller_Action
 
     public function editAction()
     {
+        $this->view->title = $this->view->translate('accountTitle');
+        $this->view->headTitle($this->view->title, 'PREPEND');
+        
         $request = $this->getRequest();
         $accountId = $request->getParam('id');
         $form = new Application_Form_Account();

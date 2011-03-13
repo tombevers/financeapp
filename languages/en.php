@@ -13,6 +13,13 @@ return array(
     'transactionLinkTitle'  => 'Transaction',
     'payeeLinkTitle'        => 'Payee',
     
+    // Page titles
+    'dashboardTitle'    => 'Dashboard',
+    'accountTitle'      => 'Accounts',
+    'bankTitle'         => 'Banks',
+    'transactionTitle'  => 'Transactions',
+    'payeeTitle'        => 'Payees',
+    
     // Account form
     'accountType'       => 'Type',
     'accountName'       => 'Name',
