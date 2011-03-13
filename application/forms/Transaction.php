@@ -4,7 +4,12 @@ class Application_Form_Transaction extends Zend_Form
 {
     public function init()
     {
+        $transactionTypeService = App\ServiceLocator::getTransactionTypeService();
+        
         $idField = $this->_createHiddenIdField();
+        $typeField = $this->_createTypesDropDown(
+            $transactionTypeService->fetchAll()
+        );
         $account = $this->_createAccountDropDown(
             $this->_createAccountOptions()
         );
@@ -16,6 +21,7 @@ class Application_Form_Transaction extends Zend_Form
         $this->addElements(
             array(
                 $idField,
+                $typeField,
                 $account,
                 $amount,
                 $date,
@@ -29,6 +35,7 @@ class Application_Form_Transaction extends Zend_Form
     {
         $values = array(
             'id'        => $transaction->getId(),
+            'type'      => $transaction->getType(),
             'account'   => $transaction->getAccount()->getId(),
             'amount'    => $transaction->getAmount(),
             'date'      => $transaction->getDate()->format('Y-m-d'),
@@ -70,6 +77,22 @@ class Application_Form_Transaction extends Zend_Form
         return $idField;
     }
 
+    /**
+     * Creates the types dropdown field
+     * 
+     * @param array $typeOptions
+     * @return Zend_Form_Element_Select 
+     */
+    private function _createTypesDropDown($typeOptions)
+    {
+        $types = new Zend_Form_Element_Select('type');
+        $types->setLabel('transactionType')
+            ->setMultiOptions($typeOptions)
+            ->setRequired();
+       
+       return $types;
+    }
+    
     /**
      * Creates the amount field
      * 

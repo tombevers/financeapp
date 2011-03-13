@@ -15,6 +15,7 @@ class TransactionRepository extends EntityRepository
      */
     public function saveTransaction(Transaction $transaction, array $values)
     {
+        $transaction->setType($values['type']);
         $transaction->setAccount($values['account']);
         $transaction->setAmount($values['amount']);
         $transaction->setDate($values['date']);

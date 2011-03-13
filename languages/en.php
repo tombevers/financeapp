@@ -41,6 +41,7 @@ return array(
     'payeeEmail'        => 'Email',
     
     // Transaction form
+    'transactionType'       => 'Type',
     'transactionAmount'     => 'Amount',
     'transactionDate'       => 'Date',
     'transactionAccount'    => 'Account',

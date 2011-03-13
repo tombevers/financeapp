@@ -39,6 +39,18 @@ class AppEntityTransactionProxy extends \App\Entity\Transaction implements \Doct
         return parent::setId($_id);
     }
 
+    public function getType()
+    {
+        $this->_load();
+        return parent::getType();
+    }
+
+    public function setType($_type)
+    {
+        $this->_load();
+        return parent::setType($_type);
+    }
+
     public function getAccount()
     {
         $this->_load();
@@ -90,7 +102,7 @@ class AppEntityTransactionProxy extends \App\Entity\Transaction implements \Doct
 
     public function __sleep()
     {
-        return array('__isInitialized__', '_id', '_account', '_amount', '_date', '_note');
+        return array('__isInitialized__', '_id', '_type', '_account', '_amount', '_date', '_note');
     }
 
     public function __clone()

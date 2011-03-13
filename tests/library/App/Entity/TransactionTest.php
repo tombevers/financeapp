@@ -18,11 +18,13 @@ class TransactionTest extends ModelTestCase
         $this->_em->persist($accountStub);
         
         $amountStub = '100';
+        $typeStub = \App\TransactionType::TRANSFER;
         $dateStub = new \DateTime();
         $noteStub = 'note';
 
         $transaction = new App\Entity\Transaction();
         $transaction->setId(30);
+        $transaction->setType($typeStub);
         $transaction->setAccount($accountStub);
         $transaction->setAmount($amountStub);
         $transaction->setDate($dateStub);
@@ -36,6 +38,7 @@ class TransactionTest extends ModelTestCase
         )->getSingleResult();
 
         $this->assertEquals(1, $result->getId());
+        $this->assertEquals($typeStub, $result->getType());
         $this->assertEquals(
             $accountStub->getName(),
             $result->getAccount()->getName()

@@ -17,6 +17,12 @@ class Transaction
     private $_id;
     
     /**
+     * @Column(name="typeId", type="smallint")
+     * @var int
+     */
+    private $_type;
+    
+    /**
      * @ManyToOne(targetEntity="Account")
      * @JoinColumn(name="accountId", referencedColumnName="id")
      */
@@ -56,6 +62,22 @@ class Transaction
         $this->_id = $_id;
     }
 
+    /**
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->_type;
+    }
+
+    /**
+     * @param int $_type 
+     */
+    public function setType($_type)
+    {
+        $this->_type = $_type;
+    }
+    
     /**
      * @return \App\Entity\Account
      */

@@ -39,8 +39,19 @@ class ServiceLocator
         return new \Application_Service_Payee();
     }
     
+    /**
+     * @return \Application_Service_Transaction 
+     */
     public static function getTransactionService()
     {
         return new \Application_Service_Transaction();
+    }
+    
+    /**
+     * @return \Application_Service_TransactionType 
+     */
+    public static function getTransactionTypeService()
+    {
+        return new \Application_Service_TransactionType();
     }
 }
