@@ -1,0 +1,404 @@
+/*
+	Stylesheet for financeapp
+	
+	Media:      screen
+*/
+
+/*
+	Eric Meyer's Reset v2.0 | 20110126
+	@see http://meyerweb.com/eric/tools/css/reset/ 
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*
+    Clearfix
+	@see  http://perishablepress.com/press/2009/12/06/new-clearfix-hack/
+*/
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+/* -- General elements ----------------------------------------------------- */
+
+ins { background-color: #ff9; color: #000; text-decoration: none; }
+mark { background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
+del { text-decoration: line-through; }
+abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+table { border-collapse: collapse; border-spacing: 0; }
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+input, select { vertical-align: middle; }
+
+ul, ol { margin-left: 2em; list-style-type: disc; }
+ol { list-style-type: decimal; }
+ 
+/* Remove margins for navigation lists */
+nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
+
+small { font-size: 85%; }
+strong, th { font-weight: bold; }
+td { vertical-align: top; }
+
+/* Set sub, sup without affecting line-height: gist.github.com/413930 */
+sub, sup { font-size: 75%; line-height: 0; position: relative; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+ 
+pre {
+    /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+    white-space: pre; white-space: pre-wrap; word-wrap: break-word;
+}
+
+textarea { overflow: auto; } /* www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+
+/* Align checkboxes, radios, text inputs with their label by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css ; */
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; }
+ 
+/* Hand cursor on clickable input elements */
+label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+
+/* -- Typography ----------------------------------------------------------- */
+
+@font-face {
+    font-family: 'AllerRegular';
+    src: url('font/aller_rg-webfont.eot');
+    src: url('font/aller_rg-webfont.eot?iefix') format('eot'),
+         url('font/aller_rg-webfont.woff') format('woff'),
+         url('font/aller_rg-webfont.ttf') format('truetype'),
+         url('font/aller_rg-webfont.svg#webfontgFJ6KhK4') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font: 13px/1.231 sans-serif; *font-size: small;
+} /* Hack retained to preserve specificity */
+
+select, input, textarea, button {
+    font: 99% sans-serif;
+}
+
+body, select, input, textarea {
+    color: #333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+a, a:active, a:visited {
+    color: #0044CC;
+}
+
+a:hover {
+    color: #036;
+}
+
+a:focus {
+    outline-color: #000;
+    outline-style: dotted;
+    outline-width: 1px;
+}
+
+p, ul, ol, blockquote, pre, td, th, label {
+	margin-bottom: 1.231em;
+}
+
+pre {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 85%;
+}
+
+/* -- Buttons -------------------------------------------------------------- */
+
+.button, .button:visited {
+	background: #222 url(/img/alert-overlay.png) repeat-x;
+	display: inline-block;
+	padding: 9px 10px 6px;
+	color: #fff;
+	text-decoration: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+}
+
+.button:hover {
+    background-color: #111;
+    color: #fff;
+}
+
+.button:active {
+    top: 1px;
+}
+
+.small.button, .small.button:visited {
+    font-size: 85%;
+    padding: ;
+}
+
+.button, .button:visited,
+.medium.button, .medium.button:visited {
+    font-size: 100%;
+    font-weight: bold;
+    line-height: 1;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+}
+
+.large.button, .large.button:visited {
+    font-size: 108%;
+    padding: 8px 14px 9px;
+}
+
+.green.button, .green.button:visited {
+    background-color: #91bd09;
+}
+
+.green.button:hover {
+    background-color: #749a02;
+}
+
+.blue.button, .blue.button:visited {
+    background-color: #2daebf;
+}
+
+.blue.button:hover {
+    background-color: #007d9a;
+}
+
+.red.button, .red.button:visited {
+    background-color: #e33100;
+}
+
+.red.button:hover {
+    background-color: #872300;
+}
+
+.magenta.button, .magenta.button:visited {
+    background-color: #a9014b;
+}
+
+.magenta.button:hover {
+    background-color: #630030;
+}
+
+.orange.button, .orange.button:visited {
+    background-color: #ff5c00;
+}
+
+.orange.button:hover {
+    background-color: #d45500;
+}
+
+.yellow.button, .yellow.button:visited {
+    background-color: #ffb515;
+}
+
+.yellow.button:hover {
+    background-color: #fc9200;
+}
+
+/* -- Basic layout --------------------------------------------------------- */
+
+body {
+    background: #e5e5e5 url('../img/bg.png') repeat-x ;
+}
+
+#wrapper {
+    margin: 0 auto;
+    width: 940px;
+}
+
+/* -- Header --------------------------------------------------------------- */
+
+header {
+    height: 71px;
+}
+
+    header h1 {
+        font-family: 'AllerRegular';
+        font-weight: normal;
+        color: #fff;
+        font-size: 167%;
+        text-shadow: #333 1px 1px;
+        padding: 10px 0 0;
+    }
+    
+    #mainNav ul {
+        height: 28px;
+        line-height: 28px;
+        margin: 5px 1px 0 1px;
+        border-bottom: 1px solid #fff;
+    }
+    
+    #mainNav ul li {
+        float: left;
+    }
+
+    #mainNav ul li.active {
+        background: #f1f1f1;
+    }
+    
+    #mainNav ul li.active {
+        border-bottom: 1px solid #f1f1f1;
+    }
+    
+    #mainNav ul li a {
+        display: block;
+        padding: 0 19px;
+        color: #b3b3b3;
+        text-decoration: none;
+    }
+    
+    #mainNav ul li a:hover {
+        color: #fff;
+    }
+        
+    #mainNav ul li.active a {
+        color: #333;
+    }
+    
+    #mainNav ul li.active a:hover {
+        color: #b3b3b3;
+    }
+    
+/* -- ContentWrapper ------------------------------------------------------- */
+
+#contentWrapper {
+    background: #fff;
+    border-color: #d6d6d6;
+    border-style: solid;
+    border-width: 0 1px 1px;
+}
+
+    /** PageTitle **/
+
+    section#pageTitle {
+        background: #f1f1f1;
+        border-bottom: 1px solid #d6d6d6;
+    }
+        #pageTitle h1 {
+            float: left;
+            font-size: 153.9%;
+            font-family: 'AllerRegular';
+            font-weight: normal;
+            padding: 10px 0 10px 15px;
+        }
+        
+        #quickAction {
+            float: right;
+            margin: 9px 15px 0 0;
+        }
+    
+    /** SideBar **/
+    
+    #sideBar {
+        float: left;
+        padding: 15px 0 15px 15px;
+        width: 160px;
+    }
+    
+        #sideBar div.block {
+            width: 160px;
+            margin: 0 0 10px;
+        }
+        
+            #sideBar div.block h3 {
+                font-family: 'AllerRegular';
+                font-size: 95%;
+                font-weight: normal;
+                color: #505050;
+                text-transform: capitalize;
+                margin: 0 0 10px;
+            }
+    
+            #sideBar div.block .content {
+                border: 1px solid #e5e5e5;
+                background: #f9f9f9;
+                padding: 10px;
+                font-size: 90%;
+            }
+            
+            #sideBar div.block .content ul {
+                margin-bottom: 0;
+            }
+            
+            #sideBar div.block .content ul li {
+                padding: 0 0 2px;
+            }
+
+    /** Content **/
+    
+    #content {
+        float: left;
+        padding: 15px;
+        width: 733px;
+    }
+
+/* -- Footer --------------------------------------------------------------- */
+
+footer {
+    margin: 10px 0 5px;
+}
+
+footer p {
+    font-size: 77%;
+    text-align: center;
+}
