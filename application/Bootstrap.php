@@ -2,7 +2,6 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
-
     /**
      * Config data
      * 
@@ -57,10 +56,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->headTitle()->setSeparator(' - ');
         $view->headTitle('financeapp');
 
+        $view->headLink()->appendStylesheet('/css/screen.css');
+        
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
         $viewRenderer->setView($view);
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
-        return $view;
+        
+        Zend_Registry::set('view', $view);
     }
 
     /**

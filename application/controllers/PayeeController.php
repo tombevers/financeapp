@@ -19,16 +19,16 @@ class PayeeController extends Zend_Controller_Action
 
     public function listAction()
     {
-        $this->view->title = $this->view->translate('payeeTitle');
-        $this->view->headTitle($this->view->title, 'PREPEND');
+        $this->view->pageTitle = $this->view->translate('payeeTitle');
+        $this->view->headTitle($this->view->pageTitle, 'PREPEND');
         
         $this->view->payees = $this->_payeeService->fetchAll();
     }
 
     public function addAction()
     {
-        $this->view->title = $this->view->translate('payeeTitle');
-        $this->view->headTitle($this->view->title, 'PREPEND');
+        $this->view->pageTitle = $this->view->translate('payeeTitle');
+        $this->view->headTitle($this->view->pageTitle, 'PREPEND');
         
         $form = new Application_Form_Payee();
         $this->view->form = $form;
@@ -51,8 +51,8 @@ class PayeeController extends Zend_Controller_Action
 
     public function editAction()
     {
-        $this->view->title = $this->view->translate('payeeTitle');
-        $this->view->headTitle($this->view->title, 'PREPEND');
+        $this->view->pageTitle = $this->view->translate('payeeTitle');
+        $this->view->headTitle($this->view->pageTitle, 'PREPEND');
         
         $request = $this->getRequest();
         $payeeId = $request->getParam('id');

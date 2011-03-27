@@ -2,7 +2,7 @@
 <html>
     <head>
         <?php echo $this->headMeta() . PHP_EOL; ?>
-        <?php $this->headTitle()->setSeparator(' - '); ?>
+        <?php $this->headTitle()->setSeparator(' - ') . PHP_EOL; ?>
         <?php echo $this->headTitle() . PHP_EOL; ?>
         <?php echo $this->headLink() . PHP_EOL; ?>
         <?php echo $this->headStyle() . PHP_EOL; ?>
@@ -11,21 +11,45 @@
         <div id="wrapper">
             <header>
                 <h1>financeapp</h1>
+                <nav id="mainNav">
+                    <ul>
+                        <li <?php echo ($this->isActive('dashboard') ? 'class="active"' : ''); ?>>
+                            <a href="<?php echo $this->url(array('controller' => 'dashboard', 'action' => 'index'));?>">
+                                <?php echo $this->translate('dashboardLinkTitle'); ?></a></li>
+                        <li <?php echo ($this->isActive('transaction') ? 'class="active"' : ''); ?>>
+                            <a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'index'));?>">
+                                <?php echo $this->translate('transactionLinkTitle'); ?></a></li>
+                        <li <?php echo ($this->isActive('account') ? 'class="active"' : ''); ?>>
+                            <a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'index'));?>">
+                                <?php echo $this->translate('accountLinkTitle'); ?></a></li>
+                        <li <?php echo ($this->isActive('bank') ? 'class="active"' : ''); ?>>
+                            <a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'index'));?>">
+                                <?php echo $this->translate('bankLinkTitle'); ?></a></li>
+                        <li <?php echo ($this->isActive('payee') ? 'class="active"' : ''); ?>>
+                            <a href="<?php echo $this->url(array('controller' => 'payee', 'action' => 'index'));?>">
+                                <?php echo $this->translate('payeeLinkTitle'); ?></a></li>
+                    </ul>
+                </nav>
             </header>
-            <nav>
-                <ul>
-                    <li><a href="<?php echo $this->url(array('controller' => 'dashboard', 'action' => 'index'));?>"><?php echo $this->translate('dashboardLinkTitle'); ?></a></li>
-                    <li><a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'index'));?>"><?php echo $this->translate('accountLinkTitle'); ?></a></li>
-                    <li><a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'index'));?>"><?php echo $this->translate('bankLinkTitle'); ?></a></li>
-                    <li><a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'index'));?>"><?php echo $this->translate('transactionLinkTitle'); ?></a></li>
-                    <li><a href="<?php echo $this->url(array('controller' => 'payee', 'action' => 'index'));?>"><?php echo $this->translate('payeeLinkTitle'); ?></a></li>
-                </ul>
-            </nav>
-            <div id="content">
-                <?php echo $this->layout()->content; ?>
+	        <div id="contentWrapper" class="clearfix">
+	            <section id="pageTitle" class="clearfix">
+	                <h1><?php echo $this->pageTitle; ?></h1>
+                    <?php echo $this->quickAction; ?>
+                </section>
+                <aside id="sideBar">
+                    <?php echo $this->sideBar; ?>
+                </aside>
+                <div id="content">
+                    <?php echo $this->layout()->content; ?>
+                </div>
             </div>
         </div>
-    </body>
+        <footer>
+           <p>Copyright &copy; 2011 financeapp</p>
+        </footer>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
     <?php echo $this->headScript() . PHP_EOL; ?>
     <?php echo $this->inlineScript() . PHP_EOL; ?>
+    </body>
 </html>

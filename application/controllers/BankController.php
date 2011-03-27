@@ -19,8 +19,8 @@ class BankController extends Zend_Controller_Action
 
     public function listAction()
     {
-        $this->view->title = $this->view->translate('bankTitle');
-        $this->view->headTitle($this->view->title, 'PREPEND');
+        $this->view->pageTitle = $this->view->translate('bankTitle');
+        $this->view->headTitle($this->view->pageTitle, 'PREPEND');
         
         $banks = $this->_bankService->fetchAll();
         $this->view->banks = $banks;
@@ -28,8 +28,8 @@ class BankController extends Zend_Controller_Action
 
     public function addAction()
     {
-        $this->view->title = $this->view->translate('bankTitle');
-        $this->view->headTitle($this->view->title, 'PREPEND');
+        $this->view->pageTitle = $this->view->translate('bankTitle');
+        $this->view->headTitle($this->view->pageTitle, 'PREPEND');
         
         $form = new Application_Form_Bank();
         $this->view->form = $form;
@@ -52,8 +52,8 @@ class BankController extends Zend_Controller_Action
 
     public function editAction()
     {
-        $this->view->title = $this->view->translate('bankTitle');
-        $this->view->headTitle($this->view->title, 'PREPEND');
+        $this->view->pageTitle = $this->view->translate('bankTitle');
+        $this->view->headTitle($this->view->pageTitle, 'PREPEND');
         
         $request = $this->getRequest();
         $bankId = $request->getParam('id');
