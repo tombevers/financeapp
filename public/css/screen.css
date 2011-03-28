@@ -191,7 +191,7 @@ pre {
 
 .small.button, .small.button:visited {
     font-size: 85%;
-    padding: ;
+    padding: 0;
 }
 
 .button, .button:visited,

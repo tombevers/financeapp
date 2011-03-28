@@ -1,1 +1,10 @@
-<h2><?php echo $this->title; ?></h2>
+<h2><?php echo $this->pageTitle; ?></h2>
+<?php $this->layout()->variation = 'variation/sidebar'; ?>
+
+<?php $this->placeholder('quickAction')->captureStart(); ?>
+    
+<?php $this->placeholder('quickAction')->captureEnd(); ?>
+
+<?php $this->placeholder('sidebar')->captureStart(); ?>
+
+<?php $this->placeholder('sidebar')->captureEnd(); ?>

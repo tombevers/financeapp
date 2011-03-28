@@ -82,4 +82,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Registry::set('Zend_Translate', $translate);
     }
 
+    /**
+     * Init nested layout
+     */
+    protected function _initNestedLayout()
+    {
+        $this->bootstrap('layout');
+        // @var $layout Zend_Layout
+        $layout = $this->getResource('layout');
+        // Set default layouts
+        $layout->assign('nestedLayout', 'default');
+        $layout->assign('variation', 'variation/default');
+    }
+
 }

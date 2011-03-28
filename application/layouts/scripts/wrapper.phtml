@@ -1,0 +1,23 @@
+<?php echo $this->doctype() . PHP_EOL; ?>
+<html>
+    <head>
+        <?php echo $this->headMeta() . PHP_EOL; ?>
+        <?php $this->headTitle()->setSeparator(' - ') . PHP_EOL; ?>
+        <?php echo $this->headTitle() . PHP_EOL; ?>
+        <?php echo $this->headLink() . PHP_EOL; ?>
+        <?php echo $this->headStyle() . PHP_EOL; ?>
+    </head>
+    <body>
+        <?php // NESTED LAYOUT SUPPORT ?>
+        <?php if ($this->layout()->nestedLayout): ?>
+            <?php $this->layout()->setLayout($this->layout()->nestedLayout); ?>
+            <?php echo $this->layout()->render(); ?>
+        <?php else: ?>
+            <?php echo $this->layout()->content; ?>
+        <?php endif; ?>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+        <?php echo $this->headScript() . PHP_EOL; ?>
+        <?php echo $this->inlineScript() . PHP_EOL; ?>
+    </body>
+</html>
