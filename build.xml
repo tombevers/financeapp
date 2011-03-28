@@ -54,7 +54,7 @@
     </target>
     
     <target name="phpmd">
-        <phpmd rulesets="codesize,design,naming,unusedcode">
+        <phpmd rulesets="codesize,naming,unusedcode">
             <fileset dir="${source}">
                 <patternset refid="defaultSet" />
             </fileset>
