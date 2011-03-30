@@ -1,6 +1,6 @@
 <h2><?php echo $this->title; ?></h2>
 
-<a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'add'));?>"><?php echo $this->translate('addAction'); ?></a><br />
+<p><a class="button small" href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'add'));?>"><?php echo $this->translate('addAction'); ?></a></p>
 
 <?php if(!empty($this->banks)) : ?>
 <table cellspacing="0" class="defaultTable">
