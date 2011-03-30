@@ -3,13 +3,29 @@
 <a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'add'));?>"><?php echo $this->translate('addAction'); ?></a><br />
 
 <?php if(!empty($this->banks)) : ?>
-<table cellspacing="0">
+<table cellspacing="0" class="defaultTable">
+    <thead>
+        <tr>
+            <th><?php echo $this->translate('bankName'); ?></th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
 <?php foreach ($this->banks as $bank) : ?>
     <tr>
         <td><?php echo $bank->getName(); ?></td>
-        <td><a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'edit', 'id' => $bank->getId()));?>"><?php echo $this->translate('editAction'); ?></a></td>
-        <td><a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'delete', 'id' => $bank->getId()));?>"><?php echo $this->translate('deleteAction'); ?></a></td>
+        <td>
+            <ul class="actions clearfix">
+                <li>
+                    <a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'edit', 'id' => $bank->getId()));?>"><?php echo $this->translate('editAction'); ?></a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'delete', 'id' => $bank->getId()));?>"><?php echo $this->translate('deleteAction'); ?></a>
+                </li>
+            </ul>
+        </td>
     </tr>
 <?php endforeach; ?>
+    </tbody>
 </table>
 <?php endif; ?>
