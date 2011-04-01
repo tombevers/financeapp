@@ -13,10 +13,13 @@ class AccountTest extends ModelTestCase
         $bankStub->setName('foo Bank');
         $this->_em->persist($bankStub);
 
+        $typeStub = new App\Entity\AccountType();
+        $typeStub->setTag('fooTag');
+        $this->_em->persist($typeStub);
+
         $nameStub = 'foo';
         $numberStub = '546688897';
         $commentStub = 'comment';
-        $typeStub = App\AccountType::BANK;
 
         $account = new App\Entity\Account();
         $account->setId(30);
@@ -34,7 +37,10 @@ class AccountTest extends ModelTestCase
 
         $this->assertEquals(1, $result->getId());
         $this->assertEquals($nameStub, $result->getName());
-        $this->assertEquals($typeStub, $result->getType());
+        $this->assertEquals(
+            $typeStub->getTag(),
+            $result->getType()->getTag()
+        );
         $this->assertEquals(
             $bankStub->getName(),
             $result->getBank()->getName()

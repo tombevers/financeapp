@@ -12,11 +12,15 @@ class TransactionTest extends ModelTestCase
 
     public function testCanSaveTransaction()
     {
+        $accountTypeStub = new \App\Entity\AccountType();
+        $accountTypeStub->setTag('fooTag');
+        $this->_em->persist($accountTypeStub);
+
         $accountStub = new App\Entity\Account();
-        $accountStub->setType(\App\AccountType::BANK);
+        $accountStub->setType($accountTypeStub);
         $accountStub->setName('accountName');
         $this->_em->persist($accountStub);
-        
+
         $amountStub = '100';
         $typeStub = \App\TransactionType::TRANSFER;
         $dateStub = new \DateTime();
@@ -29,7 +33,7 @@ class TransactionTest extends ModelTestCase
         $transaction->setAmount($amountStub);
         $transaction->setDate($dateStub);
         $transaction->setNote($noteStub);
-        
+
         $this->_em->persist($transaction);
         $this->_em->flush();
 

@@ -23,10 +23,10 @@ class Application_Service_Bank
             '\App\Entity\Bank'
         );
     }
-    
+
     /**
      * Fetch all banks
-     * 
+     *
      * @return \App\Entity\Bank array
      */
     public function fetchAll()
@@ -36,9 +36,9 @@ class Application_Service_Bank
 
     /**
      * Fetch a bank by id
-     * 
+     *
      * @param int $bankId
-     * @return \App\Entity\Bank 
+     * @return \App\Entity\Bank
      */
     public function fetchById($bankId)
     {
@@ -47,9 +47,9 @@ class Application_Service_Bank
 
     /**
      * Saves a bank
-     * 
+     *
      * @param \App\Entity\Bank $bank
-     * @param array $values 
+     * @param array $values
      */
     public function saveBank($bank, array $values)
     {
@@ -59,12 +59,29 @@ class Application_Service_Bank
 
     /**
      * Removes a bank
-     * 
-     * @param int $bankId 
+     *
+     * @param int $bankId
      */
     public function removeById($bankId)
-    {       
+    {
         $this->_repository->removeBank($bankId);
         $this->_entityManager->flush();
+    }
+
+
+    /**
+     * Creates the account type options needed for a dropdown
+     *
+     * @return array
+     */
+    public function createOptions()
+    {
+        $banks = $this->fetchAll();
+        $options = array();
+        foreach ($banks as $bank) {
+            $options[$bank->getId()] = $bank->getName();
+        }
+
+        return $options;
     }
 }

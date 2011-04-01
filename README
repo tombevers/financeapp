@@ -2,7 +2,7 @@ README
 ======
 
 This directory should be used to place project specfic documentation including
-but not limited to project notes, generated API/phpdoc documentation, or 
+but not limited to project notes, generated API/phpdoc documentation, or
 manual files generated or hand written.  Ideally, this directory would remain
 in your development environment only and should not be deployed with your
 application to it's final production location.
@@ -21,14 +21,14 @@ The following is a sample VHOST you might want to consider for your project.
 
    # This should be omitted in the production environment
    SetEnv APPLICATION_ENV development
-    
+
    <Directory "/var/www/financeapp/public">
        Options Indexes MultiViews FollowSymLinks
        AllowOverride All
        Order allow,deny
        Allow from all
    </Directory>
-    
+
 </VirtualHost>
 
 Database
@@ -44,3 +44,14 @@ Create a user and set permissions
 
 CREATE USER 'financeapp'@'localhost' IDENTIFIED BY 'financeapp';
 GRANT ALL ON financeapp.* TO 'financeapp'@'%';
+
+
+Default values
+--------------
+
+INSERT INTO `account_types` (`id`,`tag`)
+VALUES
+	(1, 'accountTypeBank'),
+	(2, 'accountTypeCash'),
+	(3, 'accountTypeCreditCard');
+

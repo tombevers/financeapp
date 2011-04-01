@@ -17,11 +17,11 @@ class Account
     private $_id;
 
     /**
-     * @Column(name="typeId", type="smallint")
-     * @var int
+     * @ManyToOne(targetEntity="AccountType")
+     * @JoinColumn(name="typeId", referencedColumnName="id")
      */
     private $_type;
-    
+
     /**
      * @Column(name="name", length=60)
      * @var string
@@ -53,7 +53,7 @@ class Account
     {
         return $this->_id;
     }
-    
+
     /**
      * @param int $_id
      */
@@ -63,7 +63,7 @@ class Account
     }
 
     /**
-     * @return int
+     * @return \App\Entity\AccountType
      */
     public function getType()
     {
@@ -71,13 +71,13 @@ class Account
     }
 
     /**
-     * @param int $_type 
+     * @param \App\Entity\AccountType $_type
      */
     public function setType($_type)
     {
         $this->_type = $_type;
     }
-        
+
     /**
      * @return string
      */
@@ -87,7 +87,7 @@ class Account
     }
 
     /**
-     * @param string $_name 
+     * @param string $_name
      */
     public function setName($_name)
     {
@@ -103,7 +103,7 @@ class Account
     }
 
     /**
-     * @param string $_number 
+     * @param string $_number
      */
     public function setNumber($_number)
     {
@@ -120,7 +120,7 @@ class Account
 
     /**
      *
-     * @param \App\Entity\Bank $_bank 
+     * @param \App\Entity\Bank $_bank
      */
     public function setBank($_bank)
     {
@@ -136,7 +136,7 @@ class Account
     }
 
     /**
-     * @param string $_comment 
+     * @param string $_comment
      */
     public function setComment($_comment)
     {

@@ -4,15 +4,17 @@ class Application_Form_Account extends Zend_Form
 {
     public function init()
     {
-        $accountTypeService = App\ServiceLocator::getAccountTypeService();
-        
+        $typeService = App\ServiceLocator::getAccountTypeService();
+        $typeOptions = $typeService->createOptions();
+
+        $bankService = App\ServiceLocator::getBankService();
+        $bankOptions = $bankService->createOptions();
+
         $idField = $this->_createHiddenIdField();
-        $typeField = $this->_createTypesDropDown(
-            $accountTypeService->fetchAll()
-        );
+        $typeField = $this->_createTypesDropDown($typeOptions);
         $name = $this->_createNameField();
         $number = $this->_createNumberField();
-        $bank = $this->_createBankDropDown($this->_createBankOptions());
+        $bank = $this->_createBankDropDown($bankOptions);
         $comment = $this->_createCommentField();
         $submit = $this->_createSubmitButton();
 
@@ -39,28 +41,10 @@ class Application_Form_Account extends Zend_Form
             'bank'      => $account->getBank()->getId(),
             'comment'   => $account->getComment(),
         );
-        
+
         $this->setDefaults($values);
     }
-    
-    /**
-     * Creates the bank options needed for the dropdown
-     * 
-     * @return array
-     * @todo move to the service
-     */
-    private function _createBankOptions()
-    {
-        $bankService = App\ServiceLocator::getBankService();
-        $banks = $bankService->fetchAll();
-        $bankOptions = array();
-        foreach ($banks as $bank) {
-            $bankOptions[$bank->getId()] = $bank->getName();
-        }
-        
-        return $bankOptions;
-    }
-    
+
     /**
      * Creates the hidden id field
      *
@@ -78,23 +62,23 @@ class Application_Form_Account extends Zend_Form
 
     /**
      * Creates the types dropdown field
-     * 
-     * @param array $typeOptions
-     * @return Zend_Form_Element_Select 
+     *
+     * @param array $options
+     * @return Zend_Form_Element_Select
      */
-    private function _createTypesDropDown($typeOptions)
+    private function _createTypesDropDown($options)
     {
         $types = new Zend_Form_Element_Select('type');
         $types->setLabel('accountType')
-            ->setMultiOptions($typeOptions)
+            ->setMultiOptions($options)
             ->setRequired();
-       
+
        return $types;
     }
-    
+
     /**
      * Creates the name field
-     * 
+     *
      * @return Zend_Form_Element_Text
      */
     private function _createNameField()
@@ -105,13 +89,13 @@ class Application_Form_Account extends Zend_Form
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 60)))
             ->setRequired();
-        
+
         return $name;
     }
-    
+
     /**
      * Creates the number field
-     * 
+     *
      * @return Zend_Form_Element_Text
      */
     private function _createNumberField()
@@ -122,15 +106,15 @@ class Application_Form_Account extends Zend_Form
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 60)))
             ->setRequired();
-        
+
         return $number;
     }
-    
+
     /**
      * Creates the bank dropdown field
-     * 
+     *
      * @param array $bankOptions
-     * @return Zend_Form_Element_Select 
+     * @return Zend_Form_Element_Select
      */
     private function _createBankDropDown(array $bankOptions)
     {
@@ -138,14 +122,14 @@ class Application_Form_Account extends Zend_Form
         $bank->setLabel('accountBank')
             ->setMultiOptions($bankOptions)
             ->setRequired();
-       
+
        return $bank;
     }
 
 
     /**
      * Creates the comment field
-     * 
+     *
      * @return Zend_Form_Element_Textarea
      */
     private function _createCommentField()
@@ -155,20 +139,20 @@ class Application_Form_Account extends Zend_Form
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array('min' => 5)));
-        
+
         return $comment;
     }
-    
+
     /**
      * Creates the submit button
-     * 
+     *
      * @return Zend_Form_Element_Submit
      */
     private function _createSubmitButton()
     {
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('saveAction');
-        
+
         return $submit;
     }
 }
