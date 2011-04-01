@@ -46,8 +46,12 @@ CREATE USER 'financeapp'@'localhost' IDENTIFIED BY 'financeapp';
 GRANT ALL ON financeapp.* TO 'financeapp'@'%';
 
 
-Default values
---------------
+Generating schema and initial data
+----------------------------------
+
+Go to the bin folder and execute ./doctrine orm:schema-tool:create
+
+Execute following insert queries:
 
 INSERT INTO `account_types` (`id`,`tag`)
 VALUES
@@ -55,3 +59,9 @@ VALUES
 	(2, 'accountTypeCash'),
 	(3, 'accountTypeCreditCard');
 
+
+INSERT INTO `transaction_types` (`id`,`tag`)
+VALUES
+	(1, 'transactionTypeTransfer'),
+	(2, 'transactionTypeDeposit'),
+	(3, 'transactionTypeWithdrawal');

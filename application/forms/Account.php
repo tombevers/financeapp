@@ -35,7 +35,7 @@ class Application_Form_Account extends Zend_Form
     {
         $values = array(
             'id'        => $account->getId(),
-            'type'      => $account->getType(),
+            'type'      => $account->getType()->getId(),
             'name'      => $account->getName(),
             'number'    => $account->getNumber(),
             'bank'      => $account->getBank()->getId(),

@@ -23,7 +23,7 @@ class Application_Service_Account
             '\App\Entity\Account'
         );
     }
-    
+
     public function fetchAll()
     {
         return $this->_repository->findAll();
@@ -36,16 +36,34 @@ class Application_Service_Account
 
     public function saveAccount($account, array $values)
     {
+        $typeService = App\ServiceLocator::getAccountTypeService();
+        $values['type'] = $typeService->fetchById($values['type']);
         $bankService = App\ServiceLocator::getBankService();
         $values['bank'] = $bankService->fetchById($values['bank']);
-        
+
         $this->_repository->saveAccount($account, $values);
         $this->_entityManager->flush();
     }
 
     public function removeById($accountId)
-    {       
+    {
         $this->_repository->removeAccount($accountId);
         $this->_entityManager->flush();
+    }
+
+    /**
+     * Creates the account options needed for a dropdown
+     *
+     * @return array
+     */
+    public function createOptions()
+    {
+        $types = $this->fetchAll();
+        $options = array();
+        foreach ($types as $type) {
+            $options[$type->getId()] = $type->getName();
+        }
+
+        return $options;
     }
 }

@@ -28,11 +28,6 @@ return array(
     'accountBank'       => 'Bank',
     'accountComment'    => 'Comment',
 
-    // Account types
-    'accountTypeBank'           => 'Bank',
-    'accountTypeCash'           => 'Cash',
-    'accountTypeCreditCard'     => 'CreditCard',
-
     // Bank form
     'bankName'          => 'Name',
     'bankAddress'       => 'Address',
@@ -51,4 +46,14 @@ return array(
     'transactionDate'       => 'Date',
     'transactionAccount'    => 'Account',
     'transactionNote'       => 'Note',
+
+    // Account types
+    'accountTypeBank'           => 'Bank',
+    'accountTypeCash'           => 'Cash',
+    'accountTypeCreditCard'     => 'CreditCard',
+
+    // transaction types
+    'transactionTypeTransfer'   => 'Transfer',
+    'transactionTypeDeposit'    => 'Deposit',
+    'transactionTypeWithdrawal' => 'Withdrawal',
 );

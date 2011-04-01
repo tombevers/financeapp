@@ -15,13 +15,13 @@ class Transaction
      * @var int
      */
     private $_id;
-    
+
     /**
-     * @Column(name="typeId", type="smallint")
-     * @var int
+     * @ManyToOne(targetEntity="TransactionType")
+     * @JoinColumn(name="typeId", referencedColumnName="id")
      */
     private $_type;
-    
+
     /**
      * @ManyToOne(targetEntity="Account")
      * @JoinColumn(name="accountId", referencedColumnName="id")
@@ -33,19 +33,19 @@ class Transaction
      * @var double
      */
     private $_amount;
-    
+
     /**
      * @column(name="date", type="date")
      * @var \DateTime
      */
     private $_date;
-    
+
     /**
      * @column(name="note")
      * @var string
      */
     private $_note;
-    
+
     /**
      * @return int
      */
@@ -55,7 +55,7 @@ class Transaction
     }
 
     /**
-     * @param int $_id 
+     * @param int $_id
      */
     public function setId($_id)
     {
@@ -63,7 +63,7 @@ class Transaction
     }
 
     /**
-     * @return int
+     * @return \App\Entity\TransactionType
      */
     public function getType()
     {
@@ -71,13 +71,13 @@ class Transaction
     }
 
     /**
-     * @param int $_type 
+     * @param \App\Entity\TransactionType $_type
      */
     public function setType($_type)
     {
         $this->_type = $_type;
     }
-    
+
     /**
      * @return \App\Entity\Account
      */
@@ -87,7 +87,7 @@ class Transaction
     }
 
     /**
-     * @param \App\Entity\Account $_account 
+     * @param \App\Entity\Account $_account
      */
     public function setAccount($_account)
     {
@@ -103,7 +103,7 @@ class Transaction
     }
 
     /**
-     * @param double $_amount 
+     * @param double $_amount
      */
     public function setAmount($_amount)
     {
@@ -119,13 +119,13 @@ class Transaction
     }
 
     /**
-     * @param \DateTime $_date 
+     * @param \DateTime $_date
      */
     public function setDate($_date)
     {
         $this->_date = $_date;
     }
-        
+
     /**
      * @return string
      */
@@ -135,7 +135,7 @@ class Transaction
     }
 
     /**
-     * @param string $_note 
+     * @param string $_note
      */
     public function setNote($_note)
     {

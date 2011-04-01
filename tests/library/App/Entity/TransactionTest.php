@@ -6,7 +6,7 @@ class TransactionTest extends ModelTestCase
     {
         $this->assertInstanceOf(
             'App\Entity\Transaction',
-            new App\Entity\Transaction
+            new App\Entity\Transaction()
         );
     }
 
@@ -21,8 +21,11 @@ class TransactionTest extends ModelTestCase
         $accountStub->setName('accountName');
         $this->_em->persist($accountStub);
 
+        $typeStub = new \App\Entity\TransactionType();
+        $typeStub->setTag('fooType');
+        $this->_em->persist($typeStub);
+
         $amountStub = '100';
-        $typeStub = \App\TransactionType::TRANSFER;
         $dateStub = new \DateTime();
         $noteStub = 'note';
 
@@ -42,7 +45,10 @@ class TransactionTest extends ModelTestCase
         )->getSingleResult();
 
         $this->assertEquals(1, $result->getId());
-        $this->assertEquals($typeStub, $result->getType());
+        $this->assertEquals(
+            $typeStub->getTag(),
+            $result->getType()->getTag()
+        );
         $this->assertEquals(
             $accountStub->getName(),
             $result->getAccount()->getName()

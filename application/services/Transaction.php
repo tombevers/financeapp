@@ -14,7 +14,7 @@ class Application_Service_Transaction
      * @var \App\Entity\Repository\TransactionRepository
      */
     private $_repository;
-    
+
     public function __construct()
     {
         $doctrineContainer = Zend_Registry::get('doctrine');
@@ -23,10 +23,10 @@ class Application_Service_Transaction
             '\App\Entity\Transaction'
         );
     }
-    
+
     /**
      * Fetch all transactions
-     * 
+     *
      * @return \App\Entity\Transaction array
      */
     public function fetchAll()
@@ -36,7 +36,7 @@ class Application_Service_Transaction
 
     /**
      * Fetch a transaction by id
-     * 
+     *
      * @param int $transactionId
      * @return \App\Entity\Transaction
      */
@@ -47,32 +47,34 @@ class Application_Service_Transaction
 
     /**
      * Saves a transaction
-     * 
+     *
      * @param \App\Entity\Transaction $transaction
-     * @param array $values 
+     * @param array $values
      */
-    public function saveTransaction(\App\Entity\Transaction $transaction, 
+    public function saveTransaction(\App\Entity\Transaction $transaction,
         array $values)
     {
+        $typeService = App\ServiceLocator::getTransactionTypeService();
+        $values['type'] = $typeService->fetchById($values['type']);
         $accountService = App\ServiceLocator::getAccountService();
         $values['account'] = $accountService->fetchById($values['account']);
-        
+
         list($year, $month, $day) = explode('-', $values['date']);
         $date = new DateTime();
         $date->setDate($year, $month, $day);
         $values['date'] = $date;
-        
+
         $this->_repository->saveTransaction($transaction, $values);
         $this->_entityManager->flush();
     }
 
     /**
      * Removes a transaction
-     * 
+     *
      * @param int $transactionId
      */
     public function removeById($transactionId)
-    {       
+    {
         $this->_repository->removeTransaction($transactionId);
         $this->_entityManager->flush();
     }
