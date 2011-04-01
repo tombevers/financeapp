@@ -13,7 +13,7 @@
     <tbody>
 <?php foreach ($this->transactions as $transaction) : ?>
     <tr>
-        <td><?php echo $transaction->getAmount(); ?></td>
+        <td><?php echo $this->currency($transaction->getAmount()); ?></td>
         <td>
             <ul class="actions clearfix">
                 <li>

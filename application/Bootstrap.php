@@ -4,7 +4,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
     /**
      * Config data
-     * 
+     *
      * @var Zend_Config
      */
     protected $_config;
@@ -39,7 +39,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             $options = $resources['view'];
         }
         $view = new Zend_View($options);
-                
+
         if (isset($options['doctype'])) {
             $view->doctype()->setDoctype(strtoupper($options['doctype']));
             if (isset($options['charset']) && $view->doctype()->isHtml5()) {
@@ -52,16 +52,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 $options['contentType']
             );
         }
-        
+
         $view->headTitle()->setSeparator(' - ');
         $view->headTitle('financeapp');
 
         $view->headLink()->appendStylesheet('/css/screen.css');
-        
+
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
         $viewRenderer->setView($view);
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
-        
+
         Zend_Registry::set('view', $view);
     }
 
@@ -95,4 +95,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $layout->assign('variation', 'variation/default');
     }
 
+    /**
+     * Initalize currency
+     */
+    protected function _initCurrency()
+    {
+        Zend_Registry::set('Zend_Currency', new Zend_Currency('nl_BE'));
+    }
 }
