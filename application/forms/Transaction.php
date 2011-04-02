@@ -98,12 +98,13 @@ class Application_Form_Transaction extends Zend_Form
      */
     private function _createDateField()
     {
-        $date = new Zend_Form_Element_Text('date');
+        $date = new ZendX_JQuery_Form_Element_DatePicker('date');
         $date->setLabel('transactionDate')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_Date())
-            ->setRequired();
+            ->setRequired()
+            ->setJQueryParam('dateFormat', 'yy-mm-dd');
 
         return $date;
     }

@@ -53,6 +53,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
 
         Zend_Registry::set('view', $view);
+        return $view;
     }
 
     /**

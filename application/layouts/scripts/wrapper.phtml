@@ -6,6 +6,10 @@
         <?php echo $this->headTitle() . PHP_EOL; ?>
         <?php echo $this->headLink() . PHP_EOL; ?>
         <?php echo $this->headStyle() . PHP_EOL; ?>
+        <?php
+            echo $this->jQuery()
+                ->setRenderMode(ZendX_JQuery::RENDER_STYLESHEETS) . PHP_EOL;
+        ?>
     </head>
     <body>
         <?php // NESTED LAYOUT SUPPORT ?>
@@ -15,8 +19,13 @@
         <?php else: ?>
             <?php echo $this->layout()->content; ?>
         <?php endif; ?>
-        
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+        <?php
+            echo $this->jQuery()->setRenderMode(
+                ZendX_JQuery::RENDER_LIBRARY
+                | ZendX_JQuery::RENDER_JAVASCRIPT
+                | ZendX_JQuery::RENDER_JQUERY_ON_LOAD
+            ) . PHP_EOL;
+        ?>
         <?php echo $this->headScript() . PHP_EOL; ?>
         <?php echo $this->inlineScript() . PHP_EOL; ?>
     </body>
