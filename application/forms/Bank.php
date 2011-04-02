@@ -32,7 +32,7 @@ class Application_Form_Bank extends Zend_Form
             'website'   => $bank->getWebsite(),
             'comment'   => $bank->getComment(),
         );
-        
+
         $this->setDefaults($values);
     }
 
@@ -53,7 +53,7 @@ class Application_Form_Bank extends Zend_Form
 
     /**
      * Creates the name field
-     * 
+     *
      * @return Zend_Form_Element_Text
      */
     private function _createNameField()
@@ -64,13 +64,13 @@ class Application_Form_Bank extends Zend_Form
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 60)))
             ->setRequired();
-        
+
         return $name;
     }
-    
+
     /**
      * Creates the address field
-     * 
+     *
      * @return Zend_Form_Element_Text
      */
     private function _createAddressField()
@@ -80,13 +80,13 @@ class Application_Form_Bank extends Zend_Form
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 150)));
-        
+
         return $address;
     }
-    
+
     /**
      * Creates the website field
-     * 
+     *
      * @return Zend_Form_Element_Text
      */
     private function _createWebsiteField()
@@ -94,13 +94,13 @@ class Application_Form_Bank extends Zend_Form
         $website = new Zend_Form_Element_Text('website');
         $website->setLabel('bankWebsite')
             ->addValidator(new \App\Validate\Url());
-        
+
         return $website;
     }
-    
+
     /**
      * Creates the comment field
-     * 
+     *
      * @return Zend_Form_Element_Textarea
      */
     private function _createCommentField()
@@ -109,21 +109,22 @@ class Application_Form_Bank extends Zend_Form
         $comment->setLabel('bankComment')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
-            ->addValidator(new Zend_Validate_StringLength(array('min' => 5)));
-        
+            ->addValidator(new Zend_Validate_StringLength(array('min' => 5)))
+            ->setAttribs(array('cols' => '60', 'rows' => '5'));
+
         return $comment;
     }
-    
+
     /**
      * Creates the submit button
-     * 
+     *
      * @return Zend_Form_Element_Submit
      */
     private function _createSubmitButton()
     {
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('saveAction');
-        
+
         return $submit;
     }
 }

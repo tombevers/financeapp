@@ -135,7 +135,8 @@ class Application_Form_Transaction extends Zend_Form
         $note->setLabel('transactionNote')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
-            ->addValidator(new Zend_Validate_StringLength(array('min' => 3)));
+            ->addValidator(new Zend_Validate_StringLength(array('min' => 3)))
+            ->setAttribs(array('cols' => '60', 'rows' => '5'));
 
         return $note;
     }

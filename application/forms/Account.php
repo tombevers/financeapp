@@ -138,7 +138,8 @@ class Application_Form_Account extends Zend_Form
         $comment->setLabel('accountComment')
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
-            ->addValidator(new Zend_Validate_StringLength(array('min' => 5)));
+            ->addValidator(new Zend_Validate_StringLength(array('min' => 5)))
+            ->setAttribs(array('cols' => '60', 'rows' => '5'));
 
         return $comment;
     }
