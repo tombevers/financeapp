@@ -19,16 +19,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     }
 
     /**
-     * Set the error reporting in development environment
-     */
-    protected function _initConfiguration()
-    {
-        if (APPLICATION_ENV == 'development') {
-            error_reporting(E_ALL | E_STRICT);
-        }
-    }
-
-    /**
      * Init the doctype
      */
     protected function _initView()
