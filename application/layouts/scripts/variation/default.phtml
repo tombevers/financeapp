@@ -1,3 +1,10 @@
 <div id="content">
-    <?php echo $this->layout()->content; ?> 
+    <?php if (count($this->messages)) : ?>
+    <ul id="messages">
+        <?php foreach ($this->messages as $message) : ?>
+            <li><?php echo $this->escape($this->translate($message)); ?></li>
+        <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+    <?php echo $this->layout()->content; ?>
 </div>

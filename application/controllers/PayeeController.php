@@ -6,9 +6,10 @@ class PayeeController extends Zend_Controller_Action
 	 * @var Application_Service_Payee
 	 */
     private $_payeeService;
-    
+
     public function init()
     {
+        $this->view->messages = $this->_helper->flashMessenger->getMessages();
         $this->_payeeService = \App\ServiceLocator::getPayeeService();
     }
 
@@ -21,7 +22,7 @@ class PayeeController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('payeeTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
-        
+
         $this->view->payees = $this->_payeeService->fetchAll();
     }
 
@@ -29,10 +30,10 @@ class PayeeController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('payeeTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
-        
+
         $form = new Application_Form_Payee();
         $this->view->form = $form;
-        
+
         $request = $this->getRequest();
         if ($request->isPost()) {
             $formData = $request->getPost();
@@ -41,7 +42,8 @@ class PayeeController extends Zend_Controller_Action
                     new App\Entity\Payee(),
                     $form->getValues()
                 );
-                
+
+                $this->_helper->flashMessenger->addMessage('savePayeeMessage');
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -53,11 +55,11 @@ class PayeeController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('payeeTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
-        
+
         $request = $this->getRequest();
         $payeeId = $request->getParam('id');
         $form = new Application_Form_Payee();
-        
+
         if ($payeeId === NULL) {
             throw new Exception('Id must be provided for the edit action');
         }
@@ -68,7 +70,8 @@ class PayeeController extends Zend_Controller_Action
             $formData = $request->getPost();
             if ($form->isValid($formData)) {
                 $this->_payeeService->savePayee($payee, $form->getValues());
-                
+
+                $this->_helper->flashMessenger->addMessage('editPayeeMessage');
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -91,6 +94,7 @@ class PayeeController extends Zend_Controller_Action
 
         $this->_payeeService->removeById($payeeId);
 
+        $this->_helper->flashMessenger->addMessage('deletePayeeMessage');
         $this->_helper->_redirector('list');
     }
 

@@ -6,9 +6,10 @@ class BankController extends Zend_Controller_Action
 	 * @var Application_Service_Bank
 	 */
     private $_bankService;
-    
+
     public function init()
-    {       
+    {
+        $this->view->messages = $this->_helper->flashMessenger->getMessages();
         $this->_bankService = \App\ServiceLocator::getBankService();
     }
 
@@ -21,7 +22,7 @@ class BankController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('bankTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
-        
+
         $banks = $this->_bankService->fetchAll();
         $this->view->banks = $banks;
     }
@@ -30,10 +31,10 @@ class BankController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('bankTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
-        
+
         $form = new Application_Form_Bank();
         $this->view->form = $form;
-        
+
         $request = $this->getRequest();
         if ($request->isPost()) {
             $formData = $request->getPost();
@@ -42,7 +43,8 @@ class BankController extends Zend_Controller_Action
                     new App\Entity\Bank(),
                     $form->getValues()
                 );
-                
+
+                $this->_helper->flashMessenger->addMessage('saveBankMessage');
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -54,11 +56,11 @@ class BankController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('bankTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
-        
+
         $request = $this->getRequest();
         $bankId = $request->getParam('id');
         $form = new Application_Form_Bank();
-        
+
         if ($bankId === NULL) {
             throw new Exception('Id must be provided for the edit action');
         }
@@ -69,7 +71,8 @@ class BankController extends Zend_Controller_Action
             $formData = $request->getPost();
             if ($form->isValid($formData)) {
                 $this->_bankService->saveBank($bank, $form->getValues());
-                
+
+                $this->_helper->flashMessenger->addMessage('editBankMessage');
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -92,6 +95,7 @@ class BankController extends Zend_Controller_Action
 
         $this->_bankService->removeById($bankId);
 
+        $this->_helper->flashMessenger->addMessage('deleteBankMessage');
         $this->_helper->_redirector('list');
     }
 }

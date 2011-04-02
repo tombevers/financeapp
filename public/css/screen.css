@@ -1,12 +1,12 @@
 /*
 	Stylesheet for financeapp
-	
+
 	Media:      screen
 */
 
 /*
 	Eric Meyer's Reset v2.0 | 20110126
-	@see http://meyerweb.com/eric/tools/css/reset/ 
+	@see http://meyerweb.com/eric/tools/css/reset/
 */
 
 html, body, div, span, applet, object, iframe,
@@ -18,8 +18,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -30,7 +30,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -82,7 +82,7 @@ input, select { vertical-align: middle; }
 
 ul, ol { margin-left: 2em; list-style-type: disc; }
 ol { list-style-type: decimal; }
- 
+
 /* Remove margins for navigation lists */
 nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
 
@@ -94,7 +94,7 @@ td { vertical-align: top; }
 sub, sup { font-size: 75%; line-height: 0; position: relative; }
 sup { top: -0.5em; }
 sub { bottom: -0.25em; }
- 
+
 pre {
     /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
     white-space: pre; white-space: pre-wrap; word-wrap: break-word;
@@ -105,7 +105,7 @@ textarea { overflow: auto; } /* www.sitepoint.com/blogs/2010/08/20/ie-remove-tex
 /* Align checkboxes, radios, text inputs with their label by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css ; */
 input[type="radio"] { vertical-align: text-bottom; }
 input[type="checkbox"] { vertical-align: bottom; }
- 
+
 /* Hand cursor on clickable input elements */
 label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
 
@@ -280,7 +280,7 @@ table.defaultTable thead th {
     background-image: -moz-linear-gradient(#d1d1d1, #959595);
     background-image: linear-gradient(#d1d1d1, #959595);
     /** @todo linear-gradient opera **/
-    
+
     text-align: left;
     font-weight: normal;
     text-shadow: 1px 1px 1px #d1d1d1;
@@ -300,7 +300,19 @@ table.defaultTable th.lastCol, table.defaultTable td.lastCol {
     text-align: right;
 }
 
-/* -- General classes ------------------------------------------------------ */
+/* -- Messages -------------------------------------------------------------- */
+
+#messages {
+    list-style-type: none;
+    padding: 8px;
+    border: solid 1px #dedede;
+    background: #ffc;
+    color: #444;
+    text-align: center;
+    margin: 0 0 22px;
+}
+
+/* -- General classes ------------------------------------------------------- */
 
 .negative {
     color: #eb0101;
@@ -346,14 +358,14 @@ header {
         text-shadow: #333 1px 1px;
         padding: 10px 0 0;
     }
-    
+
     #mainNav ul {
         height: 28px;
         line-height: 28px;
         margin: 5px 1px 0 1px;
         border-bottom: 1px solid #fff;
     }
-    
+
     #mainNav ul li {
         float: left;
     }
@@ -361,30 +373,30 @@ header {
     #mainNav ul li.active {
         background: #f1f1f1;
     }
-    
+
     #mainNav ul li.active {
         border-bottom: 1px solid #f1f1f1;
     }
-    
+
     #mainNav ul li a {
         display: block;
         padding: 0 19px;
         color: #b3b3b3;
         text-decoration: none;
     }
-    
+
     #mainNav ul li a:hover {
         color: #fff;
     }
-        
+
     #mainNav ul li.active a {
         color: #333;
     }
-    
+
     #mainNav ul li.active a:hover {
         color: #b3b3b3;
     }
-    
+
 /* -- ContentWrapper ------------------------------------------------------- */
 
 #contentWrapper {
@@ -407,25 +419,25 @@ header {
             font-weight: normal;
             padding: 10px 0 10px 15px;
         }
-        
+
         #quickAction {
             float: right;
             margin: 9px 15px 0 0;
         }
-    
+
     /** SideBar **/
-    
+
     #sideBar {
         float: left;
         padding: 15px 0 15px 15px;
         width: 160px;
     }
-    
+
         #sideBar div.block {
             width: 160px;
             margin: 0 0 10px;
         }
-        
+
             #sideBar div.block h3 {
                 font-family: 'AllerRegular';
                 font-size: 95%;
@@ -434,24 +446,24 @@ header {
                 text-transform: capitalize;
                 margin: 0 0 10px;
             }
-    
+
             #sideBar div.block .content {
                 border: 1px solid #e5e5e5;
                 background: #f9f9f9;
                 padding: 10px;
                 font-size: 90%;
             }
-            
+
             #sideBar div.block .content ul {
                 margin-bottom: 0;
             }
-            
+
             #sideBar div.block .content ul li {
                 padding: 0 0 2px;
             }
 
     /** Content **/
-    
+
     #content {
         float: left;
         padding: 15px;

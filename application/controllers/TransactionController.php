@@ -6,10 +6,11 @@ class TransactionController extends Zend_Controller_Action
 	 * @var Application_Service_Transaction
 	 */
     private $_transactionService;
-    
+
     public function init()
-    {   
-        $this->_transactionService = 
+    {
+        $this->view->messages = $this->_helper->flashMessenger->getMessages();
+        $this->_transactionService =
             \App\ServiceLocator::getTransactionService();
     }
 
@@ -22,7 +23,7 @@ class TransactionController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('transactionTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
-        
+
         $this->view->transactions = $this->_transactionService->fetchAll();
     }
 
@@ -30,10 +31,10 @@ class TransactionController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('transactionTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
-        
+
         $form = new Application_Form_Transaction();
         $this->view->form = $form;
-        
+
         $request = $this->getRequest();
         if ($request->isPost()) {
             $formData = $request->getPost();
@@ -42,7 +43,8 @@ class TransactionController extends Zend_Controller_Action
                     new App\Entity\Transaction(),
                     $form->getValues()
                 );
-                
+
+                $this->_helper->flashMessenger->addMessage('saveTransactionMessage');
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -54,11 +56,11 @@ class TransactionController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('transactionTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
-        
+
         $request = $this->getRequest();
         $transactionId = $request->getParam('id');
         $form = new Application_Form_Transaction();
-        
+
         if ($transactionId === NULL) {
             throw new Exception('Id must be provided for the edit action');
         }
@@ -72,7 +74,8 @@ class TransactionController extends Zend_Controller_Action
                     $transaction,
                     $form->getValues()
                 );
-                
+
+                $this->_helper->flashMessenger->addMessage('editTransactionMessage');
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -95,6 +98,7 @@ class TransactionController extends Zend_Controller_Action
 
         $this->_transactionService->removeById($transactionId);
 
+        $this->_helper->flashMessenger->addMessage('deleteTransactionMessage');
         $this->_helper->_redirector('list');
     }
 }

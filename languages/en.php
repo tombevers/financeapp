@@ -52,8 +52,22 @@ return array(
     'accountTypeCash'           => 'Cash',
     'accountTypeCreditCard'     => 'CreditCard',
 
-    // transaction types
+    // Transaction types
     'transactionTypeTransfer'   => 'Transfer',
     'transactionTypeDeposit'    => 'Deposit',
     'transactionTypeWithdrawal' => 'Withdrawal',
+
+    // Messages
+    'saveAccountMessage'        => 'Saved account succesfully',
+    'editAccountMessage'        => 'Edited account succesfully',
+    'deleteAccountMessage'      => 'Deleted account succesfully',
+    'saveBankMessage'           => 'Saved bank succesfully',
+    'editBankMessage'           => 'Edited bank succesfully',
+    'deleteBankMessage'         => 'Deleted bank succesfully',
+    'savePayeeMessage'          => 'Saved payee succesfully',
+    'editPayeeMessage'          => 'Edited payee succesfully',
+    'deletePayeeMessage'        => 'Deleted payee succesfully',
+    'saveTransactionMessage'    => 'Saved transaction succesfully',
+    'editTransactionMessage'    => 'Edited transaction succesfully',
+    'deleteTransactionMessage'  => 'Deleted transaction succesfully',
 );
