@@ -7,6 +7,8 @@ class ControllerTestCase extends Zend_Test_PHPUnit_ControllerTestCase
         global $application;
         $application->bootstrap();
 
+        Zend_Session::$_unitTestEnabled = true;
+
         /**
          * Fix for ZF-8193
          * http://framework.zend.com/issues/browse/ZF-8193

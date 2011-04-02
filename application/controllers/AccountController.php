@@ -44,7 +44,9 @@ class AccountController extends Zend_Controller_Action
                     $form->getValues()
                 );
 
-                $this->_helper->flashMessenger->addMessage('saveAccountMessage');
+                $this->_helper->flashMessenger->addMessage(
+                    'saveAccountMessage'
+                );
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -75,7 +77,9 @@ class AccountController extends Zend_Controller_Action
                     $form->getValues()
                 );
 
-                $this->_helper->flashMessenger->addMessage('editAccountMessage');
+                $this->_helper->flashMessenger->addMessage(
+                    'editAccountMessage'
+                );
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);

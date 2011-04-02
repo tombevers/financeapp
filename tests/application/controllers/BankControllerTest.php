@@ -8,23 +8,23 @@ class BankControllerTest extends ControllerTestCase
 
         $this->assertNotController('error');
         $this->assertNotAction('error');
-        
+
         $this->assertController('bank');
         $this->assertAction('add');
         $this->assertResponseCode(200);
     }
-    
+
     public function testCanWeDisplayOurForm()
     {
         $this->dispatch('/bank/add');
-        
+
         $this->assertNotController('error');
         $this->assertNotAction('error');
-        
+
         $this->assertController('bank');
         $this->assertAction('add');
         $this->assertResponseCode(200);
-        
+
         $this->assertQueryCount('form', 1);
         $this->assertQueryCount('input[type="text"]', 3);
         $this->assertQueryCount('textarea', 1);
@@ -34,7 +34,7 @@ class BankControllerTest extends ControllerTestCase
     /**
      * @dataProvider wrongDataProvider
      */
-    public function testSubmitFailsWithWrongData($name, $address, $website, 
+    public function testSubmitFailsWithWrongData($name, $address, $website,
     $comment)
     {
         $this->request->setMethod('post')
@@ -46,17 +46,17 @@ class BankControllerTest extends ControllerTestCase
                     'comment'    => $comment,
                 )
             );
-        
+
         $this->dispatch('/bank/add');
 
         $this->assertNotController('error');
         $this->assertNotAction('error');
-        
+
         $this->assertController('bank');
         $this->assertAction('add');
         $this->assertResponseCode(200);
     }
-    
+
     public static function wrongDataProvider()
     {
         return array(

@@ -44,7 +44,9 @@ class TransactionController extends Zend_Controller_Action
                     $form->getValues()
                 );
 
-                $this->_helper->flashMessenger->addMessage('saveTransactionMessage');
+                $this->_helper->flashMessenger->addMessage(
+                    'saveTransactionMessage'
+                );
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -75,7 +77,9 @@ class TransactionController extends Zend_Controller_Action
                     $form->getValues()
                 );
 
-                $this->_helper->flashMessenger->addMessage('editTransactionMessage');
+                $this->_helper->flashMessenger->addMessage(
+                    'editTransactionMessage'
+                );
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
