@@ -23,6 +23,11 @@ class Application_Form_Payee extends Zend_Form
         );
     }
 
+    /**
+     * Set defaults from entity
+     * 
+     * @param \App\Entity\Payee $payee
+     */
     public function setDefaultsFromEntity(\App\Entity\Payee $payee)
     {
         $values = array(
@@ -32,10 +37,10 @@ class Application_Form_Payee extends Zend_Form
             'phone'     => $payee->getPhone(),
             'email'     => $payee->getEmail(),
         );
-        
+
         $this->setDefaults($values);
     }
-    
+
     /**
      * Creates the hidden id field
      *
@@ -53,7 +58,7 @@ class Application_Form_Payee extends Zend_Form
 
     /**
      * Creates the name field
-     * 
+     *
      * @return Zend_Form_Element_Text
      */
     private function _createNameField()
@@ -64,13 +69,13 @@ class Application_Form_Payee extends Zend_Form
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 60)))
             ->setRequired();
-        
+
         return $name;
     }
-    
+
     /**
      * Creates the address field
-     * 
+     *
      * @return Zend_Form_Element_Text
      */
     private function _createAddressField()
@@ -80,13 +85,13 @@ class Application_Form_Payee extends Zend_Form
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 150)));
-        
+
         return $address;
     }
-    
+
     /**
      * Creates the phone field
-     * 
+     *
      * @return Zend_Form_Element_Text
      */
     private function _createPhoneField()
@@ -96,13 +101,13 @@ class Application_Form_Payee extends Zend_Form
             ->addFilter(new Zend_Filter_StringTrim())
             ->addFilter(new Zend_Filter_StripTags())
             ->addValidator(new Zend_Validate_StringLength(array(2, 150)));
-        
+
         return $phone;
     }
-        
+
     /**
      * Creates the email field
-     * 
+     *
      * @return Zend_Form_Element_Text
      */
     private function _createEmailField()
@@ -110,20 +115,20 @@ class Application_Form_Payee extends Zend_Form
         $email = new Zend_Form_Element_Text('email');
         $email->setLabel('payeeEmail')
             ->addValidator(new Zend_Validate_EmailAddress());
-        
+
         return $email;
     }
-    
+
     /**
      * Creates the submit button
-     * 
+     *
      * @return Zend_Form_Element_Submit
      */
     private function _createSubmitButton()
     {
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('saveAction');
-        
+
         return $submit;
     }
 }

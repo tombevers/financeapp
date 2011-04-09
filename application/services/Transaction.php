@@ -27,7 +27,7 @@ class Application_Service_Transaction
     /**
      * Fetch all transactions
      *
-     * @return \App\Entity\Transaction array
+     * @return array[\App\Entity\Transaction]
      */
     public function fetchAll()
     {

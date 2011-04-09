@@ -23,6 +23,11 @@ class Application_Form_Bank extends Zend_Form
         );
     }
 
+    /**
+     * Set defaults from entity
+     * 
+     * @param \App\Entity\Bank $bank
+     */
     public function setDefaultsFromEntity(\App\Entity\Bank $bank)
     {
         $values = array(

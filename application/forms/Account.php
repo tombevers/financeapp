@@ -31,6 +31,11 @@ class Application_Form_Account extends Zend_Form
         );
     }
 
+    /**
+     * Set defaults from entity
+     *
+     * @param \App\Entity\Account $account
+     */
     public function setDefaultsFromEntity(\App\Entity\Account $account)
     {
         $values = array(

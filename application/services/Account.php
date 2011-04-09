@@ -24,17 +24,33 @@ class Application_Service_Account
         );
     }
 
+    /**
+     * Fetches all accounts
+     *
+     * @return array[App\Entity\Account]
+     */
     public function fetchAll()
     {
         return $this->_repository->findAll();
     }
 
+    /**
+     * Fetch an account by it's id
+     *
+     * @return App\Entity\Account
+     */
     public function fetchById($accountId)
     {
         return $this->_repository->find($accountId);
     }
 
-    public function saveAccount($account, array $values)
+    /**
+     * Saves an account
+     *
+     * @param App\Entity\Account $account
+     * @param array $values
+     */
+    public function saveAccount(App\Entity\Account $account, array $values)
     {
         $typeService = App\ServiceLocator::getAccountTypeService();
         $values['type'] = $typeService->fetchById($values['type']);
@@ -45,6 +61,11 @@ class Application_Service_Account
         $this->_entityManager->flush();
     }
 
+    /**
+     * Removes an account by id
+     *
+     * @param int $accountId
+     */
     public function removeById($accountId)
     {
         $this->_repository->removeAccount($accountId);

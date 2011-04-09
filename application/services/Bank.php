@@ -27,7 +27,7 @@ class Application_Service_Bank
     /**
      * Fetch all banks
      *
-     * @return \App\Entity\Bank array
+     * @return array[\App\Entity\Bank]
      */
     public function fetchAll()
     {
@@ -51,7 +51,7 @@ class Application_Service_Bank
      * @param \App\Entity\Bank $bank
      * @param array $values
      */
-    public function saveBank($bank, array $values)
+    public function saveBank(\App\Entity\Bank $bank, array $values)
     {
         $this->_repository->saveBank($bank, $values);
         $this->_entityManager->flush();

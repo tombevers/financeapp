@@ -30,6 +30,11 @@ class Application_Form_Transaction extends Zend_Form
         );
     }
 
+    /**
+     * Set defaults from entity
+     * 
+     * @param \App\Entity\Transaction $transaction
+     */
     public function setDefaultsFromEntity(\App\Entity\Transaction $transaction)
     {
         $values = array(

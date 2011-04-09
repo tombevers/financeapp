@@ -14,7 +14,7 @@ class Application_Service_Payee
      * @var \App\Entity\Repository\PayeeRepository
      */
     private $_repository;
-    
+
     public function __construct()
     {
         $doctrineContainer = Zend_Registry::get('doctrine');
@@ -23,11 +23,11 @@ class Application_Service_Payee
             '\App\Entity\Payee'
         );
     }
-    
+
     /**
      * Fetch all payees
-     * 
-     * @return \App\Entity\Payee array
+     *
+     * @return array[\App\Entity\Payee]
      */
     public function fetchAll()
     {
@@ -36,7 +36,7 @@ class Application_Service_Payee
 
     /**
      * Fetch a payee by id
-     * 
+     *
      * @param int $payeeId
      * @return \App\Entity\Payee
      */
@@ -47,11 +47,11 @@ class Application_Service_Payee
 
     /**
      * Saves a payee
-     * 
+     *
      * @param \App\Entity\Payee $payee
-     * @param array $values 
+     * @param array $values
      */
-    public function savePayee($payee, array $values)
+    public function savePayee(\App\Entity\Payee $payee, array $values)
     {
         $this->_repository->savePayee($payee, $values);
         $this->_entityManager->flush();
@@ -59,11 +59,11 @@ class Application_Service_Payee
 
     /**
      * Removes a payee
-     * 
-     * @param int $payeeId 
+     *
+     * @param int $payeeId
      */
     public function removeById($payeeId)
-    {       
+    {
         $this->_repository->removePayee($payeeId);
         $this->_entityManager->flush();
     }
