@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services">
+    <imports>
+        <import resource="production.xml" />
+    </imports>
+    <parameters>
+        <parameter key="doctrine.driver">pdo_sqlite</parameter>
+        <parameter key="doctrine.path">../tests/data/test.db</parameter>
+    </parameters>
+</container>

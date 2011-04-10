@@ -29,16 +29,16 @@
     <target name="clean">
         <echo msg="Cleaning build directory" />
         <delete dir="${builddir}" />
-        
+
         <mkdir dir="${builddir}/api" />
-        <mkdir dir="${builddir}/code-browser" />        
+        <mkdir dir="${builddir}/code-browser" />
         <mkdir dir="${builddir}/coverage" />
         <mkdir dir="${builddir}/logs" />
         <mkdir dir="${builddir}/pdepend" />
     </target>
 
     <target name="phpunit">
-        <exec command="phpunit --bootstrap=${tests}/TestHelper.php --configuration=${tests}/phpunit.xml --coverage-html=${builddir}/coverage 
+        <exec command="phpunit --bootstrap=${tests}/TestHelper.php --configuration=${tests}/phpunit.xml --coverage-html=${builddir}/coverage
             --log-junit=${builddir}/logs/junit.xml --coverage-clover=${builddir}/logs/clover.xml ${tests}" passthru="true" />
     </target>
 
@@ -49,10 +49,10 @@
             </fileset>
             <logger type="jdepend-xml" outfile="${builddir}/logs/jdepend.xml" />
             <logger type="jdepend-chart" outfile="${builddir}/pdepend/dependencies.svg" />
-            <logger type="overview-pyramid" outfile="${builddir}/pdepend/overview-pyramid.svg" /> 
+            <logger type="overview-pyramid" outfile="${builddir}/pdepend/overview-pyramid.svg" />
         </phpdepend>
     </target>
-    
+
     <target name="phpmd">
         <phpmd rulesets="codesize,naming,unusedcode">
             <fileset dir="${source}">
@@ -85,8 +85,8 @@
     </target>
 
     <target name="phpcb">
-        <exec command="phpcb --log ${builddir}/logs --output ${builddir}/code-browser --source ${source} 
-            --ignore ${tests},${source}/library/Zend,${source}/library/Doctrine,${source}/library/Symfony,${source}/library/Bisna,${source}/bin,${source}/design,${builddir},${source}/library/App/Entity/Proxy" passthru="true" />
+        <exec command="phpcb --log ${builddir}/logs --output ${builddir}/code-browser --source ${source}
+            --ignore ${tests},${source}/library/Zend,${source}/library/Doctrine,${source}/library/Symfony,${source}/library/Bisna,${source}/bin,${source}/data,${source}/design,${builddir},${source}/library/App/Entity/Proxy" passthru="true" />
     </target>
 
     <!-- Jenkins build target -->

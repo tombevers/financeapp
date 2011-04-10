@@ -24,10 +24,11 @@ $application = new Zend_Application(
 
 // Bootstrapping resources
 $bootstrap = $application->bootstrap()->getBootstrap();
-$bootstrap->bootstrap('Doctrine');
+// Symfony dependency injection container
+$container = $bootstrap->getContainer();
 
-// Retrieve Doctrine Container resource
-$container = $application->getBootstrap()->getResource('doctrine');
+// Retrieve entity manager from container
+$entityManager = $container->get('doctrine.entitymanager');
 
 // Console
 $cli = new \Symfony\Component\Console\Application(
@@ -39,15 +40,22 @@ try {
     // Bootstrapping Console HelperSet
     $helperSet = array();
 
-    if (($dbal = $container->getConnection(getenv('CONN') ?: $container->defaultConnection)) !== null) {
-        $helperSet['db'] = new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($dbal);
+    if ($entityManager->getConnection() !== null) {
+        $helperSet['db'] = new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper(
+            $entityManager->getConnection()
+        );
     }
 
-    if (($em = $container->getEntityManager(getenv('EM') ?: $container->defaultEntityManager)) !== null) {
-        $helperSet['em'] = new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em);
+    if ($entityManager !== null) {
+        $helperSet['em'] = new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper(
+            $entityManager
+        );
     }
-} catch (\Exception $e) {
-    $cli->renderException($e, new \Symfony\Component\Console\Output\ConsoleOutput());
+} catch (\Exception $exc) {
+    $cli->renderException(
+        $exc,
+        new \Symfony\Component\Console\Output\ConsoleOutput()
+    );
 }
 
 $cli->setCatchExceptions(true);

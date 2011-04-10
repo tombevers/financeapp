@@ -1,6 +1,6 @@
 <?php
 
-class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
+class Bootstrap extends App\Application\Bootstrap\Bootstrap
 {
     /**
      * Config data

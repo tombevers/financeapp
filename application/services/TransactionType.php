@@ -3,9 +3,9 @@
 /**
  * Transaction type service
  */
-class Application_Service_TransactionType
+class Application_Service_TransactionType extends App\AbstractService
 {
-/**
+    /**
      * @var \Doctrine\ORM\EntityManager
      */
     private $_entityManager;
@@ -17,8 +17,7 @@ class Application_Service_TransactionType
 
     public function __construct()
     {
-        $doctrineContainer = Zend_Registry::get('doctrine');
-        $this->_entityManager = $doctrineContainer->getEntityManager();
+        $this->_entityManager = $this->getEntityManager();
         $this->_repository = $this->_entityManager->getRepository(
             '\App\Entity\TransactionType'
         );

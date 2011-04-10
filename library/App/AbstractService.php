@@ -1,0 +1,34 @@
+<?php
+
+namespace App;
+
+abstract class AbstractService
+{
+    /**
+    * @var EntityManager
+    */
+    private $_entityManager = NULL;
+
+    /**
+    * @return EntityManager
+    */
+    public final function getEntityManager()
+    {
+        if ($this->_entityManager === NULL) {
+            $this->_entityManager = \Zend_Controller_Front::getInstance()
+                ->getParam('bootstrap')->getContainer()
+                ->get('doctrine.entitymanager');
+        }
+        return $this->_entityManager;
+    }
+
+    /**
+    * @param EntityManager $em
+    * @return AbstractService
+    */
+    public final function setEntityManager(EntityManager $em)
+    {
+        $this->_entityManager = $em;
+        return $this;
+    }
+}

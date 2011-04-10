@@ -3,7 +3,7 @@
 /**
  * Account type service
  */
-class Application_Service_AccountType
+class Application_Service_AccountType extends App\AbstractService
 {
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -17,8 +17,7 @@ class Application_Service_AccountType
 
     public function __construct()
     {
-        $doctrineContainer = Zend_Registry::get('doctrine');
-        $this->_entityManager = $doctrineContainer->getEntityManager();
+        $this->_entityManager = $this->getEntityManager();
         $this->_repository = $this->_entityManager->getRepository(
             '\App\Entity\AccountType'
         );

@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services">
+    <parameters>
+        <parameter key="doctrine.cache.class">Doctrine\Common\Cache\ArrayCache</parameter>
+        <parameter key="doctrine.autogenerateproxyclasses">FALSE</parameter>
+        <parameter key="doctrine.driver">pdo_mysql</parameter>
+        <parameter key="doctrine.host">localhost</parameter>
+        <parameter key="doctrine.port">3306</parameter>
+        <parameter key="doctrine.path">null</parameter>
+        <parameter key="doctrine.charset">UTF8</parameter>
+        <parameter key="doctrine.dbname">financeapp</parameter>
+        <parameter key="doctrine.user">financeapp</parameter>
+        <parameter key="doctrine.password">financeapp</parameter>
+        <parameter key="doctrine.proxy.path">../library/App/Entity/Proxy</parameter>
+        <parameter key="doctrine.entity.path">../library/App/Entity</parameter>
+    </parameters>
+
+    <services>
+        <service id="doctrine.entitymanager" factory-class="Doctrine\ORM\EntityManager" factory-method="create">
+            <argument type="collection">
+                <argument key="dbname">%doctrine.dbname%</argument>
+                <argument key="user">%doctrine.user%</argument>
+                <argument key="password">%doctrine.password%</argument>
+                <argument key="host">%doctrine.host%</argument>
+                <argument key="port">%doctrine.port%</argument>
+                <argument key="path">%doctrine.path%</argument>
+                <argument key="driver">%doctrine.driver%</argument>
+                <argument key="charset">%doctrine.charset%</argument>
+            </argument>
+            <argument type="service" id="doctrine.configuration" />
+        </service>
+        <service id="doctrine.configuration" class="Doctrine\ORM\Configuration">
+            <call method="setMetadataDriverImpl">
+                <argument type="service" id="doctrine.metadriver" />
+            </call>
+            <call method="setMetadataCacheImpl">
+                <argument type="service" id="doctrine.cache" />
+            </call>
+            <call method="setQueryCacheImpl">
+                <argument type="service" id="doctrine.cache" />
+            </call>
+            <call method="setProxyDir">
+                <argument>%doctrine.proxy.path%</argument>
+            </call>
+            <call method="setProxyNamespace">
+                <argument>App\Entity\Proxy</argument>
+            </call>
+            <call method="setAutoGenerateProxyClasses">
+                <argument>%doctrine.autogenerateproxyclasses%</argument>
+            </call>
+        </service>
+        <service id="doctrine.metadriver" class="Doctrine\ORM\Mapping\Driver\AnnotationDriver">
+            <argument type="service">
+                <argument type="service" id="doctrine.cache" />
+                <service class="Doctrine\Common\Annotations\AnnotationReader">
+                    <call method="setDefaultAnnotationNamespace">
+                        <argument>Doctrine\ORM\Mapping\</argument>
+                    </call>
+                </service>
+            </argument>
+            <argument>%doctrine.entity.path%</argument>
+        </service>
+        <service id="doctrine.cache" class="%doctrine.cache.class%" />
+    </services>
+</container>

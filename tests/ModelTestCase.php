@@ -2,10 +2,7 @@
 
 class ModelTestCase extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @var \Bisna\Application\Container\DoctrineContainer
-     */
-    protected $_doctrineContainer;
+    protected $_container;
 
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -16,8 +13,9 @@ class ModelTestCase extends PHPUnit_Framework_TestCase
     {
         global $application;
         $application->bootstrap();
-        $this->_doctrineContainer = Zend_Registry::get('doctrine');
-        $this->_em = $this->_doctrineContainer->getEntityManager();
+
+        $this->_container = $application->getBootstrap()->getContainer();
+        $this->_em = $this->_container->get('doctrine.entitymanager');
 
         $tool = new \Doctrine\ORM\Tools\SchemaTool($this->_em);
         $tool->dropDatabase();
@@ -26,7 +24,7 @@ class ModelTestCase extends PHPUnit_Framework_TestCase
 
     protected function tearDown()
     {
-        $this->_doctrineContainer->getConnection()->close();
+        $this->_em->getConnection()->close();
         $tool = new \Doctrine\ORM\Tools\SchemaTool($this->_em);
         $tool->dropDatabase();
     }
