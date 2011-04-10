@@ -23,12 +23,12 @@ abstract class AbstractService
     }
 
     /**
-    * @param EntityManager $em
+    * @param EntityManager $entityManager
     * @return AbstractService
     */
-    public final function setEntityManager(EntityManager $em)
+    public final function setEntityManager(EntityManager $entityManager)
     {
-        $this->_entityManager = $em;
+        $this->_entityManager = $entityManager;
         return $this;
     }
 }

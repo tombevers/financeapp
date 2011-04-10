@@ -48,7 +48,8 @@ class ServiceContainerFactory
                 break;
           default:
                 throw new \App\Exception(
-                    "Invalid configuration file provided; unknown config type '$suffix'"
+                    "Invalid configuration file provided;" .
+                    " unknown config type '$suffix'"
                 );
         }
         $loader->load($file);

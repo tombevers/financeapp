@@ -13,7 +13,8 @@ class ServiceContainer extends \Zend_Controller_Action_Helper_Abstract
     public function getContainer()
     {
         if ($this->_container === null) {
-            $this->_container = $this->getActionController()->getInvokeArg('bootstrap')->getContainer();
+            $this->_container = $this->getActionController()
+                ->getInvokeArg('bootstrap')->getContainer();
         }
         return $this->_container;
     }
