@@ -5,7 +5,7 @@ namespace App;
 abstract class AbstractService
 {
     /**
-    * @var EntityManager
+    * @var \Doctrine\ORM\EntityManager
     */
     private $_entityManager = NULL;
 
@@ -26,7 +26,8 @@ abstract class AbstractService
     * @param EntityManager $entityManager
     * @return AbstractService
     */
-    public final function setEntityManager(EntityManager $entityManager)
+    public final function setEntityManager(
+        \Doctrine\ORM\EntityManager $entityManager)
     {
         $this->_entityManager = $entityManager;
         return $this;

@@ -19,6 +19,8 @@ set_include_path(implode(PATH_SEPARATOR, array(
 require_once 'Zend/Application.php';
 /** Zend_Controller_Test_Case */
 require_once 'Zend/Test/PHPUnit/ControllerTestCase.php';
+/** Include Helper Class */
+require_once 'Helpers.php';
 /** Parent test case classes */
 require_once 'ModelTestCase.php';
 require_once 'ControllerTestCase.php';

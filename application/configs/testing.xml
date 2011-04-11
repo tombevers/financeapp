@@ -5,6 +5,7 @@
     </imports>
     <parameters>
         <parameter key="doctrine.driver">pdo_sqlite</parameter>
-        <parameter key="doctrine.path">../tests/data/test.db</parameter>
+        <parameter key="doctrine.path"></parameter>
+        <parameter key="doctrine.memory">true</parameter>
     </parameters>
 </container>
