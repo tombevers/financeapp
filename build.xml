@@ -38,7 +38,7 @@
     </target>
 
     <target name="phpunit">
-        <exec command="phpunit --bootstrap=${tests}/TestHelper.php --configuration=${tests}/phpunit.xml --coverage-html=${builddir}/coverage
+        <exec command="cd tests; phpunit --bootstrap=${tests}/TestHelper.php --configuration=${tests}/phpunit.xml --coverage-html=${builddir}/coverage
             --log-junit=${builddir}/logs/junit.xml --coverage-clover=${builddir}/logs/clover.xml ${tests}" passthru="true" />
     </target>
 

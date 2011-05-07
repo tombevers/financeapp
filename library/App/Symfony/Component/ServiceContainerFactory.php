@@ -19,17 +19,17 @@ class ServiceContainerFactory
 
     protected static function _loadConfigFile($file)
     {
-        $extension = $this->_getExtension($file);
-        $loader = $this->_getLoader($extension);
+        $extension = self::_getExtension($file);
+        $loader = self::_getLoader($extension);
         $loader->load($file);
     }
 
-    private function _getExtension($file)
+    private static function _getExtension($file)
     {
         return strtolower(pathinfo($file, PATHINFO_EXTENSION));
     }
 
-    protected function _getLoader($extension)
+    protected static function _getLoader($extension)
     {
         $loader = NULL;
         switch ($extension) {

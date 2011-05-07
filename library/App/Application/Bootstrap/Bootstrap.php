@@ -15,7 +15,7 @@ class Bootstrap extends \Zend_Application_Bootstrap_Bootstrap
             $container = NULL;
             $name = 'Container'.md5($this->getEnvironment()).'ServiceContainer';
             $file = APPLICATION_PATH . '/../data/cache/'.$name.'.php';
-            if ($this->getEnvironment() !== ('development' || 'testing')
+            if ($this->getEnvironment() != ('development' || 'testing')
                 && file_exists($file)) {
                 require_once $file;
                 $container = new $name();
@@ -23,7 +23,7 @@ class Bootstrap extends \Zend_Application_Bootstrap_Bootstrap
                 $container = ServiceContainerFactory::getContainer(
                     $options['container']
                 );
-                if ($this->getEnvironment() !== ('development' || 'testing')) {
+                if ($this->getEnvironment() != ('development' || 'testing')) {
                     $dumper = new DependencyInjection\Dumper\PhpDumper(
                         $container
                     );
