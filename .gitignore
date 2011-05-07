@@ -5,3 +5,4 @@ nbproject/
 tests/log/
 build/
 *.tmproj
+.idea/
