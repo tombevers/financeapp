@@ -27,7 +27,7 @@ class AccountController extends Zend_Controller_Action
         $this->view->accounts = $accounts;
     }
 
-    public function addAction()
+    public function createAction()
     {
         $this->view->pageTitle = $this->view->translate('accountTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
@@ -54,7 +54,7 @@ class AccountController extends Zend_Controller_Action
         }
     }
 
-    public function editAction()
+    public function updateAction()
     {
         $this->view->pageTitle = $this->view->translate('accountTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');

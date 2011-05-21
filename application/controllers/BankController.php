@@ -27,7 +27,7 @@ class BankController extends Zend_Controller_Action
         $this->view->banks = $banks;
     }
 
-    public function addAction()
+    public function createAction()
     {
         $this->view->pageTitle = $this->view->translate('bankTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
@@ -52,7 +52,7 @@ class BankController extends Zend_Controller_Action
         }
     }
 
-    public function editAction()
+    public function updateAction()
     {
         $this->view->pageTitle = $this->view->translate('bankTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');

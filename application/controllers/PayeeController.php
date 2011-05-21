@@ -26,7 +26,7 @@ class PayeeController extends Zend_Controller_Action
         $this->view->payees = $this->_payeeService->fetchAll();
     }
 
-    public function addAction()
+    public function createAction()
     {
         $this->view->pageTitle = $this->view->translate('payeeTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
@@ -51,7 +51,7 @@ class PayeeController extends Zend_Controller_Action
         }
     }
 
-    public function editAction()
+    public function updateAction()
     {
         $this->view->pageTitle = $this->view->translate('payeeTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');

@@ -27,7 +27,7 @@ class TransactionController extends Zend_Controller_Action
         $this->view->transactions = $this->_transactionService->fetchAll();
     }
 
-    public function addAction()
+    public function createAction()
     {
         $this->view->pageTitle = $this->view->translate('transactionTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
@@ -54,7 +54,7 @@ class TransactionController extends Zend_Controller_Action
         }
     }
 
-    public function editAction()
+    public function updateAction()
     {
         $this->view->pageTitle = $this->view->translate('transactionTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');

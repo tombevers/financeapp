@@ -1,6 +1,6 @@
 <h2><?php echo $this->title; ?></h2>
 
-<p><a class="button small" href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'add'));?>"><?php echo $this->translate('addAction'); ?></a></p>
+<p><a class="button small" href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'create'));?>"><?php echo $this->translate('addAction'); ?></a></p>
 
 <?php if(!empty($this->transactions)) : ?>
 <table cellspacing="0" class="defaultTable">
@@ -17,7 +17,7 @@
         <td>
             <ul class="actions clearfix">
                 <li>
-                    <a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'edit', 'id' => $transaction->getId()));?>"><?php echo $this->translate('editAction'); ?></a>
+                    <a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'update', 'id' => $transaction->getId()));?>"><?php echo $this->translate('editAction'); ?></a>
                 </li>
                 <li>
                     <a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'delete', 'id' => $transaction->getId()));?>"><?php echo $this->translate('deleteAction'); ?></a>
