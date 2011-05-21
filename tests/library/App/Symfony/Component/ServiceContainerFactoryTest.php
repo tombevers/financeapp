@@ -10,7 +10,6 @@ class ServiceContainerFactoryTest extends PHPUnit_Framework_TestCase
             new App\Symfony\Component\ServiceContainerFactory();
     }
 
-
     public static function fileProvider()
     {
         return array(

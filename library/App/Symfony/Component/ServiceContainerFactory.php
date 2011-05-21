@@ -33,12 +33,6 @@ class ServiceContainerFactory
     {
         $loader = NULL;
         switch ($extension) {
-            case 'ini':
-                $loader = new DependencyInjection\Loader\IniFileLoader(
-                    self::$_container,
-                    new \Symfony\Component\Config\FileLocator()
-                );
-                break;
             case 'php':
                 $loader = new DependencyInjection\Loader\PhpFileLoader(
                     self::$_container,
@@ -47,12 +41,6 @@ class ServiceContainerFactory
                 break;
             case 'xml':
                 $loader = new DependencyInjection\Loader\XmlFileLoader(
-                    self::$_container,
-                    new \Symfony\Component\Config\FileLocator()
-                );
-                break;
-            case 'yml':
-                $loader = new DependencyInjection\Loader\YamlFileLoader(
                     self::$_container,
                     new \Symfony\Component\Config\FileLocator()
                 );
