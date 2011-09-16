@@ -55,6 +55,13 @@ class Bootstrap extends App\Application\Bootstrap\Bootstrap
         Zend_Registry::set('view', $view);
         return $view;
     }
+    
+    protected function _initDoctrine()
+    {
+        $config = $this->getContainer()->get('doctrine.configuration');
+        $driverImpl = $config->newDefaultAnnotationDriver($this->getContainer()->getParameter('doctrine.entity.path'));
+        $config->setMetadataDriverImpl($driverImpl);
+    }
 
     /**
      * Init Translations
