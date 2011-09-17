@@ -6,12 +6,18 @@ class TransactionController extends Zend_Controller_Action
 	 * @var Application_Service_Transaction
 	 */
     private $_transactionService;
+    
+    /**
+	 * @var Application_Service_Account
+	 */
+    private $_accountService;
 
     public function init()
     {
         $this->view->messages = $this->_helper->flashMessenger->getMessages();
         $this->_transactionService =
             \App\ServiceLocator::getTransactionService();
+        $this->_accountService = \App\ServiceLocator::getAccountService();
     }
 
     public function indexAction()
@@ -31,6 +37,10 @@ class TransactionController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('transactionTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
+
+        if (count($this->_accountService->fetchAll()) == 0) {
+            throw new App\Exception('There are no accounts available! Configure them first.');
+        }
 
         $form = new Application_Form_Transaction();
         $this->view->form = $form;

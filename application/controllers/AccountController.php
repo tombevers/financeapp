@@ -6,11 +6,17 @@ class AccountController extends Zend_Controller_Action
 	 * @var Application_Service_Account
 	 */
     private $_accountService;
+    
+    /**
+	 * @var Application_Service_Bank
+     */
+    private $_bankService;
 
     public function init()
     {
         $this->view->messages = $this->_helper->flashMessenger->getMessages();
         $this->_accountService = \App\ServiceLocator::getAccountService();
+        $this->_bankService = \App\ServiceLocator::getBankService();
     }
 
     public function indexAction()
@@ -31,6 +37,10 @@ class AccountController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('accountTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
+
+        if (count($this->_bankService->fetchAll()) == 0) {
+            throw new App\Exception('There are no bank accounts available! Configure them first.');
+        }
 
         $form = new Application_Form_Account();
         $this->view->form = $form;
