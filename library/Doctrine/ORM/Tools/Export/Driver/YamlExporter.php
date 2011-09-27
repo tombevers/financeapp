@@ -154,6 +154,9 @@ class YamlExporter extends AbstractExporter
                     if (isset($joinColumn['onDelete'])) {
                         $newJoinColumns[$joinColumn['name']]['onDelete'] = $joinColumn['onDelete'];
                     }
+                    if (isset($joinColumn['onUpdate'])) {
+                        $newJoinColumns[$joinColumn['name']]['onUpdate'] = $joinColumn['onUpdate'];
+                    }
                 }
                 $oneToOneMappingArray = array(
                     'mappedBy'      => $associationMapping['mappedBy'],
