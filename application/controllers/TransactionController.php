@@ -39,7 +39,9 @@ class TransactionController extends Zend_Controller_Action
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
 
         if (count($this->_accountService->fetchAll()) == 0) {
-            throw new App\Exception('There are no accounts available! Configure them first.');
+            throw new App\Exception(
+                'There are no accounts available! Configure them first.'
+            );
         }
 
         $form = new Application_Form_Transaction();

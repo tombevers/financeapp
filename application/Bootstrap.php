@@ -59,7 +59,9 @@ class Bootstrap extends App\Application\Bootstrap\Bootstrap
     protected function _initDoctrine()
     {
         $config = $this->getContainer()->get('doctrine.configuration');
-        $driverImpl = $config->newDefaultAnnotationDriver($this->getContainer()->getParameter('doctrine.entity.path'));
+        $driverImpl = $config->newDefaultAnnotationDriver(
+            $this->getContainer()->getParameter('doctrine.entity.path')
+        );
         $config->setMetadataDriverImpl($driverImpl);
     }
 

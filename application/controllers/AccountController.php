@@ -39,7 +39,9 @@ class AccountController extends Zend_Controller_Action
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
 
         if (count($this->_bankService->fetchAll()) == 0) {
-            throw new App\Exception('There are no bank accounts available! Configure them first.');
+            throw new App\Exception(
+                'There are no bank accounts available! Configure them first.'
+            );
         }
 
         $form = new Application_Form_Account();
