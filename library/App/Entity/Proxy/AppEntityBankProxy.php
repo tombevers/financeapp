@@ -15,75 +15,84 @@ class AppEntityBankProxy extends \App\Entity\Bank implements \Doctrine\ORM\Proxy
         $this->_entityPersister = $entityPersister;
         $this->_identifier = $identifier;
     }
-    private function _load()
+    /** @private */
+    public function __load()
     {
         if (!$this->__isInitialized__ && $this->_entityPersister) {
             $this->__isInitialized__ = true;
+
+            if (method_exists($this, "__wakeup")) {
+                // call this after __isInitialized__to avoid infinite recursion
+                // but before loading to emulate what ClassMetadata::newInstance()
+                // provides.
+                $this->__wakeup();
+            }
+
             if ($this->_entityPersister->load($this->_identifier, $this) === null) {
                 throw new \Doctrine\ORM\EntityNotFoundException();
             }
             unset($this->_entityPersister, $this->_identifier);
         }
     }
-
+    
     
     public function getId()
     {
-        $this->_load();
+        $this->__load();
         return parent::getId();
     }
 
     public function setId($_id)
     {
-        $this->_load();
+        $this->__load();
         return parent::setId($_id);
     }
 
     public function getName()
     {
-        $this->_load();
+        $this->__load();
         return parent::getName();
     }
 
     public function setName($_name)
     {
-        $this->_load();
+        $this->__load();
         return parent::setName($_name);
     }
 
     public function getAddress()
     {
-        $this->_load();
+        $this->__load();
         return parent::getAddress();
     }
 
     public function setAddress($_address)
     {
-        $this->_load();
+        $this->__load();
         return parent::setAddress($_address);
     }
 
     public function getWebsite()
     {
-        $this->_load();
+        $this->__load();
         return parent::getWebsite();
     }
 
     public function setWebsite($_website)
     {
-        $this->_load();
+        $this->__load();
         return parent::setWebsite($_website);
     }
 
     public function getComment()
     {
-        $this->_load();
+        $this->__load();
         return parent::getComment();
     }
 
     public function setComment($_comment)
     {
-        $this->_load();
+        $this->__load();
         return parent::setComment($_comment);
     }
 

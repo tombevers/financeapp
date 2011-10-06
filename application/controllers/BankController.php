@@ -62,7 +62,7 @@ class BankController extends Zend_Controller_Action
         $form = new Application_Form_Bank();
 
         if ($bankId === NULL) {
-            throw new Exception('Id must be provided for the edit action');
+            throw new App\Exception('Id must be provided for the edit action');
         }
 
         $bank = $this->_bankService->fetchById($bankId);
@@ -90,7 +90,9 @@ class BankController extends Zend_Controller_Action
         $bankId = $request->getParam('id');
 
         if ($bankId === NULL) {
-            throw new Exception('Id must be provided for the delete action');
+            throw new App\Exception(
+                'Id must be provided for the delete action'
+            );
         }
 
         $this->_bankService->removeById($bankId);

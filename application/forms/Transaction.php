@@ -2,32 +2,78 @@
 
 class Application_Form_Transaction extends Zend_Form
 {
+    /**
+     * @var \Application_Service_A
+     */
+    protected $_accountService;
+    
+    /**
+     * @var \Application_Service_AccountType
+     */
+    protected $_typeService;
+    
     public function init()
     {
-        $typeService = App\ServiceLocator::getTransactionTypeService();
+        $typeService = $this->getTypeService();
         $typeOptions = $typeService->createOptions();
-        $accountService = App\ServiceLocator::getAccountService();
+        $accountService = $this->getAccountService();
         $accountOptions = $accountService->createOptions();
-
-        $idField = $this->_createHiddenIdField();
-        $typeField = $this->_createTypesDropDown($typeOptions);
-        $account = $this->_createAccountDropDown($accountOptions);
-        $amount = $this->_createAmountField();
-        $date = $this->_createDateField();
-        $note = $this->_createNoteField();
-        $submit = $this->_createSubmitButton();
 
         $this->addElements(
             array(
-                $idField,
-                $typeField,
-                $account,
-                $amount,
-                $date,
-                $note,
-                $submit
+                $this->_createHiddenIdField(),
+                $this->_createTypesDropDown($typeOptions),
+                $this->_createAccountDropDown($accountOptions),
+                $this->_createAmountField(),
+                $this->_createDateField(),
+                $this->_createNoteField(),
+                $this->_createSubmitButton()
             )
         );
+    }
+    
+    /**
+     * Sets the transaction type service
+     * 
+     * @param \Application_Service_TransactionType $typeService
+     * @return Application_Form_Transaction
+     */
+    public function setTypeService(\Application_Service_TransactionType $typeService)
+    {
+        $this->_typeService = $typeService;
+        return $this;
+    }
+    
+    /**
+     * Gets the transaction type service
+     * 
+     * @return Application_Service_TransactionType
+     */
+    public function getTypeService()
+    {
+        return $this->_typeService;
+    }
+    
+    /**
+     * Sets the account service
+     * 
+     * @param \Application_Service_Account $accountService
+     * @return Application_Form_Transaction 
+     */
+    public function setAccountService(\Application_Service_Account $accountService)
+    {
+        $this->_accountService = $accountService;
+        return $this;
+    }
+
+    /**
+     * Gets the account service
+     * 
+     * @return Application_Service_Account
+     */
+    public function getAccountService()
+    {
+        return $this->_accountService;
     }
 
     /**

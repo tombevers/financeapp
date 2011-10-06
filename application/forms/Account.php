@@ -2,33 +2,77 @@
 
 class Application_Form_Account extends Zend_Form
 {
+    /**
+     * @var \Application_Service_Bank
+     */
+    protected $_bankService;
+    
+    /**
+     * @var \Application_Service_AccountType
+     */
+    protected $_typeService;
+
     public function init()
     {
-        $typeService = App\ServiceLocator::getAccountTypeService();
+        $typeService = $this->getTypeService();
         $typeOptions = $typeService->createOptions();
 
-        $bankService = App\ServiceLocator::getBankService();
+        $bankService = $this->getBankService();
         $bankOptions = $bankService->createOptions();
-
-        $idField = $this->_createHiddenIdField();
-        $typeField = $this->_createTypesDropDown($typeOptions);
-        $name = $this->_createNameField();
-        $number = $this->_createNumberField();
-        $bank = $this->_createBankDropDown($bankOptions);
-        $comment = $this->_createCommentField();
-        $submit = $this->_createSubmitButton();
 
         $this->addElements(
             array(
-                $idField,
-                $typeField,
-                $name,
-                $number,
-                $bank,
-                $comment,
-                $submit
+                $this->_createHiddenIdField(),
+                $this->_createTypesDropDown($typeOptions),
+                $this->_createNameField(),
+                $this->_createNumberField(),
+                $this->_createBankDropDown($bankOptions),
+                $this->_createCommentField(),
+                $this->_createSubmitButton()
             )
         );
+    }
+
+    /**
+     * Sets the bank service
+     * 
+     * @param \Application_Service_Bank $bankService
+     * @return Application_Form_Account 
+     */
+    public function setBankService(\Application_Service_Bank $bankService)
+    {
+        $this->_bankService = $bankService;
+        return $this;
+    }
+    
+    /**
+     * Gets the bank service
+     * 
+     * @return \Application_Service_Bank
+     */
+    public function getBankService() 
+    { 
+        return $this->_bankService;
+    }
+
+    /**
+     * Sets the account type service
+     * 
+     * @param \Application_Service_AccountType $typeService 
+     */
+    public function setTypeService(\Application_Service_AccountType $typeService)
+    {
+        $this->_typeService = $typeService;
+    }
+    
+    /**
+     * Gets the account type service
+     * 
+     * @return \Application_Service_AccountType
+     */
+    public function getTypeService()
+    {
+        return $this->_typeService;
     }
 
     /**

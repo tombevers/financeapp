@@ -3,6 +3,11 @@
 class AccountController extends Zend_Controller_Action
 {
     /**
+	 * @var Application_Service_AccountType
+	 */
+    private $_accountTypeService;
+    
+    /**
 	 * @var Application_Service_Account
 	 */
     private $_accountService;
@@ -15,6 +20,7 @@ class AccountController extends Zend_Controller_Action
     public function init()
     {
         $this->view->messages = $this->_helper->flashMessenger->getMessages();
+        $this->_accountTypeService = \App\ServiceLocator::getAccountTypeService();
         $this->_accountService = \App\ServiceLocator::getAccountService();
         $this->_bankService = \App\ServiceLocator::getBankService();
     }
@@ -44,7 +50,12 @@ class AccountController extends Zend_Controller_Action
             );
         }
 
-        $form = new Application_Form_Account();
+        $form = new Application_Form_Account(
+            array(
+                'bankService' => $this->_bankService,
+                'typeService' => $this->_accountTypeService,
+            )
+        );
         $this->view->form = $form;
 
         $request = $this->getRequest();
@@ -73,10 +84,15 @@ class AccountController extends Zend_Controller_Action
 
         $request = $this->getRequest();
         $accountId = $request->getParam('id');
-        $form = new Application_Form_Account();
+        $form = new Application_Form_Account(
+            array(
+                'bankService' => $this->_bankService,
+                'typeService' => $this->_accountTypeService,
+            )
+        );
 
         if ($accountId === NULL) {
-            throw new Exception('Id must be provided for the edit action');
+            throw new App\Exception('Id must be provided for the edit action');
         }
 
         $account = $this->_accountService->fetchById($accountId);

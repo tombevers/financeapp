@@ -11,6 +11,11 @@ class TransactionController extends Zend_Controller_Action
 	 * @var Application_Service_Account
 	 */
     private $_accountService;
+    
+    /**
+     * @var Application_Service_TransactionType
+     */
+    private $_typeService;
 
     public function init()
     {
@@ -18,6 +23,7 @@ class TransactionController extends Zend_Controller_Action
         $this->_transactionService =
             \App\ServiceLocator::getTransactionService();
         $this->_accountService = \App\ServiceLocator::getAccountService();
+        $this->_typeService = \App\ServiceLocator::getTransactionTypeService();
     }
 
     public function indexAction()
@@ -44,7 +50,12 @@ class TransactionController extends Zend_Controller_Action
             );
         }
 
-        $form = new Application_Form_Transaction();
+        $form = new Application_Form_Transaction(
+            array(
+                'accountService' => $this->_accountService,
+                'typeService' => $this->_typeService,
+            )
+        );
         $this->view->form = $form;
 
         $request = $this->getRequest();
@@ -73,10 +84,15 @@ class TransactionController extends Zend_Controller_Action
 
         $request = $this->getRequest();
         $transactionId = $request->getParam('id');
-        $form = new Application_Form_Transaction();
+        $form = new Application_Form_Transaction(
+            array(
+                'accountService' => $this->_accountService,
+                'typeService' => $this->_typeService,
+            )
+        );
 
         if ($transactionId === NULL) {
-            throw new Exception('Id must be provided for the edit action');
+            throw new App\Exception('Id must be provided for the edit action');
         }
 
         $transaction = $this->_transactionService->fetchById($transactionId);
@@ -109,7 +125,9 @@ class TransactionController extends Zend_Controller_Action
         $transactionId = $request->getParam('id');
 
         if ($transactionId === NULL) {
-            throw new Exception('Id must be provided for the delete action');
+            throw new App\Exception(
+                'Id must be provided for the delete action'
+            );
         }
 
         $this->_transactionService->removeById($transactionId);

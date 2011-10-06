@@ -15,87 +15,96 @@ class AppEntityAccountProxy extends \App\Entity\Account implements \Doctrine\ORM
         $this->_entityPersister = $entityPersister;
         $this->_identifier = $identifier;
     }
-    private function _load()
+    /** @private */
+    public function __load()
     {
         if (!$this->__isInitialized__ && $this->_entityPersister) {
             $this->__isInitialized__ = true;
+
+            if (method_exists($this, "__wakeup")) {
+                // call this after __isInitialized__to avoid infinite recursion
+                // but before loading to emulate what ClassMetadata::newInstance()
+                // provides.
+                $this->__wakeup();
+            }
+
             if ($this->_entityPersister->load($this->_identifier, $this) === null) {
                 throw new \Doctrine\ORM\EntityNotFoundException();
             }
             unset($this->_entityPersister, $this->_identifier);
         }
     }
-
+    
     
     public function getId()
     {
-        $this->_load();
+        $this->__load();
         return parent::getId();
     }
 
     public function setId($_id)
     {
-        $this->_load();
+        $this->__load();
         return parent::setId($_id);
     }
 
     public function getType()
     {
-        $this->_load();
+        $this->__load();
         return parent::getType();
     }
 
     public function setType($_type)
     {
-        $this->_load();
+        $this->__load();
         return parent::setType($_type);
     }
 
     public function getName()
     {
-        $this->_load();
+        $this->__load();
         return parent::getName();
     }
 
     public function setName($_name)
     {
-        $this->_load();
+        $this->__load();
         return parent::setName($_name);
     }
 
     public function getNumber()
     {
-        $this->_load();
+        $this->__load();
         return parent::getNumber();
     }
 
     public function setNumber($_number)
     {
-        $this->_load();
+        $this->__load();
         return parent::setNumber($_number);
     }
 
     public function getBank()
     {
-        $this->_load();
+        $this->__load();
         return parent::getBank();
     }
 
     public function setBank($_bank)
     {
-        $this->_load();
+        $this->__load();
         return parent::setBank($_bank);
     }
 
     public function getComment()
     {
-        $this->_load();
+        $this->__load();
         return parent::getComment();
     }
 
     public function setComment($_comment)
     {
-        $this->_load();
+        $this->__load();
         return parent::setComment($_comment);
     }
 

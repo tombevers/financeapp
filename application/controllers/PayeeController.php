@@ -61,7 +61,7 @@ class PayeeController extends Zend_Controller_Action
         $form = new Application_Form_Payee();
 
         if ($payeeId === NULL) {
-            throw new Exception('Id must be provided for the edit action');
+            throw new App\Exception('Id must be provided for the edit action');
         }
 
         $payee = $this->_payeeService->fetchById($payeeId);
@@ -89,7 +89,9 @@ class PayeeController extends Zend_Controller_Action
         $payeeId = $request->getParam('id');
 
         if ($payeeId === NULL) {
-            throw new Exception('Id must be provided for the delete action');
+            throw new App\Exception(
+                'Id must be provided for the delete action'
+            );
         }
 
         $this->_payeeService->removeById($payeeId);
