@@ -76,7 +76,7 @@
     </target>
 
     <target name="phpcs">
-        <phpcodesniffer standard="Zend" showSniffs="true" showWarnings="false">
+        <phpcodesniffer standard="${basedir}/ruleset.xml" showSniffs="true" showWarnings="false">
             <fileset dir="${source}">
                 <patternset refid="defaultSet" />
             </fileset>

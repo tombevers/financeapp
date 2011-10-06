@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ruleset name="Financeapp">
+ <description>Copy of the Zend Framework coding standard. But removed the warnings for line length of 80.</description>
+
+ <!-- Include some sniffs from all around the place -->
+ <rule ref="Zend"/>
+
+ <!-- Show errors at 120 chars -->
+ <rule ref="Generic.Files.LineLength">
+  <properties>
+   <property name="lineLimit" value="120"/>
+   <property name="absoluteLineLimit" value="120"/>
+  </properties>
+ </rule>
+ 
+</ruleset>
