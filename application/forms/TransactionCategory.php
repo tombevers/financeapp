@@ -14,7 +14,7 @@ class Application_Form_TransactionCategory extends Zend_Form
         $this->addElements(
             array(
                 $this->_createHiddenIdField(),
-                $this->_createParentDropDown($categoryService->createOptions(TRUE)),
+                $this->_createParentDropDown($categoryService->createOptions(TRUE, FALSE)),
                 $this->_createNameField(),
                 $this->_createSubmitButton()
             )

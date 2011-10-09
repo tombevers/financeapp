@@ -28,7 +28,7 @@ class TransactionCategoryRepository extends EntityRepository
     public function removeCategory($categoryId)
     {
         $em = $this->getEntityManager();
-        $proxy = $em->getReference('\App\Entity\Category', $categoryId);
+        $proxy = $em->getReference('\App\Entity\TransactionCategory', $categoryId);
 
         $em->remove($proxy);
     }

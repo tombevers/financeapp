@@ -86,18 +86,24 @@ class Application_Service_TransactionCategory extends App\AbstractService
      * Creates the transaction category options needed for a dropdown
      *
      * @param boolean $emptyItem
+     * @param boolean $listChildren
      * @return array
      */
-    public function createOptions($emptyItem = FALSE)
+    public function createOptions($emptyItem = FALSE, $listChildren = TRUE)
     {
-        $types = $this->fetchAll();
+        $categories = $this->fetchAllParents();
         $options = array();
         if ($emptyItem) {
             $options[0] = 'None'; // @todo translate
         }
         
-        foreach ($types as $type) {
-            $options[$type->getId()] = $type->getName();
+        foreach ($categories as $category) {
+            $options[$category->getId()] = $category->getName();
+            if ($listChildren) {
+                foreach ($category->getChildren() as $child) {
+                    $options[$child->getId()] = $child->getName();
+                }
+            }
         }
 
         return $options;
