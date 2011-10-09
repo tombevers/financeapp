@@ -3,7 +3,7 @@
 class Application_Form_Transaction extends Zend_Form
 {
     /**
-     * @var \Application_Service_A
+     * @var \Application_Service_Account
      */
     protected $_accountService;
     

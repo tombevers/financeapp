@@ -4,7 +4,7 @@ namespace App\Entity;
 
 /**
  * @Table(name="transaction_categories")
- * @Entity(repositoryClass="App\Entity\Repository\TransactionCategoriesRepository")
+ * @Entity(repositoryClass="App\Entity\Repository\TransactionCategoryRepository")
  */
 class TransactionCategory
 {
@@ -28,7 +28,7 @@ class TransactionCategory
     
     /**
      * @ManyToOne(targetEntity="TransactionCategory", inversedBy="_children")
-     * @JoinColumn(name="parent_id", referencedColumnName="id")
+     * @JoinColumn(name="parentId", referencedColumnName="id")
      */
     private $_parent;
 

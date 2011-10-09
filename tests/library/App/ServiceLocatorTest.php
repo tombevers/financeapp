@@ -40,6 +40,10 @@ class ServiceLocatorTest extends PHPUnit_Framework_TestCase
                 '\Application_Service_TransactionType',
                 'getTransactionTypeService'
             ),
+            array(
+                '\Application_Service_TransactionCategory',
+                'getTransactionCategoryService'
+            ),
         );
     }
     

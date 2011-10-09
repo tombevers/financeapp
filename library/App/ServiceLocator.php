@@ -54,4 +54,12 @@ class ServiceLocator
     {
         return new \Application_Service_TransactionType();
     }
+
+    /**
+     * @return \Application_Service_TransactionCategory
+     */
+    public static function getTransactionCategoryService()
+    {
+        return new \Application_Service_TransactionCategory();
+    }
 }
