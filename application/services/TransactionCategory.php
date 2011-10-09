@@ -5,6 +5,8 @@
  */
 class Application_Service_TransactionCategory extends App\AbstractService
 {
+    public $translate;
+    
     /**
      * @var \Doctrine\ORM\EntityManager
      */
@@ -21,6 +23,7 @@ class Application_Service_TransactionCategory extends App\AbstractService
         $this->_repository = $this->_entityManager->getRepository(
             '\App\Entity\TransactionCategory'
         );
+        $this->translate = \Zend_Registry::get('Zend_Translate');
     }
 
     /**
@@ -94,7 +97,7 @@ class Application_Service_TransactionCategory extends App\AbstractService
         $categories = $this->fetchAllParents();
         $options = array();
         if ($emptyItem) {
-            $options[0] = 'None'; // @todo translate
+            $options[0] = $this->translate->_('transactionCategoryNone');
         }
         
         foreach ($categories as $category) {

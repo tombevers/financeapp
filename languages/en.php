@@ -20,6 +20,7 @@ return array(
     'bankTitle'         => 'Banks',
     'transactionTitle'  => 'Transactions',
     'payeeTitle'        => 'Payees',
+    'transactionCategoryTitle' => 'Category',
 
     // Account form
     'accountType'       => 'Type',
@@ -56,7 +57,12 @@ return array(
     'transactionTypeTransfer'   => 'Transfer',
     'transactionTypeDeposit'    => 'Deposit',
     'transactionTypeWithdrawal' => 'Withdrawal',
-
+    
+    // Transaction category
+    'transactionCategoryName' => 'Name',
+    'transactionCategoryParent' => 'Parent',
+    'transactionCategoryNone' => 'None',
+    
     // Messages
     'saveAccountMessage'        => 'Saved account succesfully',
     'editAccountMessage'        => 'Edited account succesfully',
@@ -70,4 +76,7 @@ return array(
     'saveTransactionMessage'    => 'Saved transaction succesfully',
     'editTransactionMessage'    => 'Edited transaction succesfully',
     'deleteTransactionMessage'  => 'Deleted transaction succesfully',
+    'saveTransactionCategoryMessage'    => 'Saved transaction succesfully',
+    'editTransactionCategoryMessage'    => 'Edited transaction succesfully',
+    'deleteTransactionCategoryMessage'  => 'Deleted transaction succesfully',
 );

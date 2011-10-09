@@ -79,6 +79,19 @@ class Bootstrap extends App\Application\Bootstrap\Bootstrap
             )
         );
 
+        // Create a log instance
+        $log = new Zend_Log(
+            new Zend_Log_Writer_Stream(APPLICATION_PATH . "/../logs/translations.log")
+        );
+        
+        // Attach it to the translation instance
+        $translate->setOptions(
+            array(
+                'log'             => $log,
+                'logUntranslated' => TRUE
+            )
+        );
+        
         Zend_Registry::set('Zend_Translate', $translate);
     }
 
