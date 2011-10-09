@@ -45,6 +45,18 @@ class Application_Service_TransactionCategory extends App\AbstractService
     }
 
     /**
+     * Fetches all parents
+     * 
+     * @return array[\App\Entity\TransactionCategory]
+     */
+    public function fetchAllParents()
+    {
+        return $this->_repository->findBy(
+            array('_parent' => NULL)
+        );
+    }
+    
+    /**
      * Saves a category
      *
      * @param \App\Entity\TransactionCategory $category
@@ -79,7 +91,7 @@ class Application_Service_TransactionCategory extends App\AbstractService
     public function createOptions($emptyItem = FALSE)
     {
         $types = $this->fetchAll();
-        $option = array();
+        $options = array();
         if ($emptyItem) {
             $options[0] = 'None'; // @todo translate
         }

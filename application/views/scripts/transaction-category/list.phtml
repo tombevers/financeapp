@@ -13,7 +13,12 @@
     <tbody>
 <?php foreach ($this->category as $category) : ?>
     <tr>
-        <td><?php echo $category->getName(); ?></td>
+        <td>
+            <?php echo $category->getName(); ?>
+            <?php foreach ($category->getChildren() as $child) : ?>
+                <br /><?php echo $child->getName(); ?>
+            <?php endforeach; ?>
+        </td>
         <td>
             <ul class="actions clearfix">
                 <li>
@@ -23,6 +28,17 @@
                     <a href="<?php echo $this->url(array('controller' => 'transaction-category', 'action' => 'delete', 'id' => $category->getId()));?>"><?php echo $this->translate('deleteAction'); ?></a>
                 </li>
             </ul>
+            <?php foreach ($category->getChildren() as $child) : ?>
+                <br />
+                <ul class="actions clearfix">
+                    <li>
+                        <a href="<?php echo $this->url(array('controller' => 'transaction-category', 'action' => 'update', 'id' => $child->getId()));?>"><?php echo $this->translate('editAction'); ?></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $this->url(array('controller' => 'transaction-category', 'action' => 'delete', 'id' => $child->getId()));?>"><?php echo $this->translate('deleteAction'); ?></a>
+                    </li>
+                </ul>
+            <?php endforeach; ?>
         </td>
     </tr>
 <?php endforeach; ?>

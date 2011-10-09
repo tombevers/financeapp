@@ -24,7 +24,7 @@ class TransactionCategoryController extends Zend_Controller_Action
         $this->view->pageTitle = $this->view->translate('transactionCategoryTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
 
-        $this->view->category = $this->_categoryService->fetchAll();
+        $this->view->category = $this->_categoryService->fetchAllParents();
     }
 
     public function createAction()
