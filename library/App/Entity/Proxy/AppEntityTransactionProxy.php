@@ -15,94 +15,115 @@ class AppEntityTransactionProxy extends \App\Entity\Transaction implements \Doct
         $this->_entityPersister = $entityPersister;
         $this->_identifier = $identifier;
     }
-    private function _load()
+    /** @private */
+    public function __load()
     {
         if (!$this->__isInitialized__ && $this->_entityPersister) {
             $this->__isInitialized__ = true;
+
+            if (method_exists($this, "__wakeup")) {
+                // call this after __isInitialized__to avoid infinite recursion
+                // but before loading to emulate what ClassMetadata::newInstance()
+                // provides.
+                $this->__wakeup();
+            }
+
             if ($this->_entityPersister->load($this->_identifier, $this) === null) {
                 throw new \Doctrine\ORM\EntityNotFoundException();
             }
             unset($this->_entityPersister, $this->_identifier);
         }
     }
-
+    
     
     public function getId()
     {
-        $this->_load();
+        $this->__load();
         return parent::getId();
     }
 
     public function setId($_id)
     {
-        $this->_load();
+        $this->__load();
         return parent::setId($_id);
     }
 
     public function getType()
     {
-        $this->_load();
+        $this->__load();
         return parent::getType();
     }
 
     public function setType($_type)
     {
-        $this->_load();
+        $this->__load();
         return parent::setType($_type);
     }
 
     public function getAccount()
     {
-        $this->_load();
+        $this->__load();
         return parent::getAccount();
     }
 
     public function setAccount($_account)
     {
-        $this->_load();
+        $this->__load();
         return parent::setAccount($_account);
+    }
+
+    public function getCategory()
+    {
+        $this->__load();
+        return parent::getCategory();
+    }
+
+    public function setCategory($_category)
+    {
+        $this->__load();
+        return parent::setCategory($_category);
     }
 
     public function getAmount()
     {
-        $this->_load();
+        $this->__load();
         return parent::getAmount();
     }
 
     public function setAmount($_amount)
     {
-        $this->_load();
+        $this->__load();
         return parent::setAmount($_amount);
     }
 
     public function getDate()
     {
-        $this->_load();
+        $this->__load();
         return parent::getDate();
     }
 
     public function setDate($_date)
     {
-        $this->_load();
+        $this->__load();
         return parent::setDate($_date);
     }
 
     public function getNote()
     {
-        $this->_load();
+        $this->__load();
         return parent::getNote();
     }
 
     public function setNote($_note)
     {
-        $this->_load();
+        $this->__load();
         return parent::setNote($_note);
     }
 
 
     public function __sleep()
     {
-        return array('__isInitialized__', '_id', '_type', '_account', '_amount', '_date', '_note');
+        return array('__isInitialized__', '_id', '_type', '_account', '_category', '_amount', '_date', '_note');
     }
 
     public function __clone()

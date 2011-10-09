@@ -57,7 +57,9 @@ class Application_Service_Transaction extends App\AbstractService
         $values['type'] = $typeService->fetchById($values['type']);
         $accountService = App\ServiceLocator::getAccountService();
         $values['account'] = $accountService->fetchById($values['account']);
-
+        $categoryService = App\ServiceLocator::getTransactionCategoryService();
+        $values['category'] = $categoryService->fetchById($values['category']);
+        
         list($year, $month, $day) = explode('-', $values['date']);
         $date = new DateTime();
         $date->setDate($year, $month, $day);

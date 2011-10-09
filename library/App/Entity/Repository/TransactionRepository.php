@@ -20,6 +20,7 @@ class TransactionRepository extends EntityRepository
         $transaction->setAmount($values['amount']);
         $transaction->setDate($values['date']);
         $transaction->setNote($values['note']);
+        $transaction->setCategory($values['category']);
 
         $this->getEntityManager()->persist($transaction);
     }

@@ -22,11 +22,19 @@ class Application_Form_TransactionTest extends PHPUnit_Framework_TestCase
         $typeServiceMock->expects($this->once())
             ->method('createOptions')
             ->will($this->returnValue(array(1 => 'foo')));
+
+        $categoryServiceMock = $this->getMockBuilder('\Application_Service_TransactionCategory')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $categoryServiceMock->expects($this->once())
+            ->method('createOptions')
+            ->will($this->returnValue(array(1 => 'foo')));
         
         $this->_form = new Application_Form_Transaction(
             array(
                 'accountService' => $accountServiceMock,
                 'typeService' => $typeServiceMock,
+                'categoryService' => $categoryServiceMock,
             )
         );
     }
@@ -43,6 +51,9 @@ class Application_Form_TransactionTest extends PHPUnit_Framework_TestCase
         
         $accountStub = new App\Entity\Account();
         $accountStub->setId(1);
+        
+        $categoryStub = new App\Entity\Account();
+        $categoryStub->setId(1);
 
         $transaction = new App\Entity\Transaction();
         $transaction->setId($idStub);
@@ -51,6 +62,7 @@ class Application_Form_TransactionTest extends PHPUnit_Framework_TestCase
         $transaction->setType($typeStub);
         $transaction->setDate($dateStub);
         $transaction->setNote($noteStub);
+        $transaction->setCategory($categoryStub);
 
         $this->_form->setDefaultsFromEntity($transaction);
         $values = $this->_form->getValues();
@@ -61,5 +73,6 @@ class Application_Form_TransactionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($accountStub->getId(), $values['account']);
         $this->assertEquals($dateStub->format('Y-m-d'), $values['date']);
         $this->assertEquals($noteStub, $values['note']);
+        $this->assertEquals($categoryStub->getId(), $values['category']);
     }
 }

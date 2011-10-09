@@ -16,6 +16,11 @@ class TransactionController extends Zend_Controller_Action
      * @var Application_Service_TransactionType
      */
     private $_typeService;
+    
+    /**
+     * @var Application_Service_TransactionCategory
+     */
+    private $_categoryService;
 
     public function init()
     {
@@ -24,6 +29,7 @@ class TransactionController extends Zend_Controller_Action
             \App\ServiceLocator::getTransactionService();
         $this->_accountService = \App\ServiceLocator::getAccountService();
         $this->_typeService = \App\ServiceLocator::getTransactionTypeService();
+        $this->_categoryService = \App\ServiceLocator::getTransactionCategoryService();
     }
 
     public function indexAction()
@@ -49,11 +55,18 @@ class TransactionController extends Zend_Controller_Action
                 'There are no accounts available! Configure them first.'
             );
         }
+        
+        if (count($this->_categoryService->fetchAll()) == 0) {
+            throw new App\Exception(
+                'There are no categories available! Configure them first.'
+            );
+        }
 
         $form = new Application_Form_Transaction(
             array(
                 'accountService' => $this->_accountService,
                 'typeService' => $this->_typeService,
+                'categoryService' => $this->_categoryService,
             )
         );
         $this->view->form = $form;
@@ -88,6 +101,7 @@ class TransactionController extends Zend_Controller_Action
             array(
                 'accountService' => $this->_accountService,
                 'typeService' => $this->_typeService,
+                'categoryService' => $this->_categoryService,
             )
         );
 

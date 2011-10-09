@@ -27,6 +27,12 @@ class Transaction
      * @JoinColumn(name="accountId", referencedColumnName="id")
      */
     private $_account;
+    
+    /**
+     * @ManyToOne(targetEntity="TransactionCategory")
+     * @JoinColumn(name="categoryId", referencedColumnName="id")
+     */
+    private $_category;
 
     /**
      * @Column(name="amount", type="decimal", scale=2)
@@ -94,6 +100,22 @@ class Transaction
         $this->_account = $_account;
     }
 
+    /**
+     * @return \App\Entity\TransactionCategory
+     */
+    public function getCategory()
+    {
+        return $this->_category;
+    }
+
+    /**
+     * @param \App\Entity\TransactionCategory $_category 
+     */
+    public function setCategory($_category)
+    {
+        $this->_category = $_category;
+    }
+    
     /**
      * @return double
      */

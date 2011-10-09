@@ -24,6 +24,10 @@ class TransactionTest extends ModelTestCase
         $typeStub = new \App\Entity\TransactionType();
         $typeStub->setTag('fooType');
         $this->_em->persist($typeStub);
+        
+        $categoryStub = new \App\Entity\TransactionCategory();
+        $categoryStub->setName('fooCat');
+        $this->_em->persist($categoryStub);
 
         $amountStub = '100';
         $dateStub = new \DateTime();
@@ -36,6 +40,7 @@ class TransactionTest extends ModelTestCase
         $transaction->setAmount($amountStub);
         $transaction->setDate($dateStub);
         $transaction->setNote($noteStub);
+        $transaction->setCategory($categoryStub);
 
         $this->_em->persist($transaction);
         $this->_em->flush();
@@ -56,5 +61,9 @@ class TransactionTest extends ModelTestCase
         $this->assertEquals($amountStub, $result->getAmount());
         $this->assertEquals($dateStub, $result->getDate());
         $this->assertEquals($noteStub, $result->getNote());
+        $this->assertEquals(
+            $categoryStub->getName(),
+            $result->getCategory()->getName()
+        );
     }
 }

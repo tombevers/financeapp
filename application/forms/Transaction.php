@@ -12,18 +12,26 @@ class Application_Form_Transaction extends Zend_Form
      */
     protected $_typeService;
     
+    /**
+     * @var \Application_Service_TransactionCategory
+     */
+    protected $_categoryService;
+    
     public function init()
     {
         $typeService = $this->getTypeService();
         $typeOptions = $typeService->createOptions();
         $accountService = $this->getAccountService();
         $accountOptions = $accountService->createOptions();
+        $categoryService = $this->getCategoryService();
+        $categoryOptions = $categoryService->createOptions(FALSE);
 
         $this->addElements(
             array(
                 $this->_createHiddenIdField(),
                 $this->_createTypesDropDown($typeOptions),
                 $this->_createAccountDropDown($accountOptions),
+                $this->_createCategoryDropDown($categoryOptions),
                 $this->_createAmountField(),
                 $this->_createDateField(),
                 $this->_createNoteField(),
@@ -77,6 +85,28 @@ class Application_Form_Transaction extends Zend_Form
     }
 
     /**
+     * Sets the category service
+     * 
+     * @param \Application_Service_TransactionCategory $categoryService
+     * @return Application_Form_Transaction
+     */
+    public function setCategoryService(\Application_Service_TransactionCategory $categoryService)
+    {
+        $this->_categoryService = $categoryService;
+        return $this;
+    }
+
+    /**
+     * Gets the category service
+     * 
+     * @return Application_Service_TransactionCategory
+     */
+    public function getCategoryService()
+    {
+        return $this->_categoryService;
+    }
+    
+    /**
      * Set defaults from entity
      * 
      * @param \App\Entity\Transaction $transaction
@@ -90,6 +120,7 @@ class Application_Form_Transaction extends Zend_Form
             'amount'    => $transaction->getAmount(),
             'date'      => $transaction->getDate()->format('Y-m-d'),
             'note'      => $transaction->getNote(),
+            'category'  => $transaction->getCategory()->getId(),
         );
 
         $this->setDefaults($values);
@@ -174,6 +205,22 @@ class Application_Form_Transaction extends Zend_Form
             ->setRequired();
 
        return $account;
+    }
+    
+    /**
+     * Creates the category dropdown field
+     *
+     * @param array $categoryOptions
+     * @return Zend_Form_Element_Select
+     */
+    private function _createCategoryDropDown(array $categoryOptions)
+    {
+        $category = new Zend_Form_Element_Select('category');
+        $category->setLabel('transactionCategory')
+            ->setMultiOptions($categoryOptions)
+            ->setRequired();
+
+       return $category;
     }
 
     /**
