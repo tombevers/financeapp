@@ -3,7 +3,7 @@
 class Application_Form_TransactionTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var Application_Form_Account
+     * @var Application_Form_Transaction
      */
     protected $_form;
 
