@@ -21,6 +21,7 @@ return array(
     'transactionTitle'  => 'Transactions',
     'payeeTitle'        => 'Payees',
     'transactionCategoryTitle' => 'Category',
+    'scheduledTransactionTitle' => 'Scheduled transaction',
 
     // Account form
     'accountType'       => 'Type',
@@ -47,6 +48,7 @@ return array(
     'transactionDate'       => 'Date',
     'transactionAccount'    => 'Account',
     'transactionNote'       => 'Note',
+    'transactionCategory'   => 'Category',
 
     // Account types
     'accountTypeBank'           => 'Bank',
@@ -62,6 +64,14 @@ return array(
     'transactionCategoryName' => 'Name',
     'transactionCategoryParent' => 'Parent',
     'transactionCategoryNone' => 'None',
+    
+    // Scheduled transaction
+    'scheduledTransactionNextDate' => 'Next date',
+    'scheduledTransactionFrequency' => 'Frequency',
+    'scheduledTransactionContinuous' => 'Continuous',
+    'scheduledTransactionNumbered' => 'Numbered',
+    'scheduledTransactionNumber' => 'Number',
+    'scheduledTransactionPayAutomatically' => 'Pay automatically',
     
     // Messages
     'saveAccountMessage'        => 'Saved account succesfully',

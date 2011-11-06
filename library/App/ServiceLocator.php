@@ -62,4 +62,12 @@ class ServiceLocator
     {
         return new \Application_Service_TransactionCategory();
     }
+    
+    /**
+     * @return \Application_Service_ScheduledTransaction 
+     */
+    public static function getScheduledTransactionService()
+    {
+        return new \Application_Service_ScheduledTransaction();
+    }
 }
