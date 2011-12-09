@@ -72,6 +72,7 @@ return array(
     'scheduledTransactionNumbered' => 'Numbered',
     'scheduledTransactionNumber' => 'Number',
     'scheduledTransactionPayAutomatically' => 'Pay automatically',
+    'scheduledTransactionActive' => 'Active',
     
     // Messages
     'saveAccountMessage'        => 'Saved account succesfully',

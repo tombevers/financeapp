@@ -37,7 +37,7 @@ class Application_Form_ScheduledTransaction extends Zend_Form
                 $this->_createNextDateField(),
                 $this->_createContinuousRadioButton(),
                 $this->_createNumberField(),
-                $this->_createAutomaticallyCheckboxButton(),
+                $this->_createActiveCheckbox(),
                 $this->_createSubmitButton()
             )
         );
@@ -126,7 +126,7 @@ class Application_Form_ScheduledTransaction extends Zend_Form
             'nextDate'      => $transaction->getNextDate()->format('Y-m-d'),
             'continuous'    => $transaction->getContinuous(),
             'number'        => $transaction->getNumber(),
-            'automatically' => $transaction->getAutomatically(),
+            'active'        => $transaction->getActive(),
         );
 
         $this->setDefaults($values);
@@ -293,17 +293,17 @@ class Application_Form_ScheduledTransaction extends Zend_Form
     }
     
     /**
-     * Creates the automatically checkbox
+     * Creates the active checkbox
      * 
-     * @return Zend_Form_Element_Radio 
+     * @return Zend_Form_Element_Checkbox 
      */
-    private function _createAutomaticallyCheckboxButton()
+    private function _createActiveCheckbox()
     {
-        $automatically = new Zend_Form_Element_Checkbox('automatically');
-        $automatically->setLabel('scheduledTransactionPayAutomatically');
+        $active = new Zend_Form_Element_Checkbox('active');
+        $active->setLabel('scheduledTransactionActive');
         
-        return $automatically;
-    }
+        return $active;
+    }    
 
     /**
      * Creates the submit button

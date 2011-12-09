@@ -30,7 +30,11 @@ class Application_Service_Transaction extends App\AbstractService
      */
     public function fetchAll()
     {
-        return $this->_repository->findAll();
+        try {
+            return $this->_repository->findAllOrderByDate();
+        } catch (\Doctrine\ORM\ORMException $exc) {
+            return NULL;
+        }
     }
 
     /**

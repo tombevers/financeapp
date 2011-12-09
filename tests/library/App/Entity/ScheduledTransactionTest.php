@@ -31,7 +31,7 @@ class ScheduledTransactionTest extends ModelTestCase
         $frequencyStub = 'one time';
         $continuousStub = FALSE;
         $numberStub = 100;
-        $automaticallyStub = TRUE;
+        $activeStub = TRUE;
 
         $scheduledTransaction = new App\Entity\ScheduledTransaction();
         $scheduledTransaction->setId(30);
@@ -43,7 +43,7 @@ class ScheduledTransactionTest extends ModelTestCase
         $scheduledTransaction->setFrequency($frequencyStub);
         $scheduledTransaction->setContinuous($continuousStub);
         $scheduledTransaction->setNumber($numberStub);
-        $scheduledTransaction->setAutomatically($automaticallyStub);
+        $scheduledTransaction->setActive($activeStub);
 
         $this->_em->persist($scheduledTransaction);
         $this->_em->flush();
@@ -70,6 +70,6 @@ class ScheduledTransactionTest extends ModelTestCase
         $this->assertEquals($frequencyStub, $result->getFrequency());
         $this->assertEquals($continuousStub, $result->getContinuous());
         $this->assertEquals($numberStub, $result->getNumber());
-        $this->assertEquals($automaticallyStub, $result->getAutomatically());
+        $this->assertEquals($activeStub, $result->getActive());
     }
 }

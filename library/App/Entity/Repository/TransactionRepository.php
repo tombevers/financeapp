@@ -7,6 +7,16 @@ use Doctrine\ORM\EntityRepository,
 
 class TransactionRepository extends EntityRepository
 {
+    public function findAllOrderByDate()
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+        $queryBuilder->select('t')
+            ->from('App\Entity\Transaction', 't')
+            ->orderBy('t._date');
+        
+        return $queryBuilder->getQuery()->getResult();
+    }
+    
     /**
      * Saves a transaction
      * 

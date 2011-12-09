@@ -40,7 +40,7 @@ class ScheduledTransaction
     private $_amount;
     
     /**
-     * @Column (name="nextDate", type="date")
+     * @Column(name="nextDate", type="date")
      */
     private $_nextDate;
     
@@ -60,9 +60,9 @@ class ScheduledTransaction
     private $_number;
     
     /**
-     * @Column(name="automatically", type="boolean")
+     * @Column(name="active", type="boolean")
      */
-    private $_automatically;
+    private $_active;
 
     /**
      * @return int
@@ -201,20 +201,20 @@ class ScheduledTransaction
     {
         $this->_number = $_number;
     }
-        
+    
     /**
      * @return boolean
      */
-    public function getAutomatically()
+    public function getActive()
     {
-        return $this->_automatically;
+        return $this->_active;
     }
 
     /**
-     * @param boolean $_automatically 
+     * @param boolean $_active 
      */
-    public function setAutomatically($_automatically)
+    public function setActive($_active)
     {
-        $this->_automatically = $_automatically;
+        $this->_active = $_active;
     }
 }

@@ -48,7 +48,6 @@ class Application_Form_ScheduledTransactionTest extends PHPUnit_Framework_TestCa
         $frequencyStub = 'one time';
         $continuousStub = 0;
         $numberStub = 100;
-        $automaticallyStub = 1;
         
         $typeStub = new \App\Entity\TransactionType();
         $typeStub->setId(1);
@@ -69,7 +68,6 @@ class Application_Form_ScheduledTransactionTest extends PHPUnit_Framework_TestCa
         $transaction->setFrequency($frequencyStub);
         $transaction->setContinuous($continuousStub);
         $transaction->setNumber($numberStub);
-        $transaction->setAutomatically($automaticallyStub);
 
         $this->_form->setDefaultsFromEntity($transaction);
         $values = $this->_form->getValues();
