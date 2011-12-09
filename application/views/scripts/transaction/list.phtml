@@ -2,6 +2,7 @@
 
 <p>
     <a class="button small" href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'create'));?>"><?php echo $this->translate('addAction'); ?></a>
+    <a class="button small" href="<?php echo $this->url(array('controller' => 'scheduled-transaction', 'action' => 'list'));?>"><?php echo $this->translate('scheduledTransactionTitle'); ?></a>
     <a class="button small" href="<?php echo $this->url(array('controller' => 'transaction-category', 'action' => 'list'));?>"><?php echo $this->translate('transactionCategoryTitle'); ?></a>
 </p>
 
@@ -9,6 +10,7 @@
 <table cellspacing="0" class="defaultTable">
     <thead>
        <tr>
+           <th><?php echo $this->translate('transactionDate'); ?></th>
            <th><?php echo $this->translate('transactionAmount'); ?></th>
            <th>&nbsp;</th>
        </tr>
@@ -16,6 +18,7 @@
     <tbody>
 <?php foreach ($this->transactions as $transaction) : ?>
     <tr>
+        <td><?php echo $transaction->getDate()->format('Y-m-d'); ?></td>
         <td><?php echo $this->currency($transaction->getAmount()); ?></td>
         <td>
             <ul class="actions clearfix">
