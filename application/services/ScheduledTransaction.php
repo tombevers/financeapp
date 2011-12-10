@@ -110,52 +110,7 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
         $pendingTransactions = $this->fetchPending($currentDate);
         if (count($pendingTransactions) > 0) {
             foreach ($pendingTransactions as $pendingTransaction) {
-                $oldNextDate = $nextDate = $pendingTransaction->getNextDate();
-                $number = $pendingTransaction->getNumber();
-                $continuous = $pendingTransaction->isContinuous();
-                while (($nextDate !== NULL && $nextDate <= $currentDate) && !(!$continuous && $number <= 0)) {
-                    // every scheduled transaction needs to be checked for the frequency,
-                    // it should be possible to create more than one transaction per scheduled transaction
-                    $values = array(
-                        'type' => $pendingTransaction->getType()->getId(),
-                        'account' => $pendingTransaction->getAccount()->getId(),
-                        'amount' => $pendingTransaction->getAmount(),
-                        'date' => $nextDate->format('Y-m-d'),
-                        'note' => '',
-                        'category' => $pendingTransaction->getCategory()->getId(),
-                    );
-                    $this->_transactionService->saveTransaction(new \App\Entity\Transaction, $values);
-                    $nextDate = $this->calculateNextDate(
-                        $pendingTransaction->getFrequency(),
-                        $nextDate
-                    );
-                    
-                    if (!$continuous) {
-                        $number--;
-                    }
-                }
-                                
-                if ($nextDate === NULL) {
-                    $nextDate = $oldNextDate;
-                }
-                
-                $active = TRUE;
-                if ($nextDate === NULL || (!$continuous && $number == 0)) {
-                    $active = FALSE;
-                }
-                                
-                $values = array(
-                    'type' => $pendingTransaction->getType()->getId(),
-                    'account' => $pendingTransaction->getAccount()->getId(),
-                    'category' => $pendingTransaction->getCategory()->getId(), 
-                    'amount' => $pendingTransaction->getAmount(),
-                    'nextDate' => $nextDate->format('Y-m-d'),
-                    'frequency' => $pendingTransaction->getFrequency(),
-                    'continuous' => $pendingTransaction->isContinuous(),
-                    'number' => $number,
-                    'active' => $active,
-                );
-                $this->saveScheduledTransaction($pendingTransaction, $values);
+                $this->_createTransactions($pendingTransaction, $currentDate);
             }
         }
     }
@@ -218,5 +173,63 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
         }
         
         return $nextDate->add(new DateInterval($dateInterval));
+    }
+    
+    /**
+     * Creates transactions based on the scheduled transaction object and the currentDate
+     * 
+     * @param \App\Entity\ScheduledTransaction $pendingTransaction
+     * @param \DateTime $currentDate 
+     */
+    private function _createTransactions(\App\Entity\ScheduledTransaction $pendingTransaction, \DateTime $currentDate)
+    {
+        $oldNextDate = $nextDate = $pendingTransaction->getNextDate();
+        $number = $pendingTransaction->getNumber();
+        $continuous = $pendingTransaction->isContinuous();
+        while (($nextDate !== NULL && $nextDate <= $currentDate) && !(!$continuous && $number <= 0)) {
+            $this->_transactionService->saveTransaction(
+                new \App\Entity\Transaction,
+                array(
+                    'type' => $pendingTransaction->getType()->getId(),
+                    'account' => $pendingTransaction->getAccount()->getId(),
+                    'amount' => $pendingTransaction->getAmount(),
+                    'date' => $nextDate->format('Y-m-d'),
+                    'note' => '',
+                    'category' => $pendingTransaction->getCategory()->getId(),
+                )
+            );
+            $nextDate = $this->calculateNextDate(
+                $pendingTransaction->getFrequency(),
+                $nextDate
+            );
+
+            if (!$continuous) {
+                $number--;
+            }
+        }
+
+        $active = TRUE;
+        if ($nextDate === NULL || (!$continuous && $number == 0)) {
+            if ($nextDate === NULL) {
+                $nextDate = $oldNextDate;
+            }
+
+            $active = FALSE;
+        }
+
+        $this->saveScheduledTransaction(
+            $pendingTransaction,
+            array(
+                'type' => $pendingTransaction->getType()->getId(),
+                'account' => $pendingTransaction->getAccount()->getId(),
+                'category' => $pendingTransaction->getCategory()->getId(), 
+                'amount' => $pendingTransaction->getAmount(),
+                'nextDate' => $nextDate->format('Y-m-d'),
+                'frequency' => $pendingTransaction->getFrequency(),
+                'continuous' => $pendingTransaction->isContinuous(),
+                'number' => $number,
+                'active' => $active,
+            )
+        );        
     }
 }
