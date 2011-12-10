@@ -124,9 +124,9 @@ class Application_Form_ScheduledTransaction extends Zend_Form
             'category'      => $transaction->getCategory()->getId(),
             'frequency'     => $transaction->getFrequency(),
             'nextDate'      => $transaction->getNextDate()->format('Y-m-d'),
-            'continuous'    => $transaction->getContinuous(),
+            'continuous'    => $transaction->isContinuous(),
             'number'        => $transaction->getNumber(),
-            'active'        => $transaction->getActive(),
+            'active'        => $transaction->isActive(),
         );
 
         $this->setDefaults($values);

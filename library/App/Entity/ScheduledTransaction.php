@@ -173,7 +173,7 @@ class ScheduledTransaction
     /**
      * @return boolean
      */
-    public function getContinuous()
+    public function isContinuous()
     {
         return $this->_continuous;
     }
@@ -205,7 +205,7 @@ class ScheduledTransaction
     /**
      * @return boolean
      */
-    public function getActive()
+    public function isActive()
     {
         return $this->_active;
     }

@@ -68,8 +68,8 @@ class ScheduledTransactionTest extends ModelTestCase
             $result->getCategory()->getName()
         );
         $this->assertEquals($frequencyStub, $result->getFrequency());
-        $this->assertEquals($continuousStub, $result->getContinuous());
+        $this->assertEquals($continuousStub, $result->isContinuous());
         $this->assertEquals($numberStub, $result->getNumber());
-        $this->assertEquals($activeStub, $result->getActive());
+        $this->assertEquals($activeStub, $result->isActive());
     }
 }

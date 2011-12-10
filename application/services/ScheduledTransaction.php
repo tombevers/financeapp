@@ -89,42 +89,6 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
     }
     
     /**
-     * Updates the nextDate
-     * 
-     * @param \App\Entity\ScheduledTransaction $transaction
-     * @param \DateTime $nextDate
-     * @return \App\Entity\ScheduledTransaction
-     */
-    public function updateNextDate(\App\Entity\ScheduledTransaction $transaction, \DateTime $nextDate)
-    {
-        return $this->_repository->updateNextDate($transaction, $nextDate);
-    }
-    
-    /**
-     * Updates the active field
-     * 
-     * @param \App\Entity\ScheduledTransaction $transaction
-     * @param boolean $active 
-     * @return \App\Entity\ScheduledTransaction
-     */
-    public function updateActive(\App\Entity\ScheduledTransaction $transaction, $active)
-    {
-        return $this->_repository->updateActive($transaction, $active);
-    }
-    
-    /**
-     * Updates the number field
-     * 
-     * @param \App\Entity\ScheduledTransaction $transaction
-     * @param int $number 
-     * @return \App\Entity\ScheduledTransaction
-     */
-    public function updateNumber(\App\Entity\ScheduledTransaction $transaction, $number)
-    {
-        return $this->_repository->updateNumber($transaction, $number);
-    }
-
-    /**
      * Removes a scheduled transaction
      *
      * @param int $transactionId
@@ -148,7 +112,7 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
             foreach ($pendingTransactions as $pendingTransaction) {
                 $oldNextDate = $nextDate = $pendingTransaction->getNextDate();
                 $number = $pendingTransaction->getNumber();
-                $continuous = $pendingTransaction->getContinuous();
+                $continuous = $pendingTransaction->isContinuous();
                 while (($nextDate !== NULL && $nextDate <= $currentDate) && !(!$continuous && $number <= 0)) {
                     // every scheduled transaction needs to be checked for the frequency,
                     // it should be possible to create more than one transaction per scheduled transaction
@@ -187,7 +151,7 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
                     'amount' => $pendingTransaction->getAmount(),
                     'nextDate' => $nextDate->format('Y-m-d'),
                     'frequency' => $pendingTransaction->getFrequency(),
-                    'continuous' => $pendingTransaction->getContinuous(),
+                    'continuous' => $pendingTransaction->isContinuous(),
                     'number' => $number,
                     'active' => $active,
                 );
