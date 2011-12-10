@@ -3,10 +3,10 @@
 namespace App\Entity;
 
 /**
- * @Table(name="configuration")
+ * @Table(name="settings")
  * @Entity
  */
-class Configuration
+class Setting
 {
     /**
      * @Id
@@ -22,7 +22,7 @@ class Configuration
     private $value;
     
     /**
-     * Creates a configuration
+     * Creates a setting
      * 
      * @param string $parameter
      * @param string $value 

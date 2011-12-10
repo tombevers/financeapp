@@ -66,7 +66,7 @@ VALUES
 	(2, 'transactionTypeDeposit'),
 	(3, 'transactionTypeWithdrawal');
 
-INSERT INTO `configuration`
+INSERT INTO `settings`
 VALUES ('currency', 'USD');
 
 Updating schema
