@@ -47,6 +47,10 @@ class ServiceLocatorTest extends PHPUnit_Framework_TestCase
             array(
                 '\Application_Service_ScheduledTransaction',
                 'getScheduledTransactionService'
+            ),
+            array(
+                '\Application_Service_Setting',
+                'getSettingService'
             )
         );
     }

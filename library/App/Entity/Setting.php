@@ -4,7 +4,7 @@ namespace App\Entity;
 
 /**
  * @Table(name="settings")
- * @Entity
+ * @Entity(repositoryClass="App\Entity\Repository\SettingRepository")
  */
 class Setting
 {
@@ -40,12 +40,20 @@ class Setting
     {
         return $this->parameter;
     }
-
+    
     /**
      * @return string
      */
     public function getValue()
     {
         return $this->value;
+    }
+    
+    /**
+     * @param setting $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
     }
 }

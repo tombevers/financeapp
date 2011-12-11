@@ -107,12 +107,4 @@ class Bootstrap extends App\Application\Bootstrap\Bootstrap
         $layout->assign('nestedLayout', 'default');
         $layout->assign('variation', 'variation/default');
     }
-
-    /**
-     * Initalize currency
-     */
-    protected function _initCurrency()
-    {
-        Zend_Registry::set('Zend_Currency', new Zend_Currency('nl_BE'));
-    }
 }

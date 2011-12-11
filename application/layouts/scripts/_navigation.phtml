@@ -1,3 +1,9 @@
+<nav id="subNav">
+    <ul>
+        <li><a href="<?php echo $this->url(array('controller' => 'setting', 'action' => 'index'));?>">
+            <?php echo $this->translate('settingsLinkTitle'); ?></a></li>
+    </ul>
+</nav>
 <nav id="mainNav">
     <ul>
         <li <?php echo ($this->isActive('dashboard') ? 'class="active"' : ''); ?>>

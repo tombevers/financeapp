@@ -67,40 +67,38 @@ table.defaultTable {
     border-color: #dedede;
     border-width: 0 1px;
     width: 100%;
-}
+    th, td {
+        padding: 6px 10px;
+    }
+    td {
+        font-size: 93%;
+    }
+    th.lastCol, td.lastCol {
+        text-align: right;
+    }
+    thead {
+        th {
+            background-color: #d1d1d1;
+            background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#d1d1d1), to(#959595));
+            background-image: -moz-linear-gradient(#d1d1d1, #959595);
+            background-image: linear-gradient(#d1d1d1, #959595);
+            /** @todo linear-gradient opera **/
 
-table.defaultTable th,  table.defaultTable td {
-    padding: 6px 10px;
-}
-
-table.defaultTable td {
-    font-size: 93%;
-}
-
-table.defaultTable thead th {
-    background-color: #d1d1d1;
-    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#d1d1d1), to(#959595));
-    background-image: -moz-linear-gradient(#d1d1d1, #959595);
-    background-image: linear-gradient(#d1d1d1, #959595);
-    /** @todo linear-gradient opera **/
-
-    text-align: left;
-    font-weight: normal;
-    text-shadow: 1px 1px 1px #d1d1d1;
-    color: #383838;
-    font-size: 100%;
-}
-
-table.defaultTable tbody tr:nth-child(even) {
-    background: #efefef;
-}
-
-table.defaultTable tbody tr {
-    border-bottom: 1px solid #dedede;
-}
-
-table.defaultTable th.lastCol, table.defaultTable td.lastCol {
-    text-align: right;
+            text-align: left;
+            font-weight: normal;
+            text-shadow: 1px 1px 1px #d1d1d1;
+            color: #383838;
+            font-size: 100%;
+        }
+    }
+    tbody {
+        tr {
+            border-bottom: 1px solid #dedede;
+        }
+        tr:nth-child(even) {
+            background: #efefef;
+        }
+    }
 }
 
 /* -- Messages -------------------------------------------------------------- */
@@ -129,11 +127,11 @@ ul.actions {
     float: right;
     list-style-type: none;
     margin: 0;
-}
-
-ul.actions li {
-    float: left;
-    margin-left: 6px;
+    li {
+        float: left;
+        margin-left: 6px;
+    }
+    
 }
 
 /* -- Basic layout --------------------------------------------------------- */
@@ -151,54 +149,69 @@ body {
 
 header {
     height: 71px;
-}
-
-    header h1 {
+    h1 {
         font-family: 'AllerRegular';
         font-weight: normal;
         color: #fff;
         font-size: 167%;
         text-shadow: #333 1px 1px;
         padding: 10px 0 0;
-    }
-
-    #mainNav ul {
-        height: 28px;
-        line-height: 28px;
-        margin: 5px 1px 0 1px;
-        border-bottom: 1px solid #fff;
-    }
-
-    #mainNav ul li {
         float: left;
     }
 
-    #mainNav ul li.active {
-        background: #f1f1f1;
-    }
+    #subNav {
+        ul {
+		    height: 23px;
+		    line-height: 23px;
+		    li {
+		        float: right;
+		        font-size: 0.9em;
+		        a {
+		            background: #313131;
+                    color: #b3b3b3;
+                    display: block;
+                    padding: 0 6px;
+                    margin-right: 3px;
+                    text-decoration: none;
+                }
+                a:hover {
+                    color: #fff;
+                }
+	        }
+	    }
+	}
 
-    #mainNav ul li.active {
-        border-bottom: 1px solid #f1f1f1;
+    #mainNav {
+        ul {
+            height: 28px;
+            line-height: 28px;
+            margin: 19px 1px 0 1px;
+            border-bottom: 1px solid #fff;
+            li {
+                float: left;
+                a {
+                    display: block;
+                    padding: 0 19px;
+                    color: #b3b3b3;
+                    text-decoration: none;
+                }
+                a:hover {
+                    color: #fff;
+                }
+            }
+            li.active {
+                background: #f1f1f1;
+                border-bottom: 1px solid #f1f1f1;
+                a {
+                    color: #333;
+                }
+                a:hover {
+                    color: #b3b3b3;
+                }
+            }
+        }
     }
-
-    #mainNav ul li a {
-        display: block;
-        padding: 0 19px;
-        color: #b3b3b3;
-        text-decoration: none;
-    }
-
-    #mainNav ul li a:hover {
-        color: #fff;
-    }
-
-    #mainNav ul li.active a {
-        color: #333;
-    }
-
-    #mainNav ul li.active a:hover {
-        color: #b3b3b3;
-    }
+}
 
 /* -- ContentWrapper ------------------------------------------------------- */
 
@@ -214,19 +227,19 @@ header {
     section#pageTitle {
         background: #f1f1f1;
         border-bottom: 1px solid #d6d6d6;
-    }
-        #pageTitle h1 {
+        h1 {
             float: left;
             font-size: 153.9%;
             font-family: 'AllerRegular';
             font-weight: normal;
             padding: 10px 0 10px 15px;
         }
+    }
 
-        #quickAction {
-            float: right;
-            margin: 9px 15px 0 0;
-        }
+    #quickAction {
+        float: right;
+        margin: 9px 15px 0 0;
+    }
 
     /** SideBar **/
 
@@ -234,14 +247,10 @@ header {
         float: left;
         padding: 15px 0 15px 15px;
         width: 160px;
-    }
-
-        #sideBar div.block {
+        div.block {
             width: 160px;
             margin: 0 0 10px;
-        }
-
-            #sideBar div.block h3 {
+            h3 {
                 font-family: 'AllerRegular';
                 font-size: 95%;
                 font-weight: normal;
@@ -249,21 +258,20 @@ header {
                 text-transform: capitalize;
                 margin: 0 0 10px;
             }
-
-            #sideBar div.block .content {
+            .content {
                 border: 1px solid #e5e5e5;
                 background: #f9f9f9;
                 padding: 10px;
                 font-size: 90%;
+                ul {
+                    margin-bottom: 0;
+                    li {
+                        padding: 0 0 2px;
+                    }
+                }
             }
-
-            #sideBar div.block .content ul {
-                margin-bottom: 0;
-            }
-
-            #sideBar div.block .content ul li {
-                padding: 0 0 2px;
-            }
+        }
+    }
 
     /** Content **/
 
@@ -277,9 +285,9 @@ header {
 
 footer {
     margin: 10px 0 5px;
+    p {
+        font-size: 77%;
+        text-align: center;
+    }
 }
 
-footer p {
-    font-size: 77%;
-    text-align: center;
-}

@@ -70,4 +70,12 @@ class ServiceLocator
     {
         return new \Application_Service_ScheduledTransaction();
     }
+    
+    /**
+     * @return \Application_Service_Setting 
+     */
+    public static function getSettingService()
+    {
+        return new \Application_Service_Setting();
+    }
 }

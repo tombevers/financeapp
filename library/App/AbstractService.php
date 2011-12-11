@@ -14,7 +14,7 @@ abstract class AbstractService
     */
     public final function getEntityManager()
     {
-        if ($this->_entityManager === NULL) {
+        if ($this->_entityManager === NULL) {          
             $this->_entityManager = \Zend_Controller_Front::getInstance()
                 ->getParam('bootstrap')->getContainer()
                 ->get('doctrine.entitymanager');

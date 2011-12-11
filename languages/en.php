@@ -9,10 +9,13 @@ return array(
 
     // Navigation
     'dashboardLinkTitle'    => 'Dashboard',
-    'accountLinkTitle'      => 'Account',
-    'bankLinkTitle'         => 'Bank',
-    'transactionLinkTitle'  => 'Transaction',
-    'payeeLinkTitle'        => 'Payee',
+    'accountLinkTitle'      => 'Accounts',
+    'bankLinkTitle'         => 'Banks',
+    'transactionLinkTitle'  => 'Transactions',
+    'payeeLinkTitle'        => 'Payees',
+    
+    // Sub navigation
+    'settingsLinkTitle' => 'Settings',
 
     // Page titles
     'dashboardTitle'    => 'Dashboard',
@@ -22,6 +25,7 @@ return array(
     'payeeTitle'        => 'Payees',
     'transactionCategoryTitle' => 'Category',
     'scheduledTransactionTitle' => 'Scheduled transaction',
+    'settingsTitle' => 'Settings',
 
     // Account form
     'accountType'       => 'Type',
@@ -49,6 +53,9 @@ return array(
     'transactionAccount'    => 'Account',
     'transactionNote'       => 'Note',
     'transactionCategory'   => 'Category',
+    
+    // Settings form
+    'settingCurrency'   => 'Currency',
 
     // Account types
     'accountTypeBank'           => 'Bank',
@@ -90,4 +97,5 @@ return array(
     'saveTransactionCategoryMessage'    => 'Saved transaction succesfully',
     'editTransactionCategoryMessage'    => 'Edited transaction succesfully',
     'deleteTransactionCategoryMessage'  => 'Deleted transaction succesfully',
+    'saveSettingsMessage' => 'Saved settings succesfully',
 );
