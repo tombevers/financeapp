@@ -9,9 +9,16 @@ class Application_Form_SettingTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $settingServiceMock = $this->getMockBuilder('\Application_Service_Setting')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $settingServiceMock->expects($this->once())
+            ->method('createCurrencyOptions')
+            ->will($this->returnValue(array('currency' => 'EUR')));
+        
         $this->_form = new Application_Form_Setting(
             array(
-                'settingService' => App\ServiceLocator::getSettingService()
+                'settingService' => $settingServiceMock
             )
         );
     }

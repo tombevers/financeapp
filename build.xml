@@ -9,8 +9,7 @@
     <patternset id="defaultSet">
         <include name="library/App/**/*.php" />
         <include name="application/**/*.php" />
-        <exclude name="library/App/Entity/Proxy/**" />
-        <exclude name="library/App/Entity/Repository/**" />
+        <exclude name="library/App/Entity/**" />
     </patternset>
 
     <target name="help">
