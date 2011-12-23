@@ -54,6 +54,17 @@ class Bootstrap extends App\Application\Bootstrap\Bootstrap
         $view->headLink()->appendStylesheet('/css/bootstrap.css');
         $view->headLink()->appendStylesheet('/css/bootstrap-responsive.css');
 
+        ZendX_JQuery::enableView($view);
+        $jQuery = $view->jQuery();
+        $jQuery->setLocalPath('/js/jquery.min.js');
+
+        $view->headScript()->appendFile('/js/jquery.dataTables.min.js');
+        
+        $view->addHelperPath(
+            'ZendX/JQuery/View/Helper/',
+            'ZendX_JQuery_View_Helper'
+        );
+
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
         $viewRenderer->setView($view);
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);

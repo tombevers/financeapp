@@ -40,6 +40,8 @@ class TransactionController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('transactionTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
+        
+        $this->view->headScript()->appendFile('/js/application/transaction/list.js');
 
         $this->view->transactions = $this->_transactionService->fetchAll();
     }
