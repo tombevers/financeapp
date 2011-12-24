@@ -1,13 +1,11 @@
-<h2><?php echo $this->title; ?></h2>
-
-<p>
-    <a class="button small" href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'create'));?>"><?php echo $this->translate('addAction'); ?></a>
-    <a class="button small" href="<?php echo $this->url(array('controller' => 'scheduled-transaction', 'action' => 'list'));?>"><?php echo $this->translate('scheduledTransactionTitle'); ?></a>
-    <a class="button small" href="<?php echo $this->url(array('controller' => 'transaction-category', 'action' => 'list'));?>"><?php echo $this->translate('transactionCategoryTitle'); ?></a>
-</p>
+<div class="well">
+    <a class="btn primary" href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'create'));?>"><?php echo $this->translate('addAction'); ?></a>
+    <a class="btn primary" href="<?php echo $this->url(array('controller' => 'scheduled-transaction', 'action' => 'list'));?>"><?php echo $this->translate('scheduledTransactionTitle'); ?></a>
+    <a class="btn primary" href="<?php echo $this->url(array('controller' => 'transaction-category', 'action' => 'list'));?>"><?php echo $this->translate('transactionCategoryTitle'); ?></a>
+</div>
 
 <?php if(!empty($this->transactions)) : ?>
-<table class="defaultTable">
+<table class="bordered-table zebra-striped">
     <thead>
        <tr>
            <th><?php echo $this->translate('transactionDate'); ?></th>

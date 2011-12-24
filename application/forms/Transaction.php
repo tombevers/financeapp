@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Transaction extends Zend_Form
+class Application_Form_Transaction extends \App\Form
 {
     /**
      * @var \Application_Service_Account
@@ -38,6 +38,8 @@ class Application_Form_Transaction extends Zend_Form
                 $this->_createSubmitButton()
             )
         );
+        
+        parent::init();
     }
     
     /**

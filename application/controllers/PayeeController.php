@@ -9,7 +9,6 @@ class PayeeController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->view->messages = $this->_helper->flashMessenger->getMessages();
         $this->_payeeService = \App\ServiceLocator::getPayeeService();
     }
 
@@ -43,7 +42,9 @@ class PayeeController extends Zend_Controller_Action
                     $form->getValues()
                 );
 
-                $this->_helper->flashMessenger->addMessage('savePayeeMessage');
+                $this->_helper->flashMessenger->addMessage(
+                    array('success' => 'savePayeeMessage')
+                );
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -71,7 +72,9 @@ class PayeeController extends Zend_Controller_Action
             if ($form->isValid($formData)) {
                 $this->_payeeService->savePayee($payee, $form->getValues());
 
-                $this->_helper->flashMessenger->addMessage('editPayeeMessage');
+                $this->_helper->flashMessenger->addMessage(
+                    array('success' => 'editPayeeMessage')
+                );
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -96,7 +99,9 @@ class PayeeController extends Zend_Controller_Action
 
         $this->_payeeService->removeById($payeeId);
 
-        $this->_helper->flashMessenger->addMessage('deletePayeeMessage');
+        $this->_helper->flashMessenger->addMessage(
+            array('success' => 'deletePayeeMessage')
+        );
         $this->_helper->_redirector('list');
     }
 

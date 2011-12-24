@@ -24,7 +24,6 @@ class ScheduledTransactionController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->view->messages = $this->_helper->flashMessenger->getMessages();
         $this->_transactionService =
             \App\ServiceLocator::getScheduledTransactionService();
         $this->_accountService = \App\ServiceLocator::getAccountService();
@@ -81,7 +80,7 @@ class ScheduledTransactionController extends Zend_Controller_Action
                 );
 
                 $this->_helper->flashMessenger->addMessage(
-                    'saveTransactionMessage'
+                    array('success' => 'saveTransactionMessage')
                 );
                 $this->_helper->_redirector('list');
             } else {
@@ -120,7 +119,7 @@ class ScheduledTransactionController extends Zend_Controller_Action
                 );
 
                 $this->_helper->flashMessenger->addMessage(
-                    'editTransactionMessage'
+                    array('success' => 'editTransactionMessage')
                 );
                 $this->_helper->_redirector('list');
             } else {
@@ -146,7 +145,9 @@ class ScheduledTransactionController extends Zend_Controller_Action
 
         $this->_transactionService->removeById($transactionId);
 
-        $this->_helper->flashMessenger->addMessage('deleteTransactionMessage');
+        $this->_helper->flashMessenger->addMessage(
+            array('success' => 'deleteTransactionMessage')
+        );
         $this->_helper->_redirector('list');
     }
 }

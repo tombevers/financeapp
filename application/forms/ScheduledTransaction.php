@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_ScheduledTransaction extends Zend_Form
+class Application_Form_ScheduledTransaction extends \App\Form
 {
     /**
      * @var \Application_Service_Account
@@ -41,6 +41,8 @@ class Application_Form_ScheduledTransaction extends Zend_Form
                 $this->_createSubmitButton()
             )
         );
+        
+        parent::init();
     }
     
     /**

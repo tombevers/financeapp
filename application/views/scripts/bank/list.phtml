@@ -1,9 +1,9 @@
-<h2><?php echo $this->title; ?></h2>
-
-<p><a class="button small" href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'create'));?>"><?php echo $this->translate('addAction'); ?></a></p>
+<div class="well">
+    <a class="btn primary" href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'create'));?>"><?php echo $this->translate('addAction'); ?></a>
+</div>
 
 <?php if(!empty($this->banks)) : ?>
-<table class="defaultTable">
+<table class="bordered-table zebra-striped">
     <thead>
         <tr>
             <th><?php echo $this->translate('bankName'); ?></th>

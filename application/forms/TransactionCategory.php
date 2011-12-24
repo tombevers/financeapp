@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_TransactionCategory extends Zend_Form
+class Application_Form_TransactionCategory extends \App\Form
 {
     /**
      * @var \Application_Service_TransactionCategory
@@ -19,6 +19,8 @@ class Application_Form_TransactionCategory extends Zend_Form
                 $this->_createSubmitButton()
             )
         );
+        
+        parent::init();
     }
     
     /**

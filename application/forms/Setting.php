@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Setting extends Zend_Form
+class Application_Form_Setting extends \App\Form
 {
     /**
      * @var \Application_Service_Setting
@@ -18,6 +18,8 @@ class Application_Form_Setting extends Zend_Form
                 $this->_createSubmitButton()
             )
         );
+        
+        parent::init();
     }
 
     /**

@@ -4,6 +4,10 @@
         <?php echo $this->headMeta() . PHP_EOL; ?>
         <?php $this->headTitle()->setSeparator(' - ') . PHP_EOL; ?>
         <?php echo $this->headTitle() . PHP_EOL; ?>
+        <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
         <?php echo $this->headLink() . PHP_EOL; ?>
         <?php echo $this->headStyle() . PHP_EOL; ?>
         <?php
@@ -12,7 +16,6 @@
         ?>
     </head>
     <body>
-        <?php // NESTED LAYOUT SUPPORT ?>
         <?php if ($this->layout()->nestedLayout): ?>
             <?php $this->layout()->setLayout($this->layout()->nestedLayout); ?>
             <?php echo $this->layout()->render(); ?>

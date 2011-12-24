@@ -9,7 +9,6 @@ class TransactionCategoryController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->view->messages = $this->_helper->flashMessenger->getMessages();
         $this->_categoryService =
             \App\ServiceLocator::getTransactionCategoryService();
     }
@@ -49,7 +48,7 @@ class TransactionCategoryController extends Zend_Controller_Action
                 );
 
                 $this->_helper->flashMessenger->addMessage(
-                    'saveTransactionCategoryMessage'
+                    array('success' => 'saveTransactionCategoryMessage')
                 );
                 $this->_helper->_redirector('list');
             } else {
@@ -86,7 +85,7 @@ class TransactionCategoryController extends Zend_Controller_Action
                 );
 
                 $this->_helper->flashMessenger->addMessage(
-                    'editTransactionCategoryMessage'
+                    array('success' => 'editTransactionCategoryMessage')
                 );
                 $this->_helper->_redirector('list');
             } else {
@@ -112,7 +111,9 @@ class TransactionCategoryController extends Zend_Controller_Action
 
         $this->_categoryService->removeById($categoryId);
 
-        $this->_helper->flashMessenger->addMessage('deleteTransactionCategoryMessage');
+        $this->_helper->flashMessenger->addMessage(
+            array('success' => 'deleteTransactionCategoryMessage')
+        );
         $this->_helper->_redirector('list');
     }
 }

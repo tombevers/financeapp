@@ -9,7 +9,6 @@ class BankController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->view->messages = $this->_helper->flashMessenger->getMessages();
         $this->_bankService = \App\ServiceLocator::getBankService();
     }
 
@@ -44,7 +43,10 @@ class BankController extends Zend_Controller_Action
                     $form->getValues()
                 );
 
-                $this->_helper->flashMessenger->addMessage('saveBankMessage');
+                
+                $this->_helper->flashMessenger->addMessage(
+                    array('success' => 'saveBankMessage')
+                );
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -72,7 +74,9 @@ class BankController extends Zend_Controller_Action
             if ($form->isValid($formData)) {
                 $this->_bankService->saveBank($bank, $form->getValues());
 
-                $this->_helper->flashMessenger->addMessage('editBankMessage');
+                $this->_helper->flashMessenger->addMessage(
+                    array('success' => 'editBankMessage')
+                );
                 $this->_helper->_redirector('list');
             } else {
                 $form->populate($formData);
@@ -97,7 +101,9 @@ class BankController extends Zend_Controller_Action
 
         $this->_bankService->removeById($bankId);
 
-        $this->_helper->flashMessenger->addMessage('deleteBankMessage');
+        $this->_helper->flashMessenger->addMessage(
+            array('success' => 'deleteBankMessage')
+        );
         $this->_helper->_redirector('list');
     }
 }

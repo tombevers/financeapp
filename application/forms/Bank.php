@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Bank extends Zend_Form
+class Application_Form_Bank extends \App\Form
 {
     public function init()
     {
@@ -9,7 +9,7 @@ class Application_Form_Bank extends Zend_Form
         $address = $this->_createAddressField();
         $website = $this->_createWebsiteField();
         $comment = $this->_createCommentField();
-        $submit = $this->_createSubmitButton();
+        $submit = $this->_createSubmitButton();      
 
         $this->addElements(
             array(
@@ -18,9 +18,11 @@ class Application_Form_Bank extends Zend_Form
                 $address,
                 $website,
                 $comment,
-                $submit
+                $submit,
             )
         );
+        
+        parent::init();
     }
 
     /**
@@ -50,8 +52,8 @@ class Application_Form_Bank extends Zend_Form
     {
         $idField = new Zend_Form_Element_Hidden('id');
         $idField->removeDecorator('DtDdWrapper')
-           ->removeDecorator('HtmlTag')
-           ->removeDecorator('Label');
+            ->removeDecorator('HtmlTag')
+            ->removeDecorator('Label');
 
         return $idField;
     }

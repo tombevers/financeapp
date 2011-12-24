@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Payee extends Zend_Form
+class Application_Form_Payee extends \App\Form
 {
     public function init()
     {
@@ -21,6 +21,8 @@ class Application_Form_Payee extends Zend_Form
                 $submit
             )
         );
+        
+        parent::init();
     }
 
     /**

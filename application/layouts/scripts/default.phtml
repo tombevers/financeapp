@@ -1,22 +1,21 @@
-<div id="wrapper">
-    <header>
-        <h1>financeapp</h1>
-        <?php echo $this->partial('_navigation.phtml'); ?>
-    </header>
-    <div id="contentWrapper" class="clearfix">
-        <section id="pageTitle" class="clearfix">
+<?php echo $this->partial('_navigation.phtml'); ?>
+
+<div class="container">
+    <div class="content">
+        <div class="page-header">
             <h1><?php echo $this->pageTitle; ?></h1>
             <?php echo $this->placeholder('quickAction')
                 ->setPrefix("<div id=\"quickAction\">\n")
                 ->setPostFix("</div>\n"); ?>
-        </section>
-        <?php // VARIATIONS SUPPORT ?>
-        <?php if($this->layout()->variation): ?>
-            <?php $this->layout()->setLayout($this->layout()->variation); ?>
-            <?php echo $this->layout()->render(); ?>
-        <?php else: ?>
-            <?php echo $this->layout()->content; ?>
-        <?php endif; ?>
+        </div>
+        <div class="row">
+            <?php if($this->layout()->variation): ?>
+                <?php $this->layout()->setLayout($this->layout()->variation); ?>
+                <?php echo $this->layout()->render(); ?>
+            <?php else: ?>
+                <?php echo $this->layout()->content; ?>
+            <?php endif; ?>
+        </div>
     </div>
     <footer>
        <p>Copyright &copy; 2011 financeapp</p>

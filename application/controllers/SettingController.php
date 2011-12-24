@@ -8,8 +8,7 @@ class SettingController extends Zend_Controller_Action
     private $_settingService;
 
     public function init()
-    {
-        $this->view->messages = $this->_helper->flashMessenger->getMessages();
+    {       
         $this->_settingService = \App\ServiceLocator::getSettingService();
     }
 
@@ -40,7 +39,7 @@ class SettingController extends Zend_Controller_Action
                 );
 
                 $this->_helper->flashMessenger->addMessage(
-                    'saveSettingsMessage'
+                    array('success' => 'saveSettingsMessage')
                 );
                 $this->_helper->_redirector('index');
             } else {

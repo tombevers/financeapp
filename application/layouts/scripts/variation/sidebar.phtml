@@ -1,13 +1,7 @@
-<aside id="sideBar">
-    <?php echo $this->placeholder('sidebar'); ?>
-</aside>
-<div id="content">
-    <?php if (count($this->messages)) : ?>
-    <ul id="messages">
-        <?php foreach ($this->messages as $message) : ?>
-            <li><?php echo $this->escape($this->translate($message)); ?></li>
-        <?php endforeach; ?>
-    </ul>
-    <?php endif; ?>
+<div class="span12">
+    <?php echo $this->flashMessenger(); ?>
     <?php echo $this->layout()->content; ?>
+</div>
+<div class="span4">
+    <?php echo $this->placeholder('sidebar'); ?>
 </div>

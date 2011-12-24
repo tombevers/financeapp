@@ -19,7 +19,6 @@ class AccountController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->view->messages = $this->_helper->flashMessenger->getMessages();
         $this->_accountTypeService = \App\ServiceLocator::getAccountTypeService();
         $this->_accountService = \App\ServiceLocator::getAccountService();
         $this->_bankService = \App\ServiceLocator::getBankService();
@@ -68,7 +67,7 @@ class AccountController extends Zend_Controller_Action
                 );
 
                 $this->_helper->flashMessenger->addMessage(
-                    'saveAccountMessage'
+                    array('success' => 'saveAccountMessage')
                 );
                 $this->_helper->_redirector('list');
             } else {
@@ -106,7 +105,7 @@ class AccountController extends Zend_Controller_Action
                 );
 
                 $this->_helper->flashMessenger->addMessage(
-                    'editAccountMessage'
+                    array('success' => 'editAccountMessage')
                 );
                 $this->_helper->_redirector('list');
             } else {
@@ -130,7 +129,9 @@ class AccountController extends Zend_Controller_Action
 
         $this->_accountService->removeById($accountId);
 
-        $this->_helper->flashMessenger->addMessage('deleteAccountMessage');
+        $this->_helper->flashMessenger->addMessage(
+            array('success' => 'deleteAccountMessage')
+        );
         $this->_helper->_redirector('list');
     }
 }
