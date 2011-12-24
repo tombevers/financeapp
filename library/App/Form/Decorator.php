@@ -391,10 +391,17 @@ class Decorator
             'ViewHelper'
         ),
         'div' => array(
-            'ViewHelper'
+            'ViewHelper',
         ),
         'bootstrap' => array(
-            'ViewHelper'
+            'ViewHelper',
+            array(
+                'HtmlTag',
+                array(
+                    'tag'   => 'div',
+                    'class' => 'clearfix hide'
+                )
+            )
         )
     );
 
@@ -444,6 +451,101 @@ class Decorator
             'Fieldset'
         )
     );
+    
+    /**
+     * ZendX_Jquery Decorator
+     *
+     * @staticvar array
+     */
+    protected static $_jqueryElementDecorator = array(
+        'table' => array(
+            'UiWidgetElement',
+            array(
+                'Description',
+                array(
+                    'tag' => '',
+                )
+            ),
+            'Errors',
+            array(
+                array(
+                    'data' => 'HtmlTag'
+                ),
+                array(
+                    'tag' => 'td'
+                )
+            ),
+            array(
+                'Label',
+                array(
+                    'tag' => 'td'
+                )
+            ),
+            array(
+                array(
+                    'row' => 'HtmlTag'
+                ),
+                array(
+                    'tag' => 'tr'
+                )
+            )
+        ),
+        'div' => array(
+            array(
+                'UiWidgetElement'
+            ),
+            array(
+                'Description',
+                array(
+                    'tag'   => 'span',
+                    'class' => 'hint'
+                )
+            ),
+            array(
+                'Errors'
+            ),
+            array(
+                'Label'
+            ),
+            array(
+                'HtmlTag',
+                array(
+                    'tag' => 'div'
+                )
+            )
+        ),
+        'bootstrap' => array(
+            array(
+                'UiWidgetElement'
+            ),
+            array(
+                'Description',
+                array(
+                    'tag'   => 'span',
+                    'class' => 'help-inline'
+                )
+            ),
+            array(
+                'BootstrapErrors'
+            ),
+            array(
+                'BootstrapTag',
+                array(
+                    'class' => 'input'
+                )
+            ),
+            array(
+                'Label',
+            ),
+            array(
+                'HtmlTag',
+                array(
+                    'tag'   => 'div',
+                    'class' => 'clearfix'
+                )
+            )
+        )
+    );    
 
     /**
      * Set the form decorators by the given string format or by the default div style
@@ -546,11 +648,13 @@ class Decorator
             if ($exc->getType() == 'Zend_Form_Element_MultiCheckbox') {
                 $exc->setDecorators(self::$_multiDecorator[$format]);
                 $exc->setSeparator('</li><li>');
-                //$e->setAttrib("escape", false);
             }
             if ($exc->getType() == 'Zend_Form_Element_Radio') {
                 $exc->setDecorators(self::$_multiDecorator[$format]);
                 $exc->setSeparator('</li><li>');
+            }
+            if (is_subclass_of($exc, "ZendX_JQuery_Form_Element_UiWidget")) {
+                $exc->setDecorators(self::$_jqueryElementDecorator[$format]);
             }
         }
     }
