@@ -21,7 +21,7 @@
         <echo message="phing phpcpd Run phpcpd."/>
         <echo message="phing phpdepend Run pdepend."/>
         <echo message="phing phpcb Run phpcb."/>
-        <echo message=""/>
+        <echo message="phing phplint Run php -l."/>
     </target>
 
     <!-- Clean up -->
@@ -87,9 +87,18 @@
         <exec command="phpcb --log ${builddir}/logs --output ${builddir}/code-browser --source ${source}
             --ignore ${tests},${source}/library/Zend,${source}/library/Doctrine,${source}/library/Symfony,${source}/bin,${source}/data,${source}/design,${builddir},${source}/library/App/Entity/Proxy" passthru="true" />
     </target>
+    
+    <target name="phplint">
+        <phplint>
+            <fileset dir="${source}">
+                <patternset refid="defaultSet" />
+            </fileset>
+        </phplint>
+    </target>    
 
     <!-- Jenkins build target -->
     <target name="build" depends="clean">
+        <phingcall target="phplint" />
         <phingcall target="phpunit" />
         <phingcall target="phpdepend" />
         <phingcall target="phpmd" />
