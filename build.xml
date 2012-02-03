@@ -89,7 +89,7 @@
     </target>
     
     <target name="phplint">
-        <phplint>
+        <phplint haltonfailure="true">
             <fileset dir="${source}">
                 <patternset refid="defaultSet" />
             </fileset>
