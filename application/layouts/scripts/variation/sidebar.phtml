@@ -1,7 +1,11 @@
-<div class="span12">
-    <?php echo $this->flashMessenger(); ?>
-    <?php echo $this->layout()->content; ?>
+<div class="span3">
+    <div class="well sidebar-nav">
+        <?php echo $this->placeholder('sidebar'); ?>
+    </div>
 </div>
-<div class="span4">
-    <?php echo $this->placeholder('sidebar'); ?>
+<div class="span9">
+    <div class="row-fluid">
+        <?php echo $this->flashMessenger(); ?>
+        <?php echo $this->layout()->content; ?>
+    </div>
 </div>

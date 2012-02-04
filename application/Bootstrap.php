@@ -43,12 +43,16 @@ class Bootstrap extends App\Application\Bootstrap\Bootstrap
             );
         }
 
-        $view->headScript()->appendFile('/js/bootstrap-alerts.js');
+        $view->headScript()->appendFile('/js/bootstrap-alert.js');
+        $view->headScript()->appendFile('/js/bootstrap-button.js');
+        $view->headScript()->appendFile('/js/bootstrap-collapse.js');
+        $view->headScript()->appendFile('/js/bootstrap-modal.js');
         
         $view->headTitle()->setSeparator(' - ');
         $view->headTitle('financeapp');
 
         $view->headLink()->appendStylesheet('/css/bootstrap.css');
+        $view->headLink()->appendStylesheet('/css/bootstrap-responsive.css');
 
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
         $viewRenderer->setView($view);

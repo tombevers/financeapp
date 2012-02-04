@@ -1,28 +1,36 @@
-<div class="topbar">
-    <div class="fill">
-        <div class="container">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>            
             <a class="brand" href="<?php echo $this->url(array('controller' => 'dashboard', 'action' => 'index')); ?>">financeapp</a>
-            <ul>
-                <li <?php echo ($this->isActive('dashboard') ? 'class="active"' : ''); ?>>
-                <a href="<?php echo $this->url(array('controller' => 'dashboard', 'action' => 'index'));?>">
-                    <?php echo $this->translate('dashboardLinkTitle'); ?></a></li>
-                <li <?php echo ($this->isActive('transaction') ? 'class="active"' : ''); ?>>
-                <a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'index'));?>">
-                    <?php echo $this->translate('transactionLinkTitle'); ?></a></li>
-                <li <?php echo ($this->isActive('account') ? 'class="active"' : ''); ?>>
-                <a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'index'));?>">
-                    <?php echo $this->translate('accountLinkTitle'); ?></a></li>
-                <li <?php echo ($this->isActive('bank') ? 'class="active"' : ''); ?>>
-                <a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'index'));?>">
-                    <?php echo $this->translate('bankLinkTitle'); ?></a></li>
-                <li <?php echo ($this->isActive('payee') ? 'class="active"' : ''); ?>>
-                <a href="<?php echo $this->url(array('controller' => 'payee', 'action' => 'index'));?>">
-                    <?php echo $this->translate('payeeLinkTitle'); ?></a></li>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li <?php echo ($this->isActive('dashboard') ? 'class="active"' : ''); ?>>
+                    <a href="<?php echo $this->url(array('controller' => 'dashboard', 'action' => 'index'));?>">
+                        <?php echo $this->translate('dashboardLinkTitle'); ?></a></li>
+                    <li <?php echo ($this->isActive('transaction') ? 'class="active"' : ''); ?>>
+                    <a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'index'));?>">
+                        <?php echo $this->translate('transactionLinkTitle'); ?></a></li>
+                    <li <?php echo ($this->isActive('account') ? 'class="active"' : ''); ?>>
+                    <a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'index'));?>">
+                        <?php echo $this->translate('accountLinkTitle'); ?></a></li>
+                    <li <?php echo ($this->isActive('bank') ? 'class="active"' : ''); ?>>
+                    <a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'index'));?>">
+                        <?php echo $this->translate('bankLinkTitle'); ?></a></li>
+                    <li <?php echo ($this->isActive('payee') ? 'class="active"' : ''); ?>>
+                    <a href="<?php echo $this->url(array('controller' => 'payee', 'action' => 'index'));?>">
+                        <?php echo $this->translate('payeeLinkTitle'); ?></a></li>
+                </ul>
+                <ul class="nav pull-right">
+                <li><a href="<?php echo $this->url(array('controller' => 'setting', 'action' => 'index'));?>"><?php echo $this->translate('settingsLinkTitle'); ?></a></li>
+                <li class="divider-vertical"></li>
+                <li><p class="navbar-text">Logged in as <a href="#">username</a></p></li>
             </ul>
-            <ul class="nav secondary-nav">
-                <li><a href="<?php echo $this->url(array('controller' => 'setting', 'action' => 'index'));?>">
-                    <?php echo $this->translate('settingsLinkTitle'); ?></a></li>
-            </ul>
+            </div>
         </div>
     </div>
 </div>

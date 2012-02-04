@@ -32,8 +32,8 @@ class FormErrors extends \Zend_Form_Decorator_Abstract
             return $content;
         }
 
-        $markup = '<div class="alert-message block-message error">';
-        $markup .= '<a class="close" href="#">×</a>';
+        $markup = '<div class="alert alert-message alert-error">';
+        $markup .= '<a class="close" data-dismiss="alert" href="#">×</a>';
 
         if (!empty($message)) {
             $markup .= '<p><strong>' . $message . '</strong></p>';
