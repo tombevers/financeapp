@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#transactionsTable').dataTable({
-        "sDom": "<'row'<'span8'l><'span8'f>r>t<'row'<'span8'i><'span8'p>>",
+        "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
         "sPaginationType": "bootstrap",
         "asStripClasses": [],
         "aLengthMenu": [[25,50,100], [25,50,100]],
@@ -17,9 +17,7 @@ $(document).ready(function() {
 
 /* Default class modification */
 $.extend( $.fn.dataTableExt.oStdClasses, {
-    "sSortAsc": "header headerSortDown",
-    "sSortDesc": "header headerSortUp",
-    "sSortable": "header"
+    "sWrapper": "dataTables_wrapper form-inline"
 } );
 
 /* API method to get paging information */
@@ -50,8 +48,8 @@ $.extend( $.fn.dataTableExt.oPagination, {
 
             $(nPaging).addClass('pagination').append(
                 '<ul>'+
-                    '<li class="prev disabled"><a href="#">&larr; '+oLang.sPrevious+'</a></li>'+
-                    '<li class="next disabled"><a href="#">'+oLang.sNext+' &rarr; </a></li>'+
+                    '<li class="prev disabled"><a href="#">&larr;</a></li>'+
+                    '<li class="next disabled"><a href="#">&rarr;</a></li>'+
                 '</ul>'
             );
             var els = $('a', nPaging);

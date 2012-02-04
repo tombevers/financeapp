@@ -1,7 +1,6 @@
 /* -- Layout classes ------------------------------------------------------- */
 
 body {
-    padding-top: 60px;
     padding-bottom: 40px;
 }
 
@@ -19,22 +18,17 @@ body {
 /* -- General classes ------------------------------------------------------ */
 
 .negative {
-    color: #eb0101;
+    color: @red;
 }
 
 .positive {
-    color: #279700;
+    color: @green;
 }
 
 /* -- Table styling -------------------------------------------------------- */ 
 
 .table-bordered th {
-    background: #eee;
-}
-
-.table-bordered tbody tr:first-child td:first-child,
-.table-bordered tbody tr:first-child td:last-child {
-    .border-radius(0);
+    background-color: @grayLighter;
 }
 
 ul.actions {
@@ -51,35 +45,59 @@ ul.actions {
 }
 
 div.dataTables_length label {
-    width: 460px;
-    float: left;
-    text-align: left;
-}
- 
-div.dataTables_length select {
-    width: 75px;
-}
- 
-div.dataTables_filter label {
-    float: right;
-    width: 460px;
-}
- 
-div.dataTables_info {
-    padding-top: 8px;
-}
- 
-div.dataTables_paginate {
-    float: right;
-    margin: 0;
-}
- 
-table {
-    margin: 1em 0;
-    clear: both;
+	float: left;
+	text-align: left;
 }
 
-table .headerSortUp, table .headerSortDown {
-    background-color: rgba(141, 192, 219, 0.25);
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+div.dataTables_length select {
+	width: 75px;
+}
+
+div.dataTables_filter label {
+	float: right;
+}
+
+div.dataTables_info {
+	padding-top: 8px;
+}
+
+div.dataTables_paginate {
+	float: right;
+	margin: 0;
+}
+
+table.table {
+	margin-bottom: 6px !important;
+    .clearfix();
+}
+
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc,
+table.table thead .sorting_asc_disabled,
+table.table thead .sorting_desc_disabled {
+	cursor: pointer;
+	*cursor: hand;
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
+table.table thead .sorting {
+    background-image: url('/img/sort_both.png');
+}
+
+table.table thead .sorting_asc {
+    background-image: url('/img/sort_asc.png');
+}
+
+table.table thead .sorting_desc {
+    background-image: url('/img/sort_desc.png');
+}
+
+table.table thead .sorting_asc_disabled {
+    background-image: url('/img/sort_asc_disabled.png');
+}
+
+table.table thead .sorting_desc_disabled {
+    background-image: url('/img/sort_desc_disabled.png');
 }

@@ -52,7 +52,6 @@ class Bootstrap extends App\Application\Bootstrap\Bootstrap
         $view->headTitle('financeapp');
 
         $view->headLink()->appendStylesheet('/css/bootstrap.css');
-        $view->headLink()->appendStylesheet('/css/bootstrap-responsive.css');
 
         ZendX_JQuery::enableView($view);
         $jQuery = $view->jQuery();
