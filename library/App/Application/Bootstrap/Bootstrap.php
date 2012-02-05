@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Application\Bootstrap;
 use Symfony\Component\DependencyInjection;
 use App\Symfony\Component\ServiceContainerFactory;

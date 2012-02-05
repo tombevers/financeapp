@@ -11,16 +11,6 @@ class Application_Service_Account extends App\AbstractService
     private $_repository;
     
     /**
-     * @var Application_Service_AccountType
-     */
-    private $_typeService;
-       
-    /**
-     * @var Application_Service_Bank
-     */
-    private $_bankService;
-    
-    /**
      * Sets the account repository
      * 
      * @param string $repository 
@@ -28,26 +18,6 @@ class Application_Service_Account extends App\AbstractService
     public function setAccountRepository($repository)
     {
         $this->_repository = $this->getEntityManager()->getRepository($repository);
-    }
-
-    /**
-     * Sets the account type service
-     * 
-     * @param string $service 
-     */
-    public function setAccountTypeService($service)
-    {
-        $this->_typeService = $service;
-    }
-
-    /**
-     * Sets the bank service
-     * 
-     * @param string $service 
-     */    
-    public function setBankService($service)
-    {
-        $this->_bankService = $service;
     }
     
     /**
@@ -78,8 +48,11 @@ class Application_Service_Account extends App\AbstractService
      */
     public function saveAccount(App\Entity\Account $account, array $values)
     {
-        $values['type'] = $this->_typeService->fetchById($values['type']);
-        $values['bank'] = $this->_bankService->fetchById($values['bank']);
+        $typeService = $this->get('service.accounttype');
+        $bankService = $this->get('service.bank');
+        
+        $values['type'] = $typeService->fetchById($values['type']);
+        $values['bank'] = $bankService->fetchById($values['bank']);
 
         $this->_repository->saveAccount($account, $values);
         $this->getEntityManager()->flush();

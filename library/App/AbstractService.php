@@ -26,4 +26,16 @@ class AbstractService
     {
         $this->_entityManager = $entityManager;
     }
+    
+    /**
+     * Gets your configured DI symfony service 
+     *
+     * @param string $service
+     */
+    public function get($service)
+    {
+        return \Zend_Controller_Front::getInstance()
+            ->getParam('bootstrap')->getContainer()
+            ->get($service);
+    }
 }

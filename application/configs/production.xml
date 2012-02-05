@@ -65,12 +65,6 @@
             <call method="setAccountRepository">
                 <argument>\App\Entity\Account</argument>
             </call>
-            <call method="setAccountTypeService">
-                <argument type="service" id="service.accounttype" />
-            </call>
-            <call method="setBankService">
-                <argument type="service" id="service.bank" />
-            </call>            
         </service>
 
         <service id="service.accounttype" class="\Application_Service_AccountType">
@@ -116,18 +110,6 @@
             <call method="setScheduledRepository">
                 <argument>\App\Entity\ScheduledTransaction</argument>
             </call>
-            <call method="setTransactionService">
-                <argument type="service" id="service.transaction" />
-            </call>
-            <call method="setTypeService">
-                <argument type="service" id="service.transactiontype" />
-            </call>
-            <call method="setAccountService">
-                <argument type="service" id="service.account" />
-            </call>
-            <call method="setCategoryService">
-                <argument type="service" id="service.transactioncategory" />
-            </call>            
         </service>
         
         <service id="service.transaction" class="\Application_Service_Transaction">
@@ -137,15 +119,6 @@
             <call method="setTransactionRepository">
                 <argument>\App\Entity\Transaction</argument>
             </call>
-            <call method="setTransactionTypeService">
-                <argument type="service" id="service.transactiontype" />
-            </call>
-            <call method="setTransactionCategoryService">
-                <argument type="service" id="service.transactioncategory" />
-            </call>
-            <call method="setAccountService">
-                <argument type="service" id="service.account" />
-            </call>            
         </service>
         
         <service id="service.transactioncategory" class="\Application_Service_TransactionCategory">
