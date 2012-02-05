@@ -9,8 +9,7 @@ class TransactionCategoryController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->_categoryService =
-            \App\ServiceLocator::getTransactionCategoryService();
+        $this->_categoryService = $this->_helper->serviceContainer('service.transactioncategory');
     }
 
     public function indexAction()

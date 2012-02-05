@@ -6,21 +6,13 @@
 class Application_Service_Bank extends App\AbstractService
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $_entityManager;
-
-    /**
      * @var \App\Entity\Repository\BankRepository
      */
     private $_repository;
-
-    public function __construct()
+    
+    public function setBankRepository($repository)
     {
-        $this->_entityManager = $this->getEntityManager();
-        $this->_repository = $this->_entityManager->getRepository(
-            '\App\Entity\Bank'
-        );
+        $this->_repository = $this->getEntityManager()->getRepository($repository);        
     }
 
     /**
@@ -53,7 +45,7 @@ class Application_Service_Bank extends App\AbstractService
     public function saveBank(\App\Entity\Bank $bank, array $values)
     {
         $this->_repository->saveBank($bank, $values);
-        $this->_entityManager->flush();
+        $this->getEntityManager()->flush();
     }
 
     /**
@@ -64,7 +56,7 @@ class Application_Service_Bank extends App\AbstractService
     public function removeById($bankId)
     {
         $this->_repository->removeBank($bankId);
-        $this->_entityManager->flush();
+        $this->getEntityManager()->flush();
     }
 
 

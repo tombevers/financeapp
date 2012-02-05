@@ -9,7 +9,7 @@ class SettingController extends Zend_Controller_Action
 
     public function init()
     {       
-        $this->_settingService = \App\ServiceLocator::getSettingService();
+        $this->_settingService = $this->_helper->serviceContainer('service.setting');
     }
 
     public function indexAction()

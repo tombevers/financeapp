@@ -6,11 +6,6 @@
 class Application_Service_Setting extends App\AbstractService
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $_entityManager;
-
-    /**
      * @var \App\Entity\Repository\SettingRepository
      */
     private $_repository;
@@ -25,12 +20,9 @@ class Application_Service_Setting extends App\AbstractService
         'YEN' => array('Yen', '¥'),
     );
 
-    public function __construct()
+    public function setSettingRepository($repository)
     {
-        $this->_entityManager = $this->getEntityManager();
-        $this->_repository = $this->_entityManager->getRepository(
-            '\App\Entity\Setting'
-        );
+        $this->_repository = $this->getEntityManager()->getRepository($repository);
     }
     
     /**
@@ -71,7 +63,7 @@ class Application_Service_Setting extends App\AbstractService
                 $this->_repository->saveSetting($setting, $value);
             }
         }
-        $this->_entityManager->flush();
+        $this->getEntityManager()->flush();
     }
     
     /**

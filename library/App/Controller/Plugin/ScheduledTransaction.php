@@ -6,7 +6,8 @@ class ScheduledTransaction extends \Zend_Controller_Plugin_Abstract
 {
     public function dispatchLoopStartup(\Zend_Controller_Request_Abstract $request)
     {
-        $service = \App\ServiceLocator::getScheduledTransactionService();
+        $container = \Zend_Controller_Front::getInstance()->getParam('bootstrap')->getContainer();
+        $service = $container->get('service.scheduledtransaction');
         $service->updatePendingScheduledTransactions();
     }
 }

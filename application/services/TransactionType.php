@@ -6,21 +6,13 @@
 class Application_Service_TransactionType extends App\AbstractService
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $_entityManager;
-
-    /**
      * @var \App\Entity\Repository\TransactionTypeRepository
      */
     private $_repository;
 
-    public function __construct()
+    public function setTransactionTypeRepository($repository)
     {
-        $this->_entityManager = $this->getEntityManager();
-        $this->_repository = $this->_entityManager->getRepository(
-            '\App\Entity\TransactionType'
-        );
+        $this->_repository = $this->getEntityManager()->getRepository($repository);
     }
 
     /**

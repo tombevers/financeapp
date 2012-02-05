@@ -9,7 +9,7 @@ class BankController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->_bankService = \App\ServiceLocator::getBankService();
+        $this->_bankService = $this->_helper->serviceContainer('service.bank');
     }
 
     public function indexAction()

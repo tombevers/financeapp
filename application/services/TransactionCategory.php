@@ -5,12 +5,10 @@
  */
 class Application_Service_TransactionCategory extends App\AbstractService
 {
-    public $translate;
-    
     /**
-     * @var \Doctrine\ORM\EntityManager
+     * @var Zend_Translate
      */
-    private $_entityManager;
+    public $translate;
 
     /**
      * @var \App\Entity\Repository\TransactionCategoryRepository
@@ -19,11 +17,17 @@ class Application_Service_TransactionCategory extends App\AbstractService
 
     public function __construct()
     {
-        $this->_entityManager = $this->getEntityManager();
-        $this->_repository = $this->_entityManager->getRepository(
-            '\App\Entity\TransactionCategory'
-        );
         $this->translate = \Zend_Registry::get('Zend_Translate');
+    }
+    
+    /**
+     * Sets the transaction category repository
+     * 
+     * @param string $repository 
+     */
+    public function setTransactionCategoryRepository($repository)
+    {
+        $this->_repository = $this->getEntityManager()->getRepository($repository);
     }
 
     /**
@@ -71,7 +75,7 @@ class Application_Service_TransactionCategory extends App\AbstractService
         $values['parent'] = $this->fetchById($values['parent']);
         
         $this->_repository->saveCategory($category, $values);
-        $this->_entityManager->flush();
+        $this->getEntityManager()->flush();
     }
 
     /**
@@ -82,7 +86,7 @@ class Application_Service_TransactionCategory extends App\AbstractService
     public function removeById($categoryId)
     {
         $this->_repository->removeCategory($categoryId);
-        $this->_entityManager->flush();
+        $this->getEntityManager()->flush();
     }
 
     /**

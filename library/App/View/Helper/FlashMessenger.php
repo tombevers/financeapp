@@ -10,8 +10,8 @@ class FlashMessenger extends \Zend_View_Helper_Abstract
         $output = '';
 
         if (!empty($messages)) {
-            $format = '<div class="alert-message %s" data-alert="alert">' . PHP_EOL;
-            $format .= '<a class="close" href="#">×</a>' . PHP_EOL;
+            $format = '<div class="alert alert-message alert-%s" data-alert="alert">' . PHP_EOL;
+            $format .= '<a class="close" data-dismiss="alert" href="#">×</a>' . PHP_EOL;
             $format .= '<p>%s</p>' . PHP_EOL;
             $format .= '</div>' . PHP_EOL;
             

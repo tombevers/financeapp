@@ -19,9 +19,9 @@ class AccountController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->_accountTypeService = \App\ServiceLocator::getAccountTypeService();
-        $this->_accountService = \App\ServiceLocator::getAccountService();
-        $this->_bankService = \App\ServiceLocator::getBankService();
+        $this->_accountTypeService = $this->_helper->serviceContainer('service.accounttype');
+        $this->_accountService = $this->_helper->serviceContainer('service.account');
+        $this->_bankService = $this->_helper->serviceContainer('service.bank');
     }
 
     public function indexAction()

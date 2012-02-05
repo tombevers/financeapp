@@ -1,5 +1,7 @@
 <?php
 
+use Doctrine\Common\Persistence\ObjectManager;
+
 /**
  * Scheduled Transaction service
  */
@@ -14,15 +16,72 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
      * @var Application_Service_Transaction
      */
     private $_transactionService;
+    
+    /**
+     * @var Application_Service_TransactionType
+     */
+    private $_typeService;
+    
+    /**
+     * @var Application_Service_Account
+     */
+    private $_accountService;
+    
+    /**
+     * @var Application_Service_TransactionCategory
+     */
+    private $_categoryService;
 
-    public function __construct()
+    /**
+     * Sets the scheduled transaction repository
+     * 
+     * @param string $repository 
+     */
+    public function setScheduledRepository($repository)
     {
-        $this->_repository = $this->getEntityManager()->getRepository(
-            '\App\Entity\ScheduledTransaction'
-        );
-        $this->_transactionService = \App\ServiceLocator::getTransactionService();
+        $this->_repository = $this->getEntityManager()->getRepository($repository);
     }
 
+    /**
+     * Sets the transaction service
+     * 
+     * @param string $service 
+     */
+    public function setTransactionService($service)
+    {
+        $this->_transactionService = $service;
+    }
+    
+    /**
+     * Sets the transaction type service
+     * 
+     * @param string $service 
+     */
+    public function setTypeService($service)
+    {
+        $this->_typeService = $service;
+    }
+
+    /**
+     * Sets the account service
+     * 
+     * @param string $service 
+     */
+    public function setAccountService($service)
+    {
+        $this->_accountService = $service;
+    }
+    
+    /**
+     * Sets the category service
+     * 
+     * @param string $service 
+     */
+    public function setCategoryService($service)
+    {
+        $this->_categoryService = $service;
+    }
+    
     /**
      * Fetch all transactions order by next date
      *
@@ -72,12 +131,9 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
     public function saveScheduledTransaction(\App\Entity\ScheduledTransaction $transaction,
         array $values)
     {
-        $typeService = App\ServiceLocator::getTransactionTypeService();
-        $values['type'] = $typeService->fetchById($values['type']);
-        $accountService = App\ServiceLocator::getAccountService();
-        $values['account'] = $accountService->fetchById($values['account']);
-        $categoryService = App\ServiceLocator::getTransactionCategoryService();
-        $values['category'] = $categoryService->fetchById($values['category']);
+        $values['type'] = $this->_typeService->fetchById($values['type']);
+        $values['account'] = $this->_accountService->fetchById($values['account']);
+        $values['category'] = $this->_categoryService->fetchById($values['category']);
         
         list($year, $month, $day) = explode('-', $values['nextDate']);
         $nextDate = new DateTime();

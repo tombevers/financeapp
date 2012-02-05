@@ -22,20 +22,15 @@ class AbstractServiceTest extends PHPUnit_Framework_TestCase
     public function testGetEntityManagerMethod()
     {
         $testClass = new testClass();
-        $this->assertInstanceOf(
-            'Doctrine\ORM\EntityManager',
-            $testClass->getEntityManager()
-        );
+        $this->assertNull($testClass->getEntityManager());
     }
 
     public function testSetEntityManagerMethod()
     {
         $testClass = new testClass();
-        $entityManager = $testClass->getEntityManager();
-        $this->assertInstanceOf(
-            'testClass',
-            $testClass->setEntityManager($entityManager)
-        );
+        $emMock = $this->getMock('\Doctrine\ORM\EntityManager', array(), array(), '', FALSE);
+        $testClass->setEntityManager($emMock);
+        $this->assertInstanceOf('\Doctrine\ORM\EntityManager', $testClass->getEntityManager());
     }
 }
 

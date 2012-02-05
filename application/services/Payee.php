@@ -6,21 +6,13 @@
 class Application_Service_Payee extends App\AbstractService
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $_entityManager;
-
-    /**
      * @var \App\Entity\Repository\PayeeRepository
      */
     private $_repository;
 
-    public function __construct()
+    public function setPayeeRepository($repository)
     {
-        $this->_entityManager = $this->getEntityManager();
-        $this->_repository = $this->_entityManager->getRepository(
-            '\App\Entity\Payee'
-        );
+        $this->_repository = $this->getEntityManager()->getRepository($repository);
     }
 
     /**
@@ -53,7 +45,7 @@ class Application_Service_Payee extends App\AbstractService
     public function savePayee(\App\Entity\Payee $payee, array $values)
     {
         $this->_repository->savePayee($payee, $values);
-        $this->_entityManager->flush();
+        $this->getEntityManager()->flush();
     }
 
     /**
@@ -64,6 +56,6 @@ class Application_Service_Payee extends App\AbstractService
     public function removeById($payeeId)
     {
         $this->_repository->removePayee($payeeId);
-        $this->_entityManager->flush();
+        $this->getEntityManager()->flush();
     }
 }

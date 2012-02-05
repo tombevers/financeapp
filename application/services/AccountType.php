@@ -6,23 +6,15 @@
 class Application_Service_AccountType extends App\AbstractService
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $_entityManager;
-
-    /**
      * @var \App\Entity\Repository\AccountTypeRepository
      */
     private $_repository;
 
-    public function __construct()
+    public function setAccountTypeRepository($repository)
     {
-        $this->_entityManager = $this->getEntityManager();
-        $this->_repository = $this->_entityManager->getRepository(
-            '\App\Entity\AccountType'
-        );
+        $this->_repository = $this->getEntityManager()->getRepository($repository);
     }
-
+    
     /**
      * Fetches all available account types
      *

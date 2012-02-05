@@ -9,7 +9,7 @@ class PayeeController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->_payeeService = \App\ServiceLocator::getPayeeService();
+        $this->_payeeService = $this->_helper->serviceContainer('service.payee');
     }
 
     public function indexAction()

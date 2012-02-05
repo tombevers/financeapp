@@ -14,7 +14,8 @@ class Currency extends \Zend_Controller_Plugin_Abstract
      */
     protected function _initCurrency()
     {
-        $settingService = \App\ServiceLocator::getSettingService();
+        $container = \Zend_Controller_Front::getInstance()->getParam('bootstrap')->getContainer();
+        $settingService = $container->get('service.setting');
         $setting = $settingService->fetchByParameter('currency');
         
         $currency = new \Zend_Currency();

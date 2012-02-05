@@ -16,6 +16,9 @@
     </parameters>
 
     <services>
+        
+        <!-- **** Doctrine ***************************************************************************************** -->
+        
         <service id="doctrine.entitymanager" factory-class="Doctrine\ORM\EntityManager" factory-method="create">
             <argument type="collection">
                 <argument key="dbname">%doctrine.dbname%</argument>
@@ -52,5 +55,115 @@
         </service>
         
         <service id="doctrine.cache" class="%doctrine.cache.class%" />
+
+        <!-- **** Services ***************************************************************************************** -->
+
+        <service id="service.account" class="\Application_Service_Account">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.entitymanager" />
+            </call>
+            <call method="setAccountRepository">
+                <argument>\App\Entity\Account</argument>
+            </call>
+            <call method="setAccountTypeService">
+                <argument type="service" id="service.accounttype" />
+            </call>
+            <call method="setBankService">
+                <argument type="service" id="service.bank" />
+            </call>            
+        </service>
+
+        <service id="service.accounttype" class="\Application_Service_AccountType">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.entitymanager" />
+            </call>
+            <call method="setAccountTypeRepository">
+                <argument>\App\Entity\AccountType</argument>
+            </call>
+        </service>
+
+        <service id="service.bank" class="\Application_Service_Bank">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.entitymanager" />
+            </call>
+            <call method="setBankRepository">
+                <argument>\App\Entity\Bank</argument>
+            </call>
+        </service>
+        
+        <service id="service.payee" class="\Application_Service_Payee">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.entitymanager" />
+            </call>
+            <call method="setPayeeRepository">
+                <argument>\App\Entity\Payee</argument>
+            </call>
+        </service>
+
+        <service id="service.setting" class="\Application_Service_Setting">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.entitymanager" />
+            </call>
+            <call method="setSettingRepository">
+                <argument>\App\Entity\Setting</argument>
+            </call>
+        </service>
+
+        <service id="service.scheduledtransaction" class="\Application_Service_ScheduledTransaction">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.entitymanager" />
+            </call>
+            <call method="setScheduledRepository">
+                <argument>\App\Entity\ScheduledTransaction</argument>
+            </call>
+            <call method="setTransactionService">
+                <argument type="service" id="service.transaction" />
+            </call>
+            <call method="setTypeService">
+                <argument type="service" id="service.transactiontype" />
+            </call>
+            <call method="setAccountService">
+                <argument type="service" id="service.account" />
+            </call>
+            <call method="setCategoryService">
+                <argument type="service" id="service.transactioncategory" />
+            </call>            
+        </service>
+        
+        <service id="service.transaction" class="\Application_Service_Transaction">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.entitymanager" />
+            </call>
+            <call method="setTransactionRepository">
+                <argument>\App\Entity\Transaction</argument>
+            </call>
+            <call method="setTransactionTypeService">
+                <argument type="service" id="service.transactiontype" />
+            </call>
+            <call method="setTransactionCategoryService">
+                <argument type="service" id="service.transactioncategory" />
+            </call>
+            <call method="setAccountService">
+                <argument type="service" id="service.account" />
+            </call>            
+        </service>
+        
+        <service id="service.transactioncategory" class="\Application_Service_TransactionCategory">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.entitymanager" />
+            </call>
+            <call method="setTransactionCategoryRepository">
+                <argument>\App\Entity\TransactionCategory</argument>
+            </call>
+        </service>
+        
+        <service id="service.transactiontype" class="\Application_Service_TransactionType">
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.entitymanager" />
+            </call>
+            <call method="setTransactionTypeRepository">
+                <argument>\App\Entity\TransactionType</argument>
+            </call>
+        </service>
     </services>
 </container>

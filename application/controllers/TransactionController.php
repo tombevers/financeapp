@@ -24,11 +24,10 @@ class TransactionController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->_transactionService =
-            \App\ServiceLocator::getTransactionService();
-        $this->_accountService = \App\ServiceLocator::getAccountService();
-        $this->_typeService = \App\ServiceLocator::getTransactionTypeService();
-        $this->_categoryService = \App\ServiceLocator::getTransactionCategoryService();
+        $this->_transactionService = $this->_helper->serviceContainer('service.transaction');
+        $this->_accountService = $this->_helper->serviceContainer('service.account');
+        $this->_typeService = $this->_helper->serviceContainer('service.transactiontype');
+        $this->_categoryService = $this->_helper->serviceContainer('service.transactioncategory');
     }
 
     public function indexAction()
