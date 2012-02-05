@@ -15,9 +15,9 @@ class Application_Service_Account extends App\AbstractService
      * 
      * @param string $repository 
      */
-    public function setAccountRepository($repository)
+    public function setAccountRepository(\Doctrine\ORM\EntityRepository $repository)
     {
-        $this->_repository = $this->getEntityManager()->getRepository($repository);
+        $this->_repository = $repository;
     }
     
     /**

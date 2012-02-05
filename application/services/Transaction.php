@@ -15,9 +15,9 @@ class Application_Service_Transaction extends App\AbstractService
      * 
      * @param string $repository 
      */
-    public function setTransactionRepository($repository)
+    public function setTransactionRepository(\Doctrine\ORM\EntityRepository $repository)
     {
-        $this->_repository = $this->getEntityManager()->getRepository($repository);
+        $this->_repository = $repository;
     }
     
     /**

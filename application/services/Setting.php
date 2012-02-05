@@ -20,9 +20,9 @@ class Application_Service_Setting extends App\AbstractService
         'YEN' => array('Yen', '¥'),
     );
 
-    public function setSettingRepository($repository)
+    public function setSettingRepository(\Doctrine\ORM\EntityRepository $repository)
     {
-        $this->_repository = $this->getEntityManager()->getRepository($repository);
+        $this->_repository = $repository;
     }
     
     /**

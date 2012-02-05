@@ -17,9 +17,9 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
      * 
      * @param string $repository 
      */
-    public function setScheduledRepository($repository)
+    public function setScheduledRepository(\Doctrine\ORM\EntityRepository $repository)
     {
-        $this->_repository = $this->getEntityManager()->getRepository($repository);
+        $this->_repository = $repository;
     }
     
     /**

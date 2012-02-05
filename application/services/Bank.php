@@ -10,9 +10,9 @@ class Application_Service_Bank extends App\AbstractService
      */
     private $_repository;
     
-    public function setBankRepository($repository)
+    public function setBankRepository(\Doctrine\ORM\EntityRepository $repository)
     {
-        $this->_repository = $this->getEntityManager()->getRepository($repository);        
+        $this->_repository = $repository;        
     }
 
     /**

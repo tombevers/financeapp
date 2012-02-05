@@ -10,9 +10,9 @@ class Application_Service_Payee extends App\AbstractService
      */
     private $_repository;
 
-    public function setPayeeRepository($repository)
+    public function setPayeeRepository(\Doctrine\ORM\EntityRepository $repository)
     {
-        $this->_repository = $this->getEntityManager()->getRepository($repository);
+        $this->_repository = $repository;
     }
 
     /**

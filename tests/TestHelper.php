@@ -24,6 +24,7 @@ require_once 'Helpers.php';
 /** Parent test case classes */
 require_once 'ModelTestCase.php';
 require_once 'ControllerTestCase.php';
+require_once 'AbstractManagerBase.php';
 
 // Create application, bootstrap, and run
 $application = new Zend_Application(

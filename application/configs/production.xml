@@ -55,6 +55,53 @@
         </service>
         
         <service id="doctrine.cache" class="%doctrine.cache.class%" />
+        
+        <!-- **** Repositories ************************************************************************************* -->
+        
+        <service id="repository.account" factory-service="doctrine.entitymanager"
+            factory-method="getRepository" class="App\Entity\Repository\AccountRepository">
+            <argument>App\Entity\Account</argument>
+        </service>
+        
+        <service id="repository.accounttype" factory-service="doctrine.entitymanager"
+            factory-method="getRepository" class="App\Entity\Repository\AccountTypeRepository">
+            <argument>App\Entity\AccountType</argument>
+        </service>
+        
+        <service id="repository.bank" factory-service="doctrine.entitymanager"
+            factory-method="getRepository" class="App\Entity\Repository\BankRepository">
+            <argument>App\Entity\Bank</argument>
+        </service>
+        
+        <service id="repository.payee" factory-service="doctrine.entitymanager"
+            factory-method="getRepository" class="App\Entity\Repository\PayeeRepository">
+            <argument>App\Entity\Payee</argument>
+        </service>
+        
+        <service id="repository.scheduledtransaction" factory-service="doctrine.entitymanager"
+            factory-method="getRepository" class="App\Entity\Repository\ScheduledTransactionRepository">
+            <argument>App\Entity\ScheduledTransaction</argument>
+        </service>
+        
+        <service id="repository.setting" factory-service="doctrine.entitymanager"
+            factory-method="getRepository" class="App\Entity\Repository\SettingRepository">
+            <argument>App\Entity\Setting</argument>
+        </service>
+        
+        <service id="repository.transactioncategory" factory-service="doctrine.entitymanager"
+            factory-method="getRepository" class="App\Entity\Repository\TransactionCategoryRepository">
+            <argument>App\Entity\TransactionCategory</argument>
+        </service>
+        
+        <service id="repository.transaction" factory-service="doctrine.entitymanager"
+            factory-method="getRepository" class="App\Entity\Repository\TransactionRepository">
+            <argument>App\Entity\Transaction</argument>
+        </service>
+        
+        <service id="repository.transactiontype" factory-service="doctrine.entitymanager"
+            factory-method="getRepository" class="App\Entity\Repository\TransactionTypeRepository">
+            <argument>App\Entity\TransactionType</argument>
+        </service>
 
         <!-- **** Services ***************************************************************************************** -->
 
@@ -63,7 +110,7 @@
                 <argument type="service" id="doctrine.entitymanager" />
             </call>
             <call method="setAccountRepository">
-                <argument>\App\Entity\Account</argument>
+                <argument type="service" id="repository.account" />
             </call>
         </service>
 
@@ -72,7 +119,7 @@
                 <argument type="service" id="doctrine.entitymanager" />
             </call>
             <call method="setAccountTypeRepository">
-                <argument>\App\Entity\AccountType</argument>
+                <argument type="service" id="repository.accounttype" />
             </call>
         </service>
 
@@ -81,7 +128,7 @@
                 <argument type="service" id="doctrine.entitymanager" />
             </call>
             <call method="setBankRepository">
-                <argument>\App\Entity\Bank</argument>
+                <argument type="service" id="repository.bank" />
             </call>
         </service>
         
@@ -90,7 +137,7 @@
                 <argument type="service" id="doctrine.entitymanager" />
             </call>
             <call method="setPayeeRepository">
-                <argument>\App\Entity\Payee</argument>
+                <argument type="service" id="repository.payee" />
             </call>
         </service>
 
@@ -99,7 +146,7 @@
                 <argument type="service" id="doctrine.entitymanager" />
             </call>
             <call method="setSettingRepository">
-                <argument>\App\Entity\Setting</argument>
+                <argument type="service" id="repository.setting" />
             </call>
         </service>
 
@@ -108,7 +155,7 @@
                 <argument type="service" id="doctrine.entitymanager" />
             </call>
             <call method="setScheduledRepository">
-                <argument>\App\Entity\ScheduledTransaction</argument>
+                <argument type="service" id="repository.scheduledtransaction" />
             </call>
         </service>
         
@@ -117,7 +164,7 @@
                 <argument type="service" id="doctrine.entitymanager" />
             </call>
             <call method="setTransactionRepository">
-                <argument>\App\Entity\Transaction</argument>
+                <argument type="service" id="repository.transaction" />
             </call>
         </service>
         
@@ -126,7 +173,7 @@
                 <argument type="service" id="doctrine.entitymanager" />
             </call>
             <call method="setTransactionCategoryRepository">
-                <argument>\App\Entity\TransactionCategory</argument>
+                <argument type="service" id="repository.transactioncategory" />
             </call>
         </service>
         
@@ -135,7 +182,7 @@
                 <argument type="service" id="doctrine.entitymanager" />
             </call>
             <call method="setTransactionTypeRepository">
-                <argument>\App\Entity\TransactionType</argument>
+                <argument type="service" id="repository.transactiontype" />
             </call>
         </service>
     </services>

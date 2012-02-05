@@ -10,9 +10,9 @@ class Application_Service_AccountType extends App\AbstractService
      */
     private $_repository;
 
-    public function setAccountTypeRepository($repository)
+    public function setAccountTypeRepository(\Doctrine\ORM\EntityRepository $repository)
     {
-        $this->_repository = $this->getEntityManager()->getRepository($repository);
+        $this->_repository = $repository;
     }
     
     /**
