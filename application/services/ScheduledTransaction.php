@@ -92,11 +92,18 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
      * Removes a scheduled transaction
      *
      * @param int $transactionId
+     * @return boolean 
      */
     public function removeById($transactionId)
     {
-        $this->_repository->removeScheduledTransaction($transactionId);
-        $this->getEntityManager()->flush();
+        $transaction = $this->fetchById($transactionId);
+        if ($transaction !== NULL) {
+            $this->_repository->removeScheduledTransaction($transaction);
+            $this->getEntityManager()->flush();
+            return TRUE;            
+        }
+        
+        return FALSE;
     }
     
     /**

@@ -56,6 +56,10 @@ class Application_Service_Setting extends App\AbstractService
      */
     public function saveSettings(array $values)
     {
+        if (empty($values)) {
+            return FALSE;
+        }
+        
         foreach ($values as $parameter => $value) {
             $setting = $this->fetchByParameter($parameter);
             
@@ -64,6 +68,7 @@ class Application_Service_Setting extends App\AbstractService
             }
         }
         $this->getEntityManager()->flush();
+        return TRUE;
     }
     
     /**

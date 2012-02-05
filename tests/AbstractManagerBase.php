@@ -12,7 +12,7 @@ class AbstractManagerBase extends \PHPUnit_Framework_TestCase
                 'remove',
                 'clear',
                 'refresh',
-                'getClassMetadata'
+                'getClassMetadata',
             ),
             array(),
             '',

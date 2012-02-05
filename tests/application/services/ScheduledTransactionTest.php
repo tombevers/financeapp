@@ -33,6 +33,7 @@ class Application_Service_ScheduledTransactionTest extends AbstractManagerBase
                 'find',
                 'findAllOrderByNextDate',
                 'findPending',
+                'removeScheduledTransaction',
             ),
             array(),
             '',
@@ -88,6 +89,34 @@ class Application_Service_ScheduledTransactionTest extends AbstractManagerBase
         $service = new Application_Service_ScheduledTransaction();
         $service->setScheduledRepository($this->_repoMock);
         $this->assertTrue($service->fetchPending(new \DateTime));        
+    }
+    
+    public function testRemoveByNonExistingId()
+    {
+        $this->_repoMock->expects($this->once())
+            ->method('find')
+            ->will($this->returnValue(NULL));
+
+        $service = new Application_Service_ScheduledTransaction();
+        $service->setScheduledRepository($this->_repoMock);
+        $service->setEntityManager($this->getEmMock());
+        $this->assertFalse($service->removeById(1));
+    }
+    
+    public function testRemoveById()
+    {
+        $transaction = new \App\Entity\ScheduledTransaction();
+        $this->_repoMock->expects($this->once())
+            ->method('find')
+            ->will($this->returnValue($transaction));
+        
+        $this->_repoMock->expects($this->once())
+            ->method('removeScheduledTransaction')
+            ->will($this->returnValue(TRUE));
+        $service = new Application_Service_ScheduledTransaction();
+        $service->setScheduledRepository($this->_repoMock);
+        $service->setEntityManager($this->getEmMock());
+        $this->assertTrue($service->removeById(1));
     }
     
     /**

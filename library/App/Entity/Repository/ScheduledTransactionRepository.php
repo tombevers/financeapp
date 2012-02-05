@@ -33,7 +33,8 @@ class ScheduledTransactionRepository extends EntityRepository
      * Saves a scheduled transaction
      * 
      * @param ScheduledTransaction $transaction
-     * @param array $values 
+     * @param array $values
+     * @return ScheduledTransaction 
      */
     public function saveScheduledTransaction(ScheduledTransaction $transaction, array $values)
     {
@@ -48,6 +49,8 @@ class ScheduledTransactionRepository extends EntityRepository
         $transaction->setActive($values['active']);
         
         $this->getEntityManager()->persist($transaction);
+        
+        return $transaction;
     }
     
     /**
@@ -102,11 +105,8 @@ class ScheduledTransactionRepository extends EntityRepository
      * Remove a scheduled transaction
      * @param int $transactionId 
      */
-    public function removeScheduledTransaction($transactionId)
+    public function removeScheduledTransaction(ScheduledTransaction $transaction)
     {
-        $em = $this->getEntityManager();
-        $proxy = $em->getReference('\App\Entity\ScheduledTransaction', $transactionId);
-
-        $em->remove($proxy);
+        $this->getEntityManager()->remove($entity);
     }
 }
