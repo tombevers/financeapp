@@ -11,15 +11,13 @@
                 </div>
             </div>
         </div>
-        <div id="content">
-             <div class="row-fluid">
-                <?php if($this->layout()->variation): ?>
-                    <?php $this->layout()->setLayout($this->layout()->variation); ?>
-                    <?php echo $this->layout()->render(); ?>
-                <?php else: ?>
-                    <?php echo $this->layout()->content; ?>
-                <?php endif; ?>
-            </div>
+        <div class="row-fluid">
+            <?php if($this->layout()->variation): ?>
+                <?php $this->layout()->setLayout($this->layout()->variation); ?>
+                <?php echo $this->layout()->render(); ?>
+            <?php else: ?>
+                <?php echo $this->layout()->content; ?>
+            <?php endif; ?>
         </div>
     </div>
     <hr />

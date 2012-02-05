@@ -1,9 +1,13 @@
 <div class="span3">
-    <?php echo $this->placeholder('sidebar'); ?>
+    <div id="sideBar">
+        <?php echo $this->placeholder('sidebar'); ?>
+    </div>
 </div>
 <div class="span9">
     <div class="row-fluid">
-        <?php echo $this->flashMessenger(); ?>
-        <?php echo $this->layout()->content; ?>
+        <div id="contentWithSideBar">
+            <?php echo $this->flashMessenger(); ?>
+            <?php echo $this->layout()->content; ?>
+        </div>
     </div>
 </div>
