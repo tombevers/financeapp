@@ -1,9 +1,9 @@
-<div class="well">
-    <a class="btn btn-primary" href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'create'));?>"><?php echo $this->translate('addAction'); ?></a>
-</div>
+<?php $this->placeholder('quickAction')->captureStart(); ?>
+    <a href="<?php echo $this->url(array('controller' => 'bank', 'action' => 'create'));?>"><i class="icon-plus"></i><?php echo $this->translate('addAction'); ?></a>
+<?php $this->placeholder('quickAction')->captureEnd(); ?>
 
 <?php if(!empty($this->banks)) : ?>
-<table class="table table-bordered table-striped table-condensed">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th><?php echo $this->translate('bankName'); ?></th>

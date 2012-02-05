@@ -1,9 +1,19 @@
-<div class="well">
-    <a class="btn btn-primary" href="<?php echo $this->url(array('controller' => 'transaction-category', 'action' => 'create'));?>"><?php echo $this->translate('addAction'); ?></a>
-</div>
+<?php $this->layout()->variation = 'variation/sidebar'; ?>
+
+<?php $this->placeholder('quickAction')->captureStart(); ?>
+<a href="<?php echo $this->url(array('controller' => 'transaction-category', 'action' => 'create'));?>"><i class="icon-plus"></i><?php echo $this->translate('addAction'); ?></a>
+<?php $this->placeholder('quickAction')->captureEnd(); ?>
+
+<?php $this->placeholder('sidebar')->captureStart(); ?>
+<ul class="nav nav-tabs nav-stacked">
+    <li><a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'list'));?>"><?php echo $this->translate('transactionTitle'); ?></a></li>
+    <li><a href="<?php echo $this->url(array('controller' => 'scheduled-transaction', 'action' => 'list'));?>"><?php echo $this->translate('scheduledTransactionTitle'); ?></a></li>
+    <li class="active"><a href="<?php echo $this->url(array('controller' => 'transaction-category', 'action' => 'list'));?>"><?php echo $this->translate('transactionCategoryTitle'); ?></a></li>
+</ul>
+<?php $this->placeholder('sidebar')->captureEnd(); ?>
 
 <?php if(!empty($this->category)) : ?>
-<table class="table table-bordered table-striped table-condensed">
+<table class="table table-bordered table-striped">
     <thead>
        <tr>
            <th><?php echo $this->translate('transactionCategoryName'); ?></th>

@@ -23,8 +23,8 @@ return array(
     'bankTitle'         => 'Banks',
     'transactionTitle'  => 'Transactions',
     'payeeTitle'        => 'Payees',
-    'transactionCategoryTitle' => 'Category',
-    'scheduledTransactionTitle' => 'Scheduled transaction',
+    'transactionCategoryTitle' => 'Transaction Categories',
+    'scheduledTransactionTitle' => 'Scheduled transactions',
     'settingsTitle' => 'Settings',
 
     // Account form
