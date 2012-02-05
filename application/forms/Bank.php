@@ -4,6 +4,12 @@ class Application_Form_Bank extends \App\Form
 {
     public function init()
     {
+        $this->setOptions(
+            array(
+                'class' => 'form-horizontal',
+            )
+        );        
+        
         $idField = $this->_createHiddenIdField();
         $name = $this->_createNameField();
         $address = $this->_createAddressField();

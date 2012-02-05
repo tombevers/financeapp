@@ -19,6 +19,12 @@ class Application_Form_ScheduledTransaction extends \App\Form
     
     public function init()
     {
+        $this->setOptions(
+            array(
+                'class' => 'form-horizontal',
+            )
+        );        
+        
         $typeService = $this->getTypeService();
         $typeOptions = $typeService->createOptions();
         $accountService = $this->getAccountService();

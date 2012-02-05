@@ -9,6 +9,12 @@ class Application_Form_Setting extends \App\Form
     
     public function init()
     {
+        $this->setOptions(
+            array(
+                'class' => 'form-horizontal',
+            )
+        );        
+        
         $settingService = $this->getSettingService();
         $currencyOptions = $settingService->createCurrencyOptions();        
         

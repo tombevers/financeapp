@@ -14,6 +14,12 @@ class Application_Form_Account extends \App\Form
 
     public function init()
     {
+        $this->setOptions(
+            array(
+                'class' => 'form-horizontal',
+            )
+        );
+        
         $typeService = $this->getTypeService();
         $typeOptions = $typeService->createOptions();
 
@@ -22,12 +28,12 @@ class Application_Form_Account extends \App\Form
 
         $this->addElements(
             array(
-                $this->_createHiddenIdField(),
                 $this->_createTypesDropDown($typeOptions),
                 $this->_createNameField(),
                 $this->_createNumberField(),
                 $this->_createBankDropDown($bankOptions),
                 $this->_createCommentField(),
+                $this->_createHiddenIdField(),
                 $this->_createSubmitButton()
             )
         );

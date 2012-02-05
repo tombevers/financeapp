@@ -23,9 +23,7 @@ class BootstrapErrors extends \Zend_Form_Decorator_HtmlTag
             return $content;
         }
 
-        // Add error class to the HtmlTag of the element
-        $htmlTag = $element->getDecorator('HtmlTag');
-        $htmlTag->setOption('class', 'clearfix error');
+//        $htmlTag = $element->getDecorator('HtmlTag');
         
         $separator = $this->getSeparator();
         $placement = $this->getPlacement();
@@ -33,7 +31,7 @@ class BootstrapErrors extends \Zend_Form_Decorator_HtmlTag
         $formErrorHelper->setElementStart('<span%s>')
             ->setElementSeparator('<br />')
             ->setElementEnd('</span>');
-        $errors = $formErrorHelper->formErrors($errors, array('class' => 'help-block'));
+        $errors = $formErrorHelper->formErrors($errors, array('class' => 'help-inline'));
 
         switch ($placement) {
             case 'PREPEND':

@@ -9,6 +9,12 @@ class Application_Form_TransactionCategory extends \App\Form
     
     public function init()
     {
+        $this->setOptions(
+            array(
+                'class' => 'form-horizontal',
+            )
+        );        
+        
         $categoryService = $this->getCategoryService();
         
         $this->addElements(

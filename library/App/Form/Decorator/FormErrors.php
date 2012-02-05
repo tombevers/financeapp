@@ -36,7 +36,8 @@ class FormErrors extends \Zend_Form_Decorator_Abstract
         $markup .= '<a class="close" data-dismiss="alert" href="#">×</a>';
 
         if (!empty($message)) {
-            $markup .= '<p><strong>' . $message . '</strong></p>';
+            $translator = $form->getTranslator();
+            $markup .= '<p><strong>' . $translator->translate($message) . '</strong></p>';
         }
         $markup .= '<ul>';
 

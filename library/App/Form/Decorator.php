@@ -90,17 +90,20 @@ class Decorator
             array(
                 'BootstrapTag',
                 array(
-                    'class' => 'input'
+                    'class' => 'controls'
                 )
             ),
             array(
-                'Label'
+                'Label',
+                array(
+                    'class' => 'control-label'
+                )
             ),
             array(
                 'HtmlTag',
                 array(
                     'tag'   => 'div',
-                    'class' => 'clearfix'
+                    'class' => 'control-group'
                 )
             )
         )
@@ -172,17 +175,20 @@ class Decorator
             array(
                 'BootstrapTag',
                 array(
-                    'class' => 'input'
+                    'class' => 'controls'
                 )
             ),
             array(
-                'Label'
+                'Label',
+                array(
+                    'class' => 'control-label'
+                )
             ),
             array(
                 'HtmlTag',
                 array(
                     'tag'   => 'div',
-                    'class' => 'clearfix'
+                    'class' => 'control-group'
                 )
             )
         )
@@ -284,17 +290,20 @@ class Decorator
             array(
                 'BootstrapTag',
                 array(
-                    'class' => 'input'
+                    'class' => 'controls'
                 )
             ),
             array(
-                'Label'
+                'Label',
+                array(
+                    'class' => 'control-label'
+                )
             ),
             array(
                 'HtmlTag',
                 array(
                     'tag'   => 'div',
-                    'class' => 'clearfix'
+                    'class' => 'control-group'
                 )
             )
         )
@@ -335,7 +344,7 @@ class Decorator
                 'HtmlTag',
                 array(
                     'tag'   => 'div',
-                    'class' => 'actions',
+                    'class' => 'form-actions',
                     'openOnly' => FALSE
                 )
             )
@@ -399,7 +408,7 @@ class Decorator
                 'HtmlTag',
                 array(
                     'tag'   => 'div',
-                    'class' => 'clearfix hide'
+                    'class' => 'control-group hide'
                 )
             )
         )
@@ -413,14 +422,17 @@ class Decorator
     protected static $_formDecorator = array(
         'table' => array(
             'FormElements',
+            'Fieldset',
             'Form'
         ),
         'div' => array(
             'FormElements',
+            'Fieldset',
             'Form'
         ),
         'bootstrap' => array(
             'FormElements',
+            'Fieldset',
             'Form'
         )
     );
@@ -531,17 +543,20 @@ class Decorator
             array(
                 'BootstrapTag',
                 array(
-                    'class' => 'input'
+                    'class' => 'controls'
                 )
             ),
             array(
                 'Label',
+                array(
+                    'class' => 'control-label'
+                )
             ),
             array(
                 'HtmlTag',
                 array(
                     'tag'   => 'div',
-                    'class' => 'clearfix'
+                    'class' => 'control-group'
                 )
             )
         )
@@ -583,7 +598,7 @@ class Decorator
             if ($format == self::BOOTSTRAP) {
                 $attribs = $form->getElement($submitName)->getAttrib('class');
                 if (empty($attribs)) {
-                    $attribs = array('btn', 'primary');
+                    $attribs = array('btn', 'btn-primary');
                 } else {
                     if (is_string($attribs)) {
                         $attribs = array($attribs);

@@ -97,5 +97,6 @@ return array(
     'saveTransactionCategoryMessage'    => 'Saved transaction succesfully',
     'editTransactionCategoryMessage'    => 'Edited transaction succesfully',
     'deleteTransactionCategoryMessage'  => 'Deleted transaction succesfully',
-    'saveSettingsMessage' => 'Saved settings succesfully',
+    'saveSettingsMessage'       => 'Saved settings succesfully',
+    'actionErrorsOccured'       => 'Some errors occured',
 );
