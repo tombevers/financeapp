@@ -183,7 +183,7 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
      */
     private function _createTransactions(\App\Entity\ScheduledTransaction $pendingTransaction, \DateTime $currentDate)
     {
-        $transactionService = $typeService = $this->get('service.transaction');
+        $transactionService = $this->get('service.transaction');
         
         $oldNextDate = $nextDate = $pendingTransaction->getNextDate();
         $number = $pendingTransaction->getNumber();
