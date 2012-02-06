@@ -22,8 +22,6 @@ class BootstrapErrors extends \Zend_Form_Decorator_HtmlTag
         if (empty($errors)) {
             return $content;
         }
-
-//        $htmlTag = $element->getDecorator('HtmlTag');
         
         $separator = $this->getSeparator();
         $placement = $this->getPlacement();
