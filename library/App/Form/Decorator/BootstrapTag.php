@@ -44,29 +44,59 @@ class BootstrapTag extends \Zend_Form_Decorator_HtmlTag
     {
         switch ($placement) {
             case self::APPEND:
-                if ($closeOnly) {
-                    return $content . $this->_getCloseTag($tag);
-                }
-                if ($openOnly) {
-                    return $content . $this->_getOpenTag($tag, $attribs);
-                }
-                return $content
-                     . $this->_getOpenTag($tag, $attribs)
-                     . $this->_getCloseTag($tag);
+                return $this->_appendPlacement($content, $closeOnly, $openOnly, $tag, $attribs);
             case self::PREPEND:
-                if ($closeOnly) {
-                    return $this->_getCloseTag($tag) . $content;
-                }
-                if ($openOnly) {
-                    return $this->_getOpenTag($tag, $attribs) . $content;
-                }
-                return $this->_getOpenTag($tag, $attribs)
-                     . $this->_getCloseTag($tag)
-                     . $content;
+                return $this->_prependPlacement($content, $closeOnly, $openOnly, $tag, $attribs);
             default:
                 return (($openOnly || !$closeOnly) ? $this->_getOpenTag($tag, $attribs) : '')
                      . $content
                      . (($closeOnly || !$openOnly) ? $this->_getCloseTag($tag) : '');
         }
+    }
+    
+    /**
+     * Append placement
+     * 
+     * @param string $content
+     * @param string $closeOnly
+     * @param string $openOnly
+     * @param string $tag
+     * @param array $attribs
+     * @return string 
+     */
+    private function _appendPlacement($content, $closeOnly, $openOnly, $tag, array $attribs)
+    {
+        if ($closeOnly) {
+            return $content . $this->_getCloseTag($tag);
+        }
+        if ($openOnly) {
+            return $content . $this->_getOpenTag($tag, $attribs);
+        }
+        return $content
+            . $this->_getOpenTag($tag, $attribs)
+            . $this->_getCloseTag($tag);
+    }
+    
+    /**
+     * Prepend placement
+     * 
+     * @param string $content
+     * @param string $closeOnly
+     * @param string $openOnly
+     * @param string $tag
+     * @param array $attribs
+     * @return string 
+     */    
+    private function _prependPlacement($content, $closeOnly, $openOnly, $tag, array $attribs)
+    {
+        if ($closeOnly) {
+            return $this->_getCloseTag($tag) . $content;
+        }
+        if ($openOnly) {
+            return $this->_getOpenTag($tag, $attribs) . $content;
+        }
+        return $this->_getOpenTag($tag, $attribs)
+            . $this->_getCloseTag($tag)
+            . $content;
     }
 }
