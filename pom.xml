@@ -27,9 +27,9 @@
     <sonar.phpCodesniffer.analyzeOnly>true</sonar.phpCodesniffer.analyzeOnly>
     <sonar.phpCodesniffer.reportFileRelativePath>/../build/logs</sonar.phpCodesniffer.reportFileRelativePath>
     <sonar.phpCodesniffer.reportFileName>checkstyle.xml</sonar.phpCodesniffer.reportFileName>
-    <!--sonar.phpDepend.analyzeOnly>true</sonar.phpDepend.analyzeOnly>
+    <sonar.phpDepend.analyzeOnly>true</sonar.phpDepend.analyzeOnly>
     <sonar.phpDepend.reportFileRelativePath>/../build/logs</sonar.phpDepend.reportFileRelativePath>
-    <sonar.phpDepend.reportFileName>jdepend.xml</sonar.phpDepend.reportFileName-->
+    <sonar.phpDepend.reportFileName>jdepend.xml</sonar.phpDepend.reportFileName>
     <sonar.phpcpd.analyzeOnly>true</sonar.phpcpd.analyzeOnly>
     <sonar.phpcpd.reportFileRelativePath>/../build/logs</sonar.phpcpd.reportFileRelativePath>
     <sonar.phpcpd.reportFileName>pmd-cpd.xml</sonar.phpcpd.reportFileName>
