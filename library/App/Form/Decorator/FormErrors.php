@@ -41,6 +41,31 @@ class FormErrors extends \Zend_Form_Decorator_Abstract
         }
         $markup .= '<ul>';
 
+        $markup = $this->_addErrorMessages($markup, $errors, $form, $view);
+
+        $markup .= '</ul>';
+        $markup .= '</div>';
+
+        switch ($this->getPlacement()) {
+            case self::APPEND:
+                $content = $content . $this->getSeparator() . $markup;
+            case self::PREPEND:
+                $content = $markup . $this->getSeparator() . $content;
+        }
+        return $content;
+    }
+    
+    /**
+     * Add the error messages
+     * 
+     * @param string $markup
+     * @param array $errors
+     * @param \Zend_Form $form
+     * @param string $view
+     * @return string 
+     */
+    private function _addErrorMessages($markup, array $errors, \Zend_Form $form, $view)
+    {
         foreach ($errors as $name => $list) {
             $element = $form->$name;
 
@@ -59,30 +84,19 @@ class FormErrors extends \Zend_Form_Decorator_Abstract
 
                 $markup .= '<li>' . $label . '&nbsp;' . $errorMessage . '</li>';
             } else if ($element instanceof Zend_Form) {
-                    foreach ($list as $label => $error) {
-                        foreach ($error as $message) {
-                            $markup .= '<li>' . ucfirst($label) . '&nbsp;';
-                            $markup .= strtolower($view->escape($message));
-                            $markup .= '</li>';
-                            break; // just do the first error message for a field
-                        }
+                foreach ($list as $label => $error) {
+                    foreach ($error as $message) {
+                        $markup .= '<li>' . ucfirst($label) . '&nbsp;';
+                        $markup .= strtolower($view->escape($message));
+                        $markup .= '</li>';
+                        break; // just do the first error message for a field
                     }
-            } else {
-                if (is_string($list)) {
-                    $markup .= '<li>' . $list . '</li>';
                 }
+            } else if (is_string($list)) {
+                $markup .= '<li>' . $list . '</li>';
             }
-        }
-
-        $markup .= '</ul>';
-        $markup .= '</div>';
-
-        switch ($this->getPlacement()) {
-            case self::APPEND:
-                $content = $content . $this->getSeparator() . $markup;
-            case self::PREPEND:
-                $content = $markup . $this->getSeparator() . $content;
-        }
-        return $content;
+        }        
+        
+        return $markup;
     }
 }

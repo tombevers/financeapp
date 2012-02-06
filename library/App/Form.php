@@ -6,7 +6,8 @@ class Form extends \Zend_Form
 {
     public function init()
     {
-        Form\Decorator::setFormDecorator($this);
+        $decorator = new Form\Decorator();
+        $decorator->setFormDecorator($this);
         $this->addDecorator(
             new Form\Decorator\FormErrors(
                 array(
