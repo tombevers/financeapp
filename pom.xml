@@ -33,7 +33,7 @@
     <sonar.phpcpd.analyzeOnly>true</sonar.phpcpd.analyzeOnly>
     <sonar.phpcpd.reportFileRelativePath>/../build/logs</sonar.phpcpd.reportFileRelativePath>
     <sonar.phpcpd.reportFileName>pmd-cpd.xml</sonar.phpcpd.reportFileName>
-    <sonar.exclusions>**/library/Doctrine/**,**/library/Symfony/**,**/library/Zend/**,**/library/ZendX/**,**/tests/**</sonar.exclusions>
+    <sonar.exclusions>**/application/controllers/**,**/library/App/Entity/Proxy/**,**/library/App/Entity/Repository/**,**/library/Doctrine/**,**/library/Symfony/**,**/library/Zend/**,**/library/ZendX/**,**/tests/**</sonar.exclusions>
 
     <!-- to enable mutliple source directories. The phase must patch with the build-helper-maven-plugin exectution phase -->
     <!-- <sonar.phase>generate-sources</sonar.phase> -->

@@ -65,8 +65,14 @@ class Application_Service_Account extends App\AbstractService
      */
     public function removeById($accountId)
     {
-        $this->_repository->removeAccount($accountId);
-        $this->getEntityManager()->flush();
+        $account = $this->fetchById($accountId);
+        if ($account !== NULL) {
+            $this->_repository->removeAccount($account);
+            $this->getEntityManager()->flush();
+            return TRUE;            
+        }
+        
+        return FALSE;        
     }
 
     /**
@@ -76,10 +82,10 @@ class Application_Service_Account extends App\AbstractService
      */
     public function createOptions()
     {
-        $types = $this->fetchAll();
+        $accounts = $this->fetchAll();
         $options = array();
-        foreach ($types as $type) {
-            $options[$type->getId()] = $type->getName();
+        foreach ($accounts as $account) {
+            $options[$account->getId()] = $account->getName();
         }
 
         return $options;

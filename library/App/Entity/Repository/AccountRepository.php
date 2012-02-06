@@ -28,11 +28,8 @@ class AccountRepository extends EntityRepository
      * Remove an account
      * @param int $accountId 
      */
-    public function removeAccount($accountId)
+    public function removeAccount(Account $account)
     {
-        $em = $this->getEntityManager();
-        $proxy = $em->getReference('\App\Entity\Account', $accountId);
-
-        $em->remove($proxy);
+        $this->getEntityManager()->remove($account);
     }
 }
