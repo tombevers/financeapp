@@ -26,6 +26,22 @@ class BootstrapTag extends \Zend_Form_Decorator_HtmlTag
             $attribs = $this->getOptions();
         }
 
+        return $this->_placement($placement, $content, $closeOnly, $openOnly, $tag, $attribs);
+    }
+    
+    /**
+     * Placement
+     * 
+     * @param string $placement
+     * @param string $content
+     * @param string $closeOnly
+     * @param string $openOnly
+     * @param string $tag
+     * @param array $attribs
+     * @return string 
+     */
+    private function _placement($placement, $content, $closeOnly, $openOnly, $tag, array $attribs)
+    {
         switch ($placement) {
             case self::APPEND:
                 if ($closeOnly) {
@@ -53,5 +69,4 @@ class BootstrapTag extends \Zend_Form_Decorator_HtmlTag
                      . (($closeOnly || !$openOnly) ? $this->_getCloseTag($tag) : '');
         }
     }
-
 }
