@@ -131,55 +131,23 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
      */
     public function calculateNextDate($frequency, \DateTime $nextDate)
     {
-        $dateInterval = NULL;
-        switch ($frequency) {
-            // Daily
-            case 1:
-                $dateInterval = 'P1D';
-                break;
-            // Weekly
-            case 2:
-                $dateInterval = 'P1W';
-                break;
-            // 2 Weekly
-            case 3:
-                $dateInterval = 'P2W';
-                break;
-            // 4 Weekly
-            case 4:
-                $dateInterval = 'P4W';
-                break;
-            // Monthly
-            case 5:
-                $dateInterval = 'P1M';
-                break;
-            // 2 Montly
-            case 6:
-                $dateInterval = 'P2M';
-                break;
-            // 3 Montly
-            case 7:
-                $dateInterval = 'P3M';
-                break;
-            // 6 Monthly
-            case 8:
-                $dateInterval = 'P6M';
-                break;
-            // Yearly
-            case 9:
-                $dateInterval = 'P1Y';
-                break;
-            // One time
-            case 0:
-            default:
-                break;
-        }
+        $intervals = array(
+            1 => 'P1D',
+            2 => 'P1W',
+            3 => 'P2W',
+            4 => 'P4W',
+            5 => 'P1M',
+            6 => 'P2M',
+            7 => 'P3M',
+            8 => 'P6M',
+            9 => 'P1Y',
+        );
         
-        if ($dateInterval === NULL) {
+        if (!array_key_exists($frequency, $intervals)) {
             return NULL;
         }
         
-        return $nextDate->add(new DateInterval($dateInterval));
+        return $nextDate->add(new DateInterval($intervals[$frequency]));
     }
     
     /**
