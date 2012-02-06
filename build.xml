@@ -47,6 +47,7 @@
                 <patternset refid="defaultSet" />
             </fileset>
             <logger type="jdepend-xml" outfile="${builddir}/logs/jdepend.xml" />
+            <logger type="phpunit-xml" outfile="${builddir}/logs/pdepend.xml" />
             <logger type="jdepend-chart" outfile="${builddir}/pdepend/dependencies.svg" />
             <logger type="overview-pyramid" outfile="${builddir}/pdepend/overview-pyramid.svg" />
         </phpdepend>
