@@ -10,6 +10,11 @@ class Application_Service_TransactionType extends App\AbstractService
      */
     private $_repository;
 
+    /**
+     * Sets the repository
+     * 
+     * @param \Doctrine\ORM\EntityRepository $repository 
+     */
     public function setTransactionTypeRepository(\Doctrine\ORM\EntityRepository $repository)
     {
         $this->_repository = $repository;
