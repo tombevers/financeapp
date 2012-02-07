@@ -72,7 +72,7 @@ class Application_Service_Account extends App\AbstractService
             return TRUE;            
         }
         
-        return FALSE;        
+        return FALSE;
     }
 
     /**

@@ -11,7 +11,8 @@ class BankRepository extends EntityRepository
      * Saves a bank
      * 
      * @param Bank $bank
-     * @param array $values 
+     * @param array $values
+     * @return Bank
      */
     public function saveBank(Bank $bank, array $values)
     {
@@ -21,18 +22,17 @@ class BankRepository extends EntityRepository
         $bank->setComment($values['comment']);
 
         $this->getEntityManager()->persist($bank);
+        
+        return $bank;
     }
 
     /**
      * Remove a bank
      * 
-     * @param int $bankId 
+     * @param Bank $bank
      */
-    public function removeBank($bankId)
+    public function removeBank(Bank $bank)
     {
-        $em = $this->getEntityManager();
-        $proxy = $em->getReference('\App\Entity\Bank', $bankId);
-
-        $em->remove($proxy);
+        $this->getEntityManager()->remove($bank);
     }
 }

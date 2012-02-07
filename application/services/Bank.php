@@ -41,11 +41,14 @@ class Application_Service_Bank extends App\AbstractService
      *
      * @param \App\Entity\Bank $bank
      * @param array $values
+     * @return \App\Entity\Bank
      */
     public function saveBank(\App\Entity\Bank $bank, array $values)
     {
-        $this->_repository->saveBank($bank, $values);
+        $bank = $this->_repository->saveBank($bank, $values);
         $this->getEntityManager()->flush();
+        
+        return $bank;
     }
 
     /**
@@ -55,10 +58,15 @@ class Application_Service_Bank extends App\AbstractService
      */
     public function removeById($bankId)
     {
-        $this->_repository->removeBank($bankId);
-        $this->getEntityManager()->flush();
+        $bank = $this->fetchById($bankId);
+        if ($bank !== NULL) {
+            $this->_repository->removeBank($bank);
+            $this->getEntityManager()->flush();
+            return TRUE;            
+        }
+        
+        return FALSE;
     }
-
 
     /**
      * Creates the account type options needed for a dropdown
