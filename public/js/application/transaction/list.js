@@ -13,7 +13,8 @@ $(document).ready(function() {
             { "bSortable": false },
         ],
         "oLanguage": {
-            "sLengthMenu": "_MENU_ records per page"
+            "sLengthMenu": "_MENU_ records per page",
+            "sProcessing": '<img alt="Spinner" src="/img/spinner.gif" />'
         }
     });
 });
