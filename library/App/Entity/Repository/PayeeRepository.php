@@ -21,18 +21,18 @@ class PayeeRepository extends EntityRepository
         $payee->setEmail($values['email']);
 
         $this->getEntityManager()->persist($payee);
+        
+        return $payee;
     }
     
     /**
      * Removes a payee
      * 
-     * @param int $payeeId 
+     * @param Payee $payee 
      */
-    public function removePayee($payeeId)
+    public function removePayee(Payee $payee)
     {
-        $em = $this->getEntityManager();
-        $proxy = $em->getReference('\App\Entity\Payee', $payeeId);
-
-        $em->remove($proxy);
+        
+        $this->getEntityManager()->remove($payee);
     }
 }

@@ -44,8 +44,9 @@ class Application_Service_Payee extends App\AbstractService
      */
     public function savePayee(\App\Entity\Payee $payee, array $values)
     {
-        $this->_repository->savePayee($payee, $values);
+        $payee = $this->_repository->savePayee($payee, $values);
         $this->getEntityManager()->flush();
+        return $payee;
     }
 
     /**
@@ -55,7 +56,13 @@ class Application_Service_Payee extends App\AbstractService
      */
     public function removeById($payeeId)
     {
-        $this->_repository->removePayee($payeeId);
+        $payee = $this->fetchById($payeeId);
+        if ($payee === NULL) {
+            return FALSE;
+        }
+        
+        $this->_repository->removePayee($payee);
         $this->getEntityManager()->flush();
+        return TRUE;
     }
 }
