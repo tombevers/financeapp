@@ -41,8 +41,6 @@ class TransactionController extends Zend_Controller_Action
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
         
         $this->view->headScript()->appendFile('/js/application/transaction/list.js');
-
-        $this->view->transactions = $this->_transactionService->fetchAll();
     }
 
     public function createAction()
@@ -150,5 +148,11 @@ class TransactionController extends Zend_Controller_Action
             array('success' => 'deleteTransactionMessage')
         );
         $this->_helper->_redirector('list');
+    }
+    
+    public function getGridDataAction()
+    {
+        $params = $this->getRequest()->getParams();
+        return $this->_helper->json($this->_transactionService->fetchGridData($params));
     }
 }

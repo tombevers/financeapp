@@ -12,7 +12,6 @@
 </ul>
 <?php $this->placeholder('sidebar')->captureEnd(); ?>
 
-<?php if(!empty($this->transactions)) : ?>
 <table id="transactionsTable" class="table table-bordered table-striped">
     <thead>
        <tr>
@@ -22,22 +21,6 @@
        </tr>
     </thead>
     <tbody>
-<?php foreach ($this->transactions as $transaction) : ?>
-    <tr>
-        <td><?php echo $transaction->getDate()->format('Y-m-d'); ?></td>
-        <td><?php echo $this->currency($transaction->getAmount()); ?></td>
-        <td>
-            <ul class="actions clearfix">
-                <li>
-                    <a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'update', 'id' => $transaction->getId()));?>"><?php echo $this->translate('editAction'); ?></a>
-                </li>
-                <li>
-                    <a href="<?php echo $this->url(array('controller' => 'transaction', 'action' => 'delete', 'id' => $transaction->getId()));?>"><?php echo $this->translate('deleteAction'); ?></a>
-                </li>
-            </ul>
-        </td>
-    </tr>
-<?php endforeach; ?>
     </tbody>
 </table>
-<?php endif; ?>
+

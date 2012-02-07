@@ -17,6 +17,38 @@ class TransactionRepository extends EntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
     
+    public function findGridData($firstResult, $maxResults, array $sorting, array $filters)
+    {        
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+        $queryBuilder->select('t._id AS id, t._date AS date, t._amount AS amount')
+            ->from('App\Entity\Transaction', 't')
+            ->setFirstResult($firstResult)
+            ->setMaxResults($maxResults);
+        if (!empty($sorting)) {
+            foreach ($sorting as $sort) {
+                $queryBuilder->orderBy('t.' . $sort['column'], $sort['order']);
+            }
+        }
+        
+        if (!empty($filters)) {
+            $orx = $queryBuilder->expr()->orx();
+            foreach ($filters as $filter) {
+                $orx->add($queryBuilder->expr()->like(
+                    't.' . $filter['column'],
+                    $queryBuilder->expr()->literal('%' . $filter['filter'] . '%')
+                    )
+                );
+            }
+            $queryBuilder->where($orx);
+        }
+        
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($queryBuilder);
+        $count = $paginator->count();
+        $result = $paginator->getQuery()->getResult();
+        
+        return array($count, $result);
+    }
+    
     /**
      * Saves a transaction
      * 
