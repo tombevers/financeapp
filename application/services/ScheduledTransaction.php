@@ -158,13 +158,13 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
      */
     private function _createTransactions(\App\Entity\ScheduledTransaction $pendingTransaction, \DateTime $currentDate)
     {
-        
-        
         $oldNextDate = $nextDate = $pendingTransaction->getNextDate();
         $number = $pendingTransaction->getNumber();
         $continuous = $pendingTransaction->isContinuous();
 
-        $this->_addTransactionAndGetNextDate($currentDate, $currentDate, $continuous, $number);
+        list ($nextDate, $number) = $this->_addTransactionAndGetNextDate(
+            $pendingTransaction, $currentDate, $currentDate, $continuous, $number
+        );
 
         $active = TRUE;
         if ($nextDate === NULL || (!$continuous && $number == 0)) {
@@ -193,11 +193,13 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
     
     /**
      * Add transaction and get next date
-     * 
+     *
+     * @param \App\Entity\ScheduledTransaction $pendingTransaction
      * @param \DateTime $nextDate
      * @param \DateTime $currentDate
      * @param bool $continuous
      * @param int $number 
+     * @return array 
      */
     private function _addTransactionAndGetNextDate(\App\Entity\ScheduledTransaction $pendingTransaction, 
         \DateTime $nextDate, \DateTime $currentDate, $continuous, $number)
@@ -224,5 +226,6 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
                 $number--;
             }
         }
+        return array($nextDate, $number);
     }
 }
