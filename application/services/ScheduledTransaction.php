@@ -162,9 +162,28 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
         $number = $pendingTransaction->getNumber();
         $continuous = $pendingTransaction->isContinuous();
 
-        list ($nextDate, $number) = $this->_addTransactionAndGetNextDate(
-            $pendingTransaction, $currentDate, $currentDate, $continuous, $number
-        );
+        $transactionService = $this->get('service.transaction');
+        while (($nextDate !== NULL && $nextDate <= $currentDate) && !(!$continuous && $number <= 0)) {
+            $transactionService->saveTransaction(
+                new \App\Entity\Transaction,
+                array(
+                    'type' => $pendingTransaction->getType()->getId(),
+                    'account' => $pendingTransaction->getAccount()->getId(),
+                    'amount' => $pendingTransaction->getAmount(),
+                    'date' => $nextDate->format('Y-m-d'),
+                    'note' => '',
+                    'category' => $pendingTransaction->getCategory()->getId(),
+                )
+            );
+            $nextDate = $this->calculateNextDate(
+                $pendingTransaction->getFrequency(),
+                $nextDate
+            );
+
+            if (!$continuous) {
+                $number--;
+            }
+        }
 
         $active = TRUE;
         if ($nextDate === NULL || (!$continuous && $number == 0)) {
@@ -189,43 +208,5 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
                 'active' => $active,
             )
         );        
-    }
-    
-    /**
-     * Add transaction and get next date
-     *
-     * @param \App\Entity\ScheduledTransaction $pendingTransaction
-     * @param \DateTime $nextDate
-     * @param \DateTime $currentDate
-     * @param bool $continuous
-     * @param int $number 
-     * @return array 
-     */
-    private function _addTransactionAndGetNextDate(\App\Entity\ScheduledTransaction $pendingTransaction, 
-        \DateTime $nextDate, \DateTime $currentDate, $continuous, $number)
-    {
-        $transactionService = $this->get('service.transaction');
-        while (($nextDate !== NULL && $nextDate <= $currentDate) && !(!$continuous && $number <= 0)) {
-            $transactionService->saveTransaction(
-                new \App\Entity\Transaction,
-                array(
-                    'type' => $pendingTransaction->getType()->getId(),
-                    'account' => $pendingTransaction->getAccount()->getId(),
-                    'amount' => $pendingTransaction->getAmount(),
-                    'date' => $nextDate->format('Y-m-d'),
-                    'note' => '',
-                    'category' => $pendingTransaction->getCategory()->getId(),
-                )
-            );
-            $nextDate = $this->calculateNextDate(
-                $pendingTransaction->getFrequency(),
-                $nextDate
-            );
-
-            if (!$continuous) {
-                $number--;
-            }
-        }
-        return array($nextDate, $number);
     }
 }
