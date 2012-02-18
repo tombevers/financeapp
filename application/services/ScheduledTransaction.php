@@ -209,4 +209,83 @@ class Application_Service_ScheduledTransaction extends App\AbstractService
             )
         );        
     }
+    
+    /**
+     * Fetches data for the grid
+     * 
+     * @param array $params
+     * @return array
+     */
+    public function fetchGridData(array $params)
+    {
+        $firstResult = $params['iDisplayStart'];
+        $maxResults = $params['iDisplayLength'];
+        $echo = $params['sEcho'];
+        $search = $params['sSearch'];
+        $columns = array('st._nextDate', 'st._frequency', 't._tag', 'c._name', 'st._amount', 'st._active');
+        
+        $sorting = array();
+        for ($i = 0 ; $i < intval($params['iSortingCols']); $i++) {
+            $column = intval($params['iSortCol_' . $i]);
+            $order = $params['sSortDir_' . $i];
+            
+            if ($params['bSortable_' . $column]) {
+                if (array_key_exists($column, $columns)) {
+                    $sorting[] = array(
+                        'column' => $columns[$column],
+                        'order' => $order
+                    );
+                }
+            }
+        }
+        
+        $filters = array();
+        if (!empty($search)) {
+            for ($i = 0; $i < count($columns); $i++) {
+                $filters[] = array(
+                    'column' => $columns[$i],
+                    'filter' => $search,
+                );
+            }
+        }
+        
+        $results = $this->_repository->findGridData($firstResult, $maxResults, $sorting, $filters);
+        $totalRecords = $results[0];
+        
+        $data = array();
+        foreach ($results[1] as $result) {
+            $actions = $this->_getActionLink($result['id']);
+            $data[] = array(
+                $result['nextDate']->format('Y-m-d'),
+                $result['frequency'],
+                $result['type'],
+                $result['category'],
+                $result['amount'],
+                $result['active'],
+                $actions
+            );
+        }
+        
+        $output = array(
+            "sEcho" => intval($echo),
+            "iTotalRecords" => $totalRecords,
+            "iTotalDisplayRecords" => $totalRecords,
+            "aaData" => $data
+        );
+        return $output;
+    }
+    
+    private function _getActionLink($id)
+    {
+        $actions = '<ul class="actions clearfix">';
+        $actions .= '<li>';
+        $actions .= '<a href="/scheduled-transaction/update/id/' . $id. '">Edit</a>';
+        $actions .= '</li>';
+        $actions .= '<li>';
+        $actions .= '<a href="/scheduled-transaction/delete/id/' . $id. '">Delete</a>';
+        $actions .= '</li>';
+        $actions .= '</ul>';
+        
+        return $actions;
+    }    
 }

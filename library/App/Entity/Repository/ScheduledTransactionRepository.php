@@ -29,6 +29,40 @@ class ScheduledTransactionRepository extends EntityRepository
         return $queryBuilder->getQuery()->getResult();        
     }
     
+    public function findGridData($firstResult, $maxResults, array $sorting, array $filters)
+    {        
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+        $queryBuilder->select('st._id AS id, st._nextDate AS nextDate, st._frequency AS frequency, t._tag AS type, c._name AS category, st._amount AS amount, st._active AS active')
+            ->from('App\Entity\ScheduledTransaction', 'st')
+            ->join('st._type', 't')
+            ->join('st._category', 'c')
+            ->setFirstResult($firstResult)
+            ->setMaxResults($maxResults);
+        if (!empty($sorting)) {
+            foreach ($sorting as $sort) {
+                $queryBuilder->orderBy($sort['column'], $sort['order']);
+            }
+        }
+        
+        if (!empty($filters)) {
+            $orx = $queryBuilder->expr()->orx();
+            foreach ($filters as $filter) {
+                $orx->add($queryBuilder->expr()->like(
+                    $filter['column'],
+                    $queryBuilder->expr()->literal('%' . $filter['filter'] . '%')
+                    )
+                );
+            }
+            $queryBuilder->where($orx);
+        }
+        
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($queryBuilder);
+        $count = $paginator->count();
+        $result = $paginator->getQuery()->getResult();
+        
+        return array($count, $result);
+    }    
+    
     /**
      * Saves a scheduled transaction
      * 

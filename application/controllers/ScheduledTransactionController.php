@@ -39,8 +39,8 @@ class ScheduledTransactionController extends Zend_Controller_Action
     {
         $this->view->pageTitle = $this->view->translate('scheduledTransactionTitle');
         $this->view->headTitle($this->view->pageTitle, 'PREPEND');
-
-        $this->view->transactions = $this->_transactionService->fetchAll();
+        
+        $this->view->headScript()->appendFile('/js/application/scheduled-transaction/list.js');
     }
 
     public function createAction()
@@ -149,4 +149,10 @@ class ScheduledTransactionController extends Zend_Controller_Action
         );
         $this->_helper->_redirector('list');
     }
+    
+    public function getGridDataAction()
+    {
+        $params = $this->getRequest()->getParams();
+        return $this->_helper->json($this->_transactionService->fetchGridData($params));
+    }    
 }
