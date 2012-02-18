@@ -1,0 +1,3 @@
+[submodule "library/Symfony/Component/DependencyInjection"]
+	path = library/Symfony/Component/DependencyInjection
+	url = git://github.com/symfony/DependencyInjection.git
